@@ -2,9 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://leel0330.github.io/2020/11/28/%E8%B0%88%E4%B8%80%E8%B0%88%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1/</loc>
+    <loc>https://leel0330.github.io/2020/11/29/%E9%93%BE%E8%A1%A8/</loc>
     
-    <lastmod>2020-11-28</lastmod>
+    <lastmod>2020-11-29</lastmod>
     
   </url>
   
@@ -46,7 +46,7 @@
 
   <url>
     <loc>https://leel0330.github.io/</loc>
-    <lastmod>2020-11-28</lastmod>
+    <lastmod>2020-11-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -56,14 +56,7 @@
   
   <url>
     <loc>https://leel0330.github.io/categories/LeetCode/</loc>
-    <lastmod>2020-11-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://leel0330.github.io/categories/Tech/</loc>
-    <lastmod>2020-11-28</lastmod>
+    <lastmod>2020-11-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
