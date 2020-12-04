@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="44lk54WaIA2da4tnP20JDoFln9SsAF3526L8VM3ZQdU">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leel0330.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="二叉树(简单)的题目汇总在此了，欢迎大家光顾。 来源：力扣（LeetCode） 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode之二叉树(简单)">
+<meta property="og:url" content="https://leel0330.github.io/2020/12/03/%E4%BA%8C%E5%8F%89%E6%A0%91-%E7%AE%80%E5%8D%95/index.html">
+<meta property="og:site_name" content="PingCoder">
+<meta property="og:description" content="二叉树(简单)的题目汇总在此了，欢迎大家光顾。 来源：力扣（LeetCode） 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://leel0330.github.io/images/leetcode/bst.jpg">
+<meta property="article:published_time" content="2020-12-03T13:26:41.000Z">
+<meta property="article:modified_time" content="2020-12-04T14:12:11.831Z">
+<meta property="article:author" content="PingCoder">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://leel0330.github.io/images/leetcode/bst.jpg">
+
+
+<link rel="canonical" href="https://leel0330.github.io/2020/12/03/%E4%BA%8C%E5%8F%89%E6%A0%91-%E7%AE%80%E5%8D%95/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>LeetCode之二叉树(简单) | PingCoder</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-160312459-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-160312459-1');
+      }
+    </script>
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">PingCoder</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-leetcode">
+
+    <a href="/categories/LeetCode/" rel="section"><i class="fa fa-th fa-fw"></i>力扣(LeetCode)</a>
+
+  </li>
+        <li class="menu-item menu-item-tech">
+
+    <a href="/categories/Tech/" rel="section"><i class="fa fa-calendar fa-fw"></i>技术</a>
+
+  </li>
+        <li class="menu-item menu-item-book">
+
+    <a href="/categories/Book/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>读书</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#101-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-text">101. 对称二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#110-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-text">110. 平衡二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#111-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6"><span class="nav-text">111. 二叉树的最小深度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#226-%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-text">226. 翻转二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#257-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84"><span class="nav-text">257. 二叉树的所有路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#501-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E4%BC%97%E6%95%B0-n"><span class="nav-text">501. 二叉搜索树中的众数 [n]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#543-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84"><span class="nav-text">543. 二叉树的直径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#563-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9D%A1%E5%BA%A6"><span class="nav-text">563. 二叉树的坡度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#572-%E5%8F%A6%E4%B8%80%E4%B8%AA%E6%A0%91%E7%9A%84%E5%AD%90%E6%A0%91"><span class="nav-text">572. 另一个树的子树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#606-%E6%A0%B9%E6%8D%AE%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%9B%E5%BB%BA%E5%AD%97%E7%AC%A6%E4%B8%B2-n"><span class="nav-text">606. 根据二叉树创建字符串 [n]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#669-%E4%BF%AE%E5%89%AA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91-n"><span class="nav-text">669. 修剪二叉搜索树 [n]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#687-%E6%9C%80%E9%95%BF%E5%90%8C%E5%80%BC%E8%B7%AF%E5%BE%84-n"><span class="nav-text">687. 最长同值路径 [n]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#897-%E9%80%92%E5%A2%9E%E9%A1%BA%E5%BA%8F%E6%9F%A5%E6%89%BE%E6%A0%91"><span class="nav-text">897. 递增顺序查找树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#993-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%A0%82%E5%85%84%E5%BC%9F%E8%8A%82%E7%82%B9"><span class="nav-text">993. 二叉树的堂兄弟节点</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="PingCoder"
+      src="/images/site/avatar.jpg">
+  <p class="site-author-name" itemprop="name">PingCoder</p>
+  <div class="site-description" itemprop="description">less is more</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leel0330" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leel0330" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:leel0330@163.com" title="E-Mail → mailto:leel0330@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leel0330.github.io/2020/12/03/%E4%BA%8C%E5%8F%89%E6%A0%91-%E7%AE%80%E5%8D%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/site/avatar.jpg">
+      <meta itemprop="name" content="PingCoder">
+      <meta itemprop="description" content="less is more">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PingCoder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LeetCode之二叉树(简单)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-03 21:26:41" itemprop="dateCreated datePublished" datetime="2020-12-03T21:26:41+08:00">2020-12-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-04 22:12:11" itemprop="dateModified" datetime="2020-12-04T22:12:11+08:00">2020-12-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>二叉树(简单)的题目汇总在此了，欢迎大家光顾。</p>
+<p>来源：力扣（LeetCode）</p>
+<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<img src="/images/leetcode/bst.jpg" width = 600px height = 300px/>
+
+<a id="more"></a>
+
+<h2 id="101-对称二叉树"><a href="#101-对称二叉树" class="headerlink" title="101. 对称二叉树"></a>101. 对称二叉树</h2><p>给定一个二叉树，检查它是否是镜像对称的。</p>
+<p>例如，二叉树 [1,2,2,3,4,4,3] 是对称的。</p>
+<pre>
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+</pre>
+<p>但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:</p>
+<pre>
+    1
+   / \
+  2   2
+   \   \
+   3    3
+</pre>
+
+
+<div class="tabs" id="leetcode"><ul class="nav-tabs"><li class="tab active"><a href="#leetcode-1">Python(BFS)</a></li><li class="tab"><a href="#leetcode-2">Python(递归)</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-1"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isSymmetric</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        queue = [root, root]</span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            t1 = queue.pop(<span class="number">0</span>)</span><br><span class="line">            t2 = queue.pop(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">if</span> t1 <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> t2 <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">if</span> t1 <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> t2 <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> t1.val != t2.val:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            queue.append(t1.left)</span><br><span class="line">            queue.append(t2.right)</span><br><span class="line">            queue.append(t1.right)</span><br><span class="line">            queue.append(t2.left)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-2"><figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isSymmetric</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> self.isMirror(root, root)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isMirror</span>(<span class="params">self, p, q</span>):</span></span><br><span class="line">        <span class="keyword">if</span> p <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> q <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> p <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> q <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> p.val == q.val <span class="keyword">and</span> self.isMirror(p.left, q.right) \</span><br><span class="line">         <span class="keyword">and</span> self.isMirror(p.right, q.left)</span><br></pre></td></tr></table></figure></div></div></div>
+
+
+<h2 id="110-平衡二叉树"><a href="#110-平衡二叉树" class="headerlink" title="110. 平衡二叉树"></a>110. 平衡二叉树</h2><p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
+<p>本题中，一棵高度平衡二叉树定义为：</p>
+<p>一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过1。</p>
+<p>示例 1:</p>
+<pre>
+给定二叉树 [3,9,20,null,null,15,7]
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+返回 true 。
+</pre>
+<p>示例 2:</p>
+<pre>
+给定二叉树 [1,2,2,3,3,null,null,4,4]
+
+       1
+      / \
+     2   2
+    / \
+   3   3
+  / \
+ 4   4
+返回 false 。
+</pre>
+
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isBalanced</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> self.helper(root) != -<span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        left_height = self.helper(root.left)</span><br><span class="line">        <span class="keyword">if</span> left_height == -<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        right_height = self.helper(root.right)</span><br><span class="line">        <span class="keyword">if</span> right_height == -<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">abs</span>(left_height - right_height) &gt; <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + <span class="built_in">max</span>(left_height, right_height)</span><br></pre></td></tr></table></figure>
+
+<h2 id="111-二叉树的最小深度"><a href="#111-二叉树的最小深度" class="headerlink" title="111. 二叉树的最小深度"></a>111. 二叉树的最小深度</h2><p>给定一个二叉树，找出其最小深度。</p>
+<p>最小深度是从根节点到最近叶子节点的最短路径上的节点数量。</p>
+<p>说明: 叶子节点是指没有子节点的节点。</p>
+<p>示例:</p>
+<pre>
+给定二叉树 [3,9,20,null,null,15,7],
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+返回它的最小深度  2.
+</pre>
+
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minDepth</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        queue = [root]</span><br><span class="line">        level = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            n = <span class="built_in">len</span>(queue)</span><br><span class="line">            level += <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</span><br><span class="line">                node = queue.pop(<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">if</span> node.left <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> node.right <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                    <span class="keyword">return</span> level</span><br><span class="line">                <span class="keyword">if</span> node.left:</span><br><span class="line">                    queue.append(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.right:</span><br><span class="line">                    queue.append(node.right)</span><br></pre></td></tr></table></figure>
+
+<h2 id="226-翻转二叉树"><a href="#226-翻转二叉树" class="headerlink" title="226. 翻转二叉树"></a>226. 翻转二叉树</h2><p>翻转一棵二叉树。</p>
+<p>示例：</p>
+<pre>
+输入：
+
+     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+输出：
+
+     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
+</pre>
+
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">invertTree</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: TreeNode</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        queue = [root]</span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            node = queue.pop(<span class="number">0</span>)</span><br><span class="line">            node.left, node.right = node.right, node.left</span><br><span class="line">            <span class="keyword">if</span> node.left:</span><br><span class="line">                queue.append(node.left)</span><br><span class="line">            <span class="keyword">if</span> node.right:</span><br><span class="line">                queue.append(node.right)</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+
+<h2 id="257-二叉树的所有路径"><a href="#257-二叉树的所有路径" class="headerlink" title="257. 二叉树的所有路径"></a>257. 二叉树的所有路径</h2><p>给定一个二叉树，返回所有从根节点到叶子节点的路径。</p>
+<p>说明: 叶子节点是指没有子节点的节点。</p>
+<p>示例:</p>
+<p>输入:</p>
+<pre>
+   1
+ /   \
+2     3
+ \
+  5
+
+输出: ["1->2->5", "1->3"]
+
+解释: 所有根节点到叶子节点的路径为: 1->2->5, 1->3
+</pre>
+
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">binaryTreePaths</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: List[str]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        item, res = [], []</span><br><span class="line">        self.dfs(root, item, res)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span>(<span class="params">self, root, item, res</span>):</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> root.left <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> root.right <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            tmp = item[:] + [<span class="built_in">str</span>(root.val)]</span><br><span class="line">            res.append(<span class="string">&#x27;-&gt;&#x27;</span>.join(tmp))</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.dfs(root.left, item + [<span class="built_in">str</span>(root.val)], res)</span><br><span class="line">        self.dfs(root.right, item + [<span class="built_in">str</span>(root.val)], res)</span><br></pre></td></tr></table></figure>
+
+<h2 id="501-二叉搜索树中的众数-n"><a href="#501-二叉搜索树中的众数-n" class="headerlink" title="501. 二叉搜索树中的众数 [n]"></a>501. 二叉搜索树中的众数 [n]</h2><p>给定一个有相同值的二叉搜索树（BST），找出 BST 中的所有众数（出现频率最高的元素）。</p>
+<p>假定 BST 有如下定义：</p>
+<ul>
+<li>结点左子树中所含结点的值小于等于当前结点的值</li>
+<li>结点右子树中所含结点的值大于等于当前结点的值</li>
+<li>左子树和右子树都是二叉搜索树</li>
+</ul>
+<pre>
+例如：
+给定 BST [1,null,2,2],
+
+   1
+    \
+     2
+    /
+   2
+
+返回[2].
+</pre>
+
+<p>提示：如果众数超过1个，不需考虑输出顺序</p>
+<p>进阶：你可以不使用额外的空间吗？（假设由递归产生的隐式调用栈的开销不被计算在内）</p>
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMode</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.count = <span class="number">0</span></span><br><span class="line">        self.max_count = <span class="number">0</span></span><br><span class="line">        self.res = []</span><br><span class="line">        self.prev = <span class="literal">None</span></span><br><span class="line">        self.helper(root)</span><br><span class="line">        <span class="keyword">return</span> self.res</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.helper(root.left)</span><br><span class="line">        <span class="keyword">if</span> self.prev <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            self.count = <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> self.prev.val == root.val:</span><br><span class="line">            self.count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.count = <span class="number">1</span></span><br><span class="line">        self.prev = root</span><br><span class="line">        <span class="keyword">if</span> self.count == self.max_count:</span><br><span class="line">            self.res.append(self.prev.val)</span><br><span class="line">        <span class="keyword">if</span> self.count &gt; self.max_count:</span><br><span class="line">            self.max_count = self.count</span><br><span class="line">            self.res = [self.prev.val]</span><br><span class="line">        self.helper(root.right)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="543-二叉树的直径"><a href="#543-二叉树的直径" class="headerlink" title="543. 二叉树的直径"></a>543. 二叉树的直径</h2><p>给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过根结点。</p>
+<p>示例 :</p>
+<pre>
+给定二叉树
+
+          1
+         / \
+        2   3
+       / \     
+      4   5    
+返回 3, 它的长度是路径 [4,2,1,3] 或者 [5,2,1,3]。
+</pre>
+<p>注意：两结点之间的路径长度是以它们之间边的数目表示。</p>
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">diameterOfBinaryTree</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.ans = <span class="number">1</span></span><br><span class="line">        self.helper(root)</span><br><span class="line">        <span class="keyword">return</span> self.ans - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        left = self.helper(root.left)</span><br><span class="line">        right = self.helper(root.right)</span><br><span class="line">        self.ans = <span class="built_in">max</span>(self.ans, left + right + <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(left, right) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="563-二叉树的坡度"><a href="#563-二叉树的坡度" class="headerlink" title="563. 二叉树的坡度"></a>563. 二叉树的坡度</h2><p>给定一个二叉树，计算整个树的坡度。</p>
+<p>一个树的节点的坡度定义即为，该节点左子树的结点之和和右子树结点之和的差的绝对值。空结点的的坡度是0。</p>
+<p>整个树的坡度就是其所有节点的坡度之和。</p>
+<p>示例:</p>
+<pre>
+输入: 
+         1
+       /   \
+      2     3
+输出: 1
+解释: 
+结点的坡度 2 : 0
+结点的坡度 3 : 0
+结点的坡度 1 : |2-3| = 1
+树的坡度 : 0 + 0 + 1 = 1
+</pre>
+
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findTilt</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.res = <span class="number">0</span></span><br><span class="line">        self.helper(root)</span><br><span class="line">        <span class="keyword">return</span> self.res</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        L = self.helper(root.left)</span><br><span class="line">        R = self.helper(root.right)</span><br><span class="line">        self.res += <span class="built_in">abs</span>(L - R)</span><br><span class="line">        <span class="keyword">return</span> L + R + root.val</span><br></pre></td></tr></table></figure>
+
+<h2 id="572-另一个树的子树"><a href="#572-另一个树的子树" class="headerlink" title="572. 另一个树的子树"></a>572. 另一个树的子树</h2><p>给定两个非空二叉树 s 和 t，检验 s 中是否包含和 t 具有相同结构和节点值的子树。s 的一个子树包括 s 的一个节点和这个节点的所有子孙。s 也可以看做它自身的一棵子树。</p>
+<p>示例 1:</p>
+<pre>
+给定的树 s:
+
+     3
+    / \
+   4   5
+  / \
+ 1   2
+给定的树 t：
+
+   4 
+  / \
+ 1   2
+返回 true，因为 t 与 s 的一个子树拥有相同的结构和节点值。
+</pre>
+<p>示例 2:</p>
+<pre>
+给定的树 s：
+
+     3
+    / \
+   4   5
+  / \
+ 1   2
+    /
+   0
+给定的树 t：
+
+   4
+  / \
+ 1   2
+返回 false。
+</pre>
+
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isSubtree</span>(<span class="params">self, s, t</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type s: TreeNode</span></span><br><span class="line"><span class="string">        :type t: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        queue = [s]</span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            node = queue.pop(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">if</span> self.isSameTree(node, t):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">if</span> node.left:</span><br><span class="line">                queue.append(node.left)</span><br><span class="line">            <span class="keyword">if</span> node.right:</span><br><span class="line">                queue.append(node.right)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isSameTree</span>(<span class="params">self, s, t</span>):</span></span><br><span class="line">        <span class="keyword">if</span> s <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> t <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> s <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> t <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> s.val != t.val:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> self.isSameTree(s.left, t.left) \</span><br><span class="line">            <span class="keyword">and</span> self.isSameTree(s.right, t.right)</span><br></pre></td></tr></table></figure>
+
+<h2 id="606-根据二叉树创建字符串-n"><a href="#606-根据二叉树创建字符串-n" class="headerlink" title="606. 根据二叉树创建字符串 [n]"></a>606. 根据二叉树创建字符串 [n]</h2><p>你需要采用前序遍历的方式，将一个二叉树转换成一个由括号和整数组成的字符串。</p>
+<p>空节点则用一对空括号 “()” 表示。而且你需要省略所有不影响字符串与原始二叉树之间的一对一映射关系的空括号对。</p>
+<p>示例 1:</p>
+<pre>
+输入: 二叉树: [1,2,3,4]
+       1
+     /   \
+    2     3
+   /    
+  4     
+
+输出: "1(2(4))(3)"
+
+解释: 原本将是“1(2(4)())(3())”，
+在你省略所有不必要的空括号对之后，
+它将是“1(2(4))(3)”。
+</pre>
+<p>示例 2:</p>
+<pre>
+输入: 二叉树: [1,2,3,null,4]
+       1
+     /   \
+    2     3
+     \  
+      4 
+
+输出: "1(2()(4))(3)"
+
+解释: 和第一个示例相似，
+除了我们不能省略第一个对括号来中断输入和输出之间的一对一映射关系。
+</pre>
+
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tree2str</span>(<span class="params">self, t</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type t: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> t <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> t.left <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> t.right <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">str</span>(t.val)</span><br><span class="line">        left = <span class="string">&#x27;()&#x27;</span> <span class="keyword">if</span> t.left <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">else</span> <span class="string">&#x27;(&#x27;</span> + self.tree2str(t.left) + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">        right = <span class="string">&#x27;&#x27;</span> <span class="keyword">if</span> t.right <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">else</span> <span class="string">&#x27;(&#x27;</span> + self.tree2str(t.right) + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(t.val) + left + right</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="669-修剪二叉搜索树-n"><a href="#669-修剪二叉搜索树-n" class="headerlink" title="669. 修剪二叉搜索树 [n]"></a>669. 修剪二叉搜索树 [n]</h2><p>给定一个二叉搜索树，同时给定最小边界L 和最大边界 R。通过修剪二叉搜索树，使得所有节点的值在[L, R]中 (R&gt;=L) 。你可能需要改变树的根节点，所以结果应当返回修剪好的二叉搜索树的新的根节点。</p>
+<p>示例 1:</p>
+<pre>
+输入: 
+    1
+   / \
+  0   2
+
+  L = 1
+  R = 2
+
+输出: 
+    1
+      \
+       2
+</pre>
+<p>示例 2:</p>
+<pre>
+输入: 
+    3
+   / \
+  0   4
+   \
+    2
+   /
+  1
+
+  L = 1
+  R = 3
+
+输出: 
+      3
+     / 
+   2   
+  /
+ 1
+</pre>
+
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">trimBST</span>(<span class="params">self, root, L, R</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :type L: int</span></span><br><span class="line"><span class="string">        :type R: int</span></span><br><span class="line"><span class="string">        :rtype: TreeNode</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> root</span><br><span class="line">        <span class="keyword">if</span> root.val &gt; R:</span><br><span class="line">            <span class="keyword">return</span> self.trimBST(root.left, L, R)</span><br><span class="line">        <span class="keyword">if</span> root.val &lt; L:</span><br><span class="line">            <span class="keyword">return</span> self.trimBST(root.right, L, R)</span><br><span class="line">        root.left = self.trimBST(root.left, L, R)</span><br><span class="line">        root.right = self.trimBST(root.right, L, R)</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+
+<h2 id="687-最长同值路径-n"><a href="#687-最长同值路径-n" class="headerlink" title="687. 最长同值路径 [n]"></a>687. 最长同值路径 [n]</h2><p>给定一个二叉树，找到最长的路径，这个路径中的每个节点具有相同值。 这条路径可以经过也可以不经过根节点。</p>
+<p>注意：两个节点之间的路径长度由它们之间的边数表示。</p>
+<p>示例 1:</p>
+<pre>
+输入:
+
+              5
+             / \
+            4   5
+           / \   \
+          1   1   5
+输出:
+2
+</pre>
+<p>示例 2:</p>
+<pre>
+输入:
+
+              1
+             / \
+            4   5
+           / \   \
+          4   4   5
+输出:
+
+2
+注意: 给定的二叉树不超过10000个结点。 树的高度不超过1000。
+</pre>
+
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestUnivaluePath</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.res = <span class="number">0</span></span><br><span class="line">        self.helper(root)</span><br><span class="line">        <span class="keyword">return</span> self.res</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        left = self.helper(root.left)</span><br><span class="line">        right = self.helper(root.right)</span><br><span class="line">        pl, pr = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> root.left <span class="keyword">and</span> root.left.val == root.val:</span><br><span class="line">            pl = left + <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> root.right <span class="keyword">and</span> root.right.val == root.val:</span><br><span class="line">            pr = right + <span class="number">1</span></span><br><span class="line">        self.res = <span class="built_in">max</span>(self.res, pl + pr)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(pl, pr)</span><br></pre></td></tr></table></figure>
+
+<h2 id="897-递增顺序查找树"><a href="#897-递增顺序查找树" class="headerlink" title="897. 递增顺序查找树"></a>897. 递增顺序查找树</h2><p>给定一个树，按中序遍历重新排列树，使树中最左边的结点现在是树的根，并且每个结点没有左子结点，只有一个右子结点。</p>
+<p>示例 ：</p>
+<pre>
+输入：[5,3,6,2,4,null,8,1,null,null,null,7,9]
+
+       5
+      / \
+    3    6
+   / \    \
+  2   4    8
+ /        / \ 
+1        7   9
+
+输出：[1,null,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9]
+
+ 1
+  \
+   2
+    \
+     3
+      \
+       4
+        \
+         5
+          \
+           6
+            \
+             7
+              \
+               8
+                \
+                 9  
+</pre>
+
+<p>提示：</p>
+<ul>
+<li>给定树中的结点数介于 1 和 100 之间。</li>
+<li>每个结点都有一个从 0 到 1000 范围内的唯一整数值。</li>
+</ul>
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">increasingBST</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: TreeNode</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        res = self.inorder(root)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> res:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="built_in">len</span>(res) - <span class="number">1</span>):</span><br><span class="line">            res[i].right = res[i + <span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> res[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inorder</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        res = []</span><br><span class="line">        p = root</span><br><span class="line">        stk = []</span><br><span class="line">        <span class="keyword">while</span> p <span class="keyword">or</span> stk:</span><br><span class="line">            <span class="keyword">while</span> p:</span><br><span class="line">                stk.append(p)</span><br><span class="line">                p = p.left</span><br><span class="line">            node = stk.pop(-<span class="number">1</span>)</span><br><span class="line">            node.left = <span class="literal">None</span></span><br><span class="line">            res.append(node)</span><br><span class="line">            p = node.right</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<h2 id="993-二叉树的堂兄弟节点"><a href="#993-二叉树的堂兄弟节点" class="headerlink" title="993. 二叉树的堂兄弟节点"></a>993. 二叉树的堂兄弟节点</h2><p>在二叉树中，根节点位于深度 0 处，每个深度为 k 的节点的子节点位于深度 k+1 处。</p>
+<p>如果二叉树的两个节点深度相同，但父节点不同，则它们是一对堂兄弟节点。</p>
+<p>我们给出了具有唯一值的二叉树的根节点 root，以及树中两个不同节点的值 x 和 y。</p>
+<p>只有与值 x 和 y 对应的节点是堂兄弟节点时，才返回 true。否则，返回 false。</p>
+<p>示例 1：</p>
+<pre>
+输入：root = [1,2,3,4], x = 4, y = 3
+输出：false
+</pre>
+<p>示例 2：</p>
+<pre>
+输入：root = [1,2,3,null,4,null,5], x = 5, y = 4
+输出：true
+</pre>
+<p>示例 3：</p>
+<pre>
+输入：root = [1,2,3,null,4], x = 2, y = 3
+输出：false
+</pre>
+
+<p>提示：</p>
+<ul>
+<li>二叉树的节点数介于 2 到 100 之间。</li>
+<li>每个节点的值都是唯一的、范围为 1 到 100 的整数。</li>
+</ul>
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isCousins</span>(<span class="params">self, root, x, y</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :type x: int</span></span><br><span class="line"><span class="string">        :type y: int</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        queue = [(root, <span class="literal">None</span>)]</span><br><span class="line">        m = &#123;&#125;</span><br><span class="line">        depth = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            sz = <span class="built_in">len</span>(queue)</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> xrange(sz):</span><br><span class="line">                node, parent = queue.pop(<span class="number">0</span>)</span><br><span class="line">                m[node.val] = (parent, depth)</span><br><span class="line">                <span class="keyword">if</span> node.left:</span><br><span class="line">                    queue.append((node.left, node))</span><br><span class="line">                <span class="keyword">if</span> node.right:</span><br><span class="line">                    queue.append((node.right, node))</span><br><span class="line">            depth += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        px, dx = m[x]</span><br><span class="line">        py, dy = m[y]</span><br><span class="line">        <span class="keyword">return</span> px != py <span class="keyword">and</span> dx == dy</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/11/29/%E9%93%BE%E8%A1%A8/" rel="prev" title="LeetCode之链表">
+                  <i class="fa fa-chevron-left"></i> LeetCode之链表
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">PingCoder</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</body>
+</html>
