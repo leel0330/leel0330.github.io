@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /categories/LeetCode/
+Allow: /categories/Tech/
+Allow: /categories/Book/
+Disallow: /vendors/
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /vendors/
+Disallow: /fancybox/
+
+Sitemap: https://leel0330.github.io/sitemap.xml
+Sitemap: https://leel0330.github.io/baidusitemap.xml

@@ -322,6 +322,208 @@
       </categories>
   </entry>
   <entry>
+    <title>LeetCode之字符串(简单)</title>
+    <url>/posts/c026ad95.html</url>
+    <content><![CDATA[<p>字符串(简单)的题目汇总在此了，欢迎大家光顾。</p>
+<p>来源：力扣（LeetCode）</p>
+<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<img src="/images/leetcode/string.png" width = 600px height = 300px/>
+
+<a id="more"></a>
+
+<h2 id="14-最长公共前缀"><a href="#14-最长公共前缀" class="headerlink" title="14. 最长公共前缀"></a>14. 最长公共前缀</h2><p>编写一个函数来查找字符串数组中的最长公共前缀。</p>
+<p>如果不存在公共前缀，返回空字符串 “”。</p>
+<p>示例 1:</p>
+<pre>
+输入: ["flower","flow","flight"]
+输出: "fl"
+</pre>
+<p>示例 2:</p>
+<pre>
+输入: ["dog","racecar","car"]
+输出: ""
+解释: 输入不存在公共前缀。
+</pre>
+<p>说明:</p>
+<ul>
+<li>所有输入只包含小写字母 a-z 。</li>
+</ul>
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestCommonPrefix</span>(<span class="params">self, strs</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type strs: List[str]</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        res = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> strs <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> <span class="built_in">len</span>(strs) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        <span class="keyword">for</span> i, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(strs[<span class="number">0</span>]):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="number">1</span>, <span class="built_in">len</span>(strs)):</span><br><span class="line">                <span class="keyword">if</span> i &gt;= <span class="built_in">len</span>(strs[j]) <span class="keyword">or</span> strs[j][i] != c:</span><br><span class="line">                    <span class="keyword">return</span> res</span><br><span class="line">            res += c</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="443-压缩字符串"><a href="#443-压缩字符串" class="headerlink" title="443. 压缩字符串"></a>443. 压缩字符串</h2><p>给定一组字符，使用原地算法将其压缩。</p>
+<p>压缩后的长度必须始终小于或等于原数组长度。</p>
+<p>数组的每个元素应该是长度为1 的字符（不是 int 整数类型）。</p>
+<p>在完成原地修改输入数组后，返回数组的新长度。</p>
+<p>进阶：</p>
+<p>你能否仅使用O(1) 空间解决问题？</p>
+<p>示例 1：</p>
+<pre>
+输入：
+["a","a","b","b","c","c","c"]
+输出：
+返回6，输入数组的前6个字符应该是：["a","2","b","2","c","3"]
+说明：
+"aa"被"a2"替代。"bb"被"b2"替代。"ccc"被"c3"替代。
+</pre>
+<p>示例 2：</p>
+<pre>
+输入：
+["a"]
+输出：
+返回1，输入数组的前1个字符应该是：["a"]
+说明：
+没有任何字符串被替代。
+</pre>
+<p>示例 3：</p>
+<pre>
+输入：
+["a","b","b","b","b","b","b","b","b","b","b","b","b"]
+输出：
+返回4，输入数组的前4个字符应该是：["a","b","1","2"]。
+说明：
+由于字符"a"不重复，所以不会被压缩。"bbbbbbbbbbbb"被“b12”替代。
+</pre>
+<p>注意每个数字在数组中都有它自己的位置。</p>
+<p>注意：</p>
+<ul>
+<li>所有字符都有一个ASCII值在[35, 126]区间内。</li>
+<li>1 &lt;= len(chars) &lt;= 1000。</li>
+</ul>
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">compress</span>(<span class="params">self, chars</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type chars: List[str]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        res = []</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(chars):</span><br><span class="line">            c, cnt = chars[i], <span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(chars) <span class="keyword">and</span> chars[i] == c:</span><br><span class="line">                cnt += <span class="number">1</span></span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> cnt == <span class="number">1</span>:</span><br><span class="line">                res.append(c)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(c)</span><br><span class="line">                res.extend([c <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">str</span>(cnt)])</span><br><span class="line">        <span class="keyword">for</span> idx, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(res):</span><br><span class="line">            chars[idx] = c</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(res)</span><br></pre></td></tr></table></figure>
+
+<h2 id="680-验证回文字符串-Ⅱ"><a href="#680-验证回文字符串-Ⅱ" class="headerlink" title="680. 验证回文字符串 Ⅱ"></a>680. 验证回文字符串 Ⅱ</h2><p>给定一个非空字符串 s，最多删除一个字符。判断是否能成为回文字符串。</p>
+<p>示例 1:</p>
+<pre>
+输入: "aba"
+输出: True
+</pre>
+<p>示例 2:</p>
+<pre>
+输入: "abca"
+输出: True
+解释: 你可以删除c字符。
+</pre>
+<p>注意:</p>
+<ul>
+<li>字符串只包含从 a-z 的小写字母。字符串的最大长度是50000</li>
+</ul>
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">validPalindrome</span>(<span class="params">self, s</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        i, j = <span class="number">0</span>, <span class="built_in">len</span>(s) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> s[i] == s[j]:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> i &gt;= j:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> self.isPalindrome(s, i + <span class="number">1</span>, j) <span class="keyword">or</span> self.isPalindrome(s, i, j - <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isPalindrome</span>(<span class="params">self, s, i, j</span>):</span></span><br><span class="line">        <span class="keyword">if</span> i &gt; j:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; j:</span><br><span class="line">            <span class="keyword">if</span> s[i] != s[j]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="696-计数二进制子串-n"><a href="#696-计数二进制子串-n" class="headerlink" title="696. 计数二进制子串 [n]"></a>696. 计数二进制子串 [n]</h2><p>给定一个字符串 s，计算具有相同数量0和1的非空(连续)子字符串的数量，并且这些子字符串中的所有0和所有1都是组合在一起的。</p>
+<p>重复出现的子串要计算它们出现的次数。</p>
+<p>示例 1 :</p>
+<pre>
+输入: "00110011"
+输出: 6
+解释: 有6个子串具有相同数量的连续1和0：“0011”，“01”，“1100”，“10”，“0011” 和 “01”。
+请注意，一些重复出现的子串要计算它们出现的次数。
+另外，“00110011”不是有效的子串，因为所有的0（和1）没有组合在一起。
+</pre>
+<p>示例 2 :</p>
+<pre>
+输入: "10101"
+输出: 4
+解释: 有4个子串：“10”，“01”，“10”，“01”，它们具有相同数量的连续1和0。
+</pre>
+<p>注意：</p>
+<ul>
+<li>s.length 在1到50,000之间。</li>
+<li>s 只包含“0”或“1”字符。</li>
+</ul>
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countBinarySubstrings</span>(<span class="params">self, s</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        res = pre = <span class="number">0</span></span><br><span class="line">        cur = <span class="number">1</span></span><br><span class="line">        n = <span class="built_in">len</span>(s)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> s[i] == s[i - <span class="number">1</span>]:</span><br><span class="line">                cur += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                pre = cur</span><br><span class="line">                cur = <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> pre &gt;= cur:</span><br><span class="line">                res += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<h2 id="788-旋转数字"><a href="#788-旋转数字" class="headerlink" title="788. 旋转数字"></a>788. 旋转数字</h2><p>我们称一个数 X 为好数, 如果它的每位数字逐个地被旋转 180 度后，我们仍可以得到一个有效的，且和 X 不同的数。要求每位数字都要被旋转。</p>
+<p>如果一个数的每位数字被旋转以后仍然还是一个数字， 则这个数是有效的。0, 1, 和 8 被旋转后仍然是它们自己；2 和 5 可以互相旋转成对方；6 和 9 同理，除了这些以外其他的数字旋转以后都不再是有效的数字。</p>
+<p>现在我们有一个正整数 N, 计算从 1 到 N 中有多少个数 X 是好数？</p>
+<p>示例:</p>
+<pre>
+输入: 10
+输出: 4
+解释: 
+在[1, 10]中有四个好数： 2, 5, 6, 9。
+注意 1 和 10 不是好数, 因为他们在旋转之后不变。
+</pre>
+<p>注意:</p>
+<ul>
+<li>N 的取值范围是 [1, 10000]。</li>
+</ul>
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rotatedDigits</span>(<span class="params">self, N</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type N: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        cnt = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, N + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> self.isGoodNum(i):</span><br><span class="line">                cnt += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> cnt</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isGoodNum</span>(<span class="params">self, n</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">any</span>(x <span class="keyword">in</span> <span class="built_in">str</span>(n) <span class="keyword">for</span> x <span class="keyword">in</span> [<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;4&#x27;</span>, <span class="string">&#x27;7&#x27;</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">any</span>(x <span class="keyword">in</span> <span class="built_in">str</span>(n) <span class="keyword">for</span> x <span class="keyword">in</span> [<span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;5&#x27;</span>, <span class="string">&#x27;6&#x27;</span>, <span class="string">&#x27;9&#x27;</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="859-亲密字符串"><a href="#859-亲密字符串" class="headerlink" title="859. 亲密字符串"></a>859. 亲密字符串</h2><p>给定两个由小写字母构成的字符串 A 和 B ，只要我们可以通过交换 A 中的两个字母得到与 B 相等的结果，就返回 true ；否则返回 false 。</p>
+<p>示例 1：</p>
+<pre>
+输入： A = "ab", B = "ba"
+输出： true
+</pre>
+<p>示例 2：</p>
+<pre>
+输入： A = "ab", B = "ab"
+输出： false
+</pre>
+<p>示例 3:</p>
+<pre>
+输入： A = "aa", B = "aa"
+输出： true
+</pre>
+<p>示例 4：</p>
+<pre>
+输入： A = "aaaaaaabc", B = "aaaaaaacb"
+输出： true
+</pre>
+<p>示例 5：</p>
+<pre>
+输入： A = "", B = "aa"
+输出： false
+</pre>
+
+<p>提示：</p>
+<ul>
+<li>0 &lt;= A.length &lt;= 20000</li>
+<li>0 &lt;= B.length &lt;= 20000</li>
+<li>A 和 B 仅由小写字母构成。</li>
+</ul>
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buddyStrings</span>(<span class="params">self, A, B</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(A) != <span class="built_in">len</span>(B): <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> A == B:</span><br><span class="line">            seen = <span class="built_in">set</span>()</span><br><span class="line">            <span class="keyword">for</span> a <span class="keyword">in</span> A:</span><br><span class="line">                <span class="keyword">if</span> a <span class="keyword">in</span> seen:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">                seen.add(a)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            pairs = []</span><br><span class="line">            <span class="keyword">for</span> a, b <span class="keyword">in</span> <span class="built_in">zip</span>(A, B):</span><br><span class="line">                <span class="keyword">if</span> a != b:</span><br><span class="line">                    pairs.append((a, b))</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">len</span>(pairs) &gt; <span class="number">2</span>: <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">len</span>(pairs) == <span class="number">2</span> <span class="keyword">and</span> pairs[<span class="number">0</span>] == pairs[<span class="number">1</span>][::-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="925-长按键入"><a href="#925-长按键入" class="headerlink" title="925. 长按键入"></a>925. 长按键入</h2><p>你的朋友正在使用键盘输入他的名字 name。偶尔，在键入字符 c 时，按键可能会被长按，而字符可能被输入 1 次或多次。</p>
+<p>你将会检查键盘输入的字符 typed。如果它对应的可能是你的朋友的名字（其中一些字符可能被长按），那么就返回 True。</p>
+<p>示例 1：</p>
+<pre>
+输入：name = "alex", typed = "aaleex"
+输出：true
+解释：'alex' 中的 'a' 和 'e' 被长按。
+</pre>
+<p>示例 2：</p>
+<pre>
+输入：name = "saeed", typed = "ssaaedd"
+输出：false
+解释：'e' 一定需要被键入两次，但在 typed 的输出中不是这样。
+</pre>
+<p>示例 3：</p>
+<pre>
+输入：name = "leelee", typed = "lleeelee"
+输出：true
+</pre>
+<p>示例 4：</p>
+<pre>
+输入：name = "laiden", typed = "laiden"
+输出：true
+解释：长按名字中的字符并不是必要的。
+</pre>
+
+<p>提示：</p>
+<ul>
+<li>name.length &lt;= 1000</li>
+<li>typed.length &lt;= 1000</li>
+<li>name 和 typed 的字符都是小写字母。</li>
+</ul>
+<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isLongPressedName</span>(<span class="params">self, name, typed</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type name: str</span></span><br><span class="line"><span class="string">        :type typed: str</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        a = self.getHelper(name)</span><br><span class="line">        b = self.getHelper(typed)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(a) != <span class="built_in">len</span>(b):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">for</span> idx <span class="keyword">in</span> xrange(<span class="number">0</span>, <span class="built_in">len</span>(a), <span class="number">2</span>):</span><br><span class="line">            <span class="keyword">if</span> a[idx] != b[idx]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> a[idx + <span class="number">1</span>] &gt; b[idx + <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getHelper</span>(<span class="params">self, s</span>):</span></span><br><span class="line">        res = []</span><br><span class="line">        idx = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> idx &lt; <span class="built_in">len</span>(s):</span><br><span class="line">            cur_c, cnt = s[idx], <span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> idx &lt; <span class="built_in">len</span>(s) <span class="keyword">and</span> s[idx] == cur_c:</span><br><span class="line">                idx += <span class="number">1</span></span><br><span class="line">                cnt += <span class="number">1</span></span><br><span class="line">            res.append(cur_c)</span><br><span class="line">            res.append(cnt)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+  </entry>
+  <entry>
     <title>LeetCode之哈希表</title>
     <url>/posts/2d8b42bd.html</url>
     <content><![CDATA[<p>哈希表的题目汇总在此了，欢迎大家光顾。</p>
@@ -525,208 +727,6 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
 <li>words[i]的长度范围为[1,30]。</li>
 </ul>
 <figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestWord</span>(<span class="params">self, words</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type words: List[str]</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        words = <span class="built_in">sorted</span>(words)</span><br><span class="line">        word_set = <span class="built_in">set</span>([<span class="string">&#x27;&#x27;</span>])<span class="comment"># 巧妙之处</span></span><br><span class="line">        res = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">            <span class="keyword">if</span> word[:-<span class="number">1</span>] <span class="keyword">in</span> word_set:</span><br><span class="line">                word_set.add(word)</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">len</span>(word) &gt; <span class="built_in">len</span>(res):</span><br><span class="line">                    res = word</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>LeetCode之字符串(简单)</title>
-    <url>/posts/c026ad95.html</url>
-    <content><![CDATA[<p>字符串(简单)的题目汇总在此了，欢迎大家光顾。</p>
-<p>来源：力扣（LeetCode）</p>
-<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<img src="/images/leetcode/string.png" width = 600px height = 300px/>
-
-<a id="more"></a>
-
-<h2 id="14-最长公共前缀"><a href="#14-最长公共前缀" class="headerlink" title="14. 最长公共前缀"></a>14. 最长公共前缀</h2><p>编写一个函数来查找字符串数组中的最长公共前缀。</p>
-<p>如果不存在公共前缀，返回空字符串 “”。</p>
-<p>示例 1:</p>
-<pre>
-输入: ["flower","flow","flight"]
-输出: "fl"
-</pre>
-<p>示例 2:</p>
-<pre>
-输入: ["dog","racecar","car"]
-输出: ""
-解释: 输入不存在公共前缀。
-</pre>
-<p>说明:</p>
-<ul>
-<li>所有输入只包含小写字母 a-z 。</li>
-</ul>
-<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestCommonPrefix</span>(<span class="params">self, strs</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type strs: List[str]</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        res = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> strs <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> <span class="built_in">len</span>(strs) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        <span class="keyword">for</span> i, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(strs[<span class="number">0</span>]):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(<span class="number">1</span>, <span class="built_in">len</span>(strs)):</span><br><span class="line">                <span class="keyword">if</span> i &gt;= <span class="built_in">len</span>(strs[j]) <span class="keyword">or</span> strs[j][i] != c:</span><br><span class="line">                    <span class="keyword">return</span> res</span><br><span class="line">            res += c</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="443-压缩字符串"><a href="#443-压缩字符串" class="headerlink" title="443. 压缩字符串"></a>443. 压缩字符串</h2><p>给定一组字符，使用原地算法将其压缩。</p>
-<p>压缩后的长度必须始终小于或等于原数组长度。</p>
-<p>数组的每个元素应该是长度为1 的字符（不是 int 整数类型）。</p>
-<p>在完成原地修改输入数组后，返回数组的新长度。</p>
-<p>进阶：</p>
-<p>你能否仅使用O(1) 空间解决问题？</p>
-<p>示例 1：</p>
-<pre>
-输入：
-["a","a","b","b","c","c","c"]
-输出：
-返回6，输入数组的前6个字符应该是：["a","2","b","2","c","3"]
-说明：
-"aa"被"a2"替代。"bb"被"b2"替代。"ccc"被"c3"替代。
-</pre>
-<p>示例 2：</p>
-<pre>
-输入：
-["a"]
-输出：
-返回1，输入数组的前1个字符应该是：["a"]
-说明：
-没有任何字符串被替代。
-</pre>
-<p>示例 3：</p>
-<pre>
-输入：
-["a","b","b","b","b","b","b","b","b","b","b","b","b"]
-输出：
-返回4，输入数组的前4个字符应该是：["a","b","1","2"]。
-说明：
-由于字符"a"不重复，所以不会被压缩。"bbbbbbbbbbbb"被“b12”替代。
-</pre>
-<p>注意每个数字在数组中都有它自己的位置。</p>
-<p>注意：</p>
-<ul>
-<li>所有字符都有一个ASCII值在[35, 126]区间内。</li>
-<li>1 &lt;= len(chars) &lt;= 1000。</li>
-</ul>
-<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">compress</span>(<span class="params">self, chars</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type chars: List[str]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        res = []</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(chars):</span><br><span class="line">            c, cnt = chars[i], <span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(chars) <span class="keyword">and</span> chars[i] == c:</span><br><span class="line">                cnt += <span class="number">1</span></span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> cnt == <span class="number">1</span>:</span><br><span class="line">                res.append(c)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res.append(c)</span><br><span class="line">                res.extend([c <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">str</span>(cnt)])</span><br><span class="line">        <span class="keyword">for</span> idx, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(res):</span><br><span class="line">            chars[idx] = c</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(res)</span><br></pre></td></tr></table></figure>
-
-<h2 id="680-验证回文字符串-Ⅱ"><a href="#680-验证回文字符串-Ⅱ" class="headerlink" title="680. 验证回文字符串 Ⅱ"></a>680. 验证回文字符串 Ⅱ</h2><p>给定一个非空字符串 s，最多删除一个字符。判断是否能成为回文字符串。</p>
-<p>示例 1:</p>
-<pre>
-输入: "aba"
-输出: True
-</pre>
-<p>示例 2:</p>
-<pre>
-输入: "abca"
-输出: True
-解释: 你可以删除c字符。
-</pre>
-<p>注意:</p>
-<ul>
-<li>字符串只包含从 a-z 的小写字母。字符串的最大长度是50000</li>
-</ul>
-<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">validPalindrome</span>(<span class="params">self, s</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        i, j = <span class="number">0</span>, <span class="built_in">len</span>(s) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> s[i] == s[j]:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> i &gt;= j:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> self.isPalindrome(s, i + <span class="number">1</span>, j) <span class="keyword">or</span> self.isPalindrome(s, i, j - <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isPalindrome</span>(<span class="params">self, s, i, j</span>):</span></span><br><span class="line">        <span class="keyword">if</span> i &gt; j:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; j:</span><br><span class="line">            <span class="keyword">if</span> s[i] != s[j]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="696-计数二进制子串-n"><a href="#696-计数二进制子串-n" class="headerlink" title="696. 计数二进制子串 [n]"></a>696. 计数二进制子串 [n]</h2><p>给定一个字符串 s，计算具有相同数量0和1的非空(连续)子字符串的数量，并且这些子字符串中的所有0和所有1都是组合在一起的。</p>
-<p>重复出现的子串要计算它们出现的次数。</p>
-<p>示例 1 :</p>
-<pre>
-输入: "00110011"
-输出: 6
-解释: 有6个子串具有相同数量的连续1和0：“0011”，“01”，“1100”，“10”，“0011” 和 “01”。
-请注意，一些重复出现的子串要计算它们出现的次数。
-另外，“00110011”不是有效的子串，因为所有的0（和1）没有组合在一起。
-</pre>
-<p>示例 2 :</p>
-<pre>
-输入: "10101"
-输出: 4
-解释: 有4个子串：“10”，“01”，“10”，“01”，它们具有相同数量的连续1和0。
-</pre>
-<p>注意：</p>
-<ul>
-<li>s.length 在1到50,000之间。</li>
-<li>s 只包含“0”或“1”字符。</li>
-</ul>
-<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countBinarySubstrings</span>(<span class="params">self, s</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        res = pre = <span class="number">0</span></span><br><span class="line">        cur = <span class="number">1</span></span><br><span class="line">        n = <span class="built_in">len</span>(s)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> s[i] == s[i - <span class="number">1</span>]:</span><br><span class="line">                cur += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                pre = cur</span><br><span class="line">                cur = <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> pre &gt;= cur:</span><br><span class="line">                res += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-
-<h2 id="788-旋转数字"><a href="#788-旋转数字" class="headerlink" title="788. 旋转数字"></a>788. 旋转数字</h2><p>我们称一个数 X 为好数, 如果它的每位数字逐个地被旋转 180 度后，我们仍可以得到一个有效的，且和 X 不同的数。要求每位数字都要被旋转。</p>
-<p>如果一个数的每位数字被旋转以后仍然还是一个数字， 则这个数是有效的。0, 1, 和 8 被旋转后仍然是它们自己；2 和 5 可以互相旋转成对方；6 和 9 同理，除了这些以外其他的数字旋转以后都不再是有效的数字。</p>
-<p>现在我们有一个正整数 N, 计算从 1 到 N 中有多少个数 X 是好数？</p>
-<p>示例:</p>
-<pre>
-输入: 10
-输出: 4
-解释: 
-在[1, 10]中有四个好数： 2, 5, 6, 9。
-注意 1 和 10 不是好数, 因为他们在旋转之后不变。
-</pre>
-<p>注意:</p>
-<ul>
-<li>N 的取值范围是 [1, 10000]。</li>
-</ul>
-<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rotatedDigits</span>(<span class="params">self, N</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type N: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        cnt = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, N + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> self.isGoodNum(i):</span><br><span class="line">                cnt += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> cnt</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isGoodNum</span>(<span class="params">self, n</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">any</span>(x <span class="keyword">in</span> <span class="built_in">str</span>(n) <span class="keyword">for</span> x <span class="keyword">in</span> [<span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;4&#x27;</span>, <span class="string">&#x27;7&#x27;</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">any</span>(x <span class="keyword">in</span> <span class="built_in">str</span>(n) <span class="keyword">for</span> x <span class="keyword">in</span> [<span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;5&#x27;</span>, <span class="string">&#x27;6&#x27;</span>, <span class="string">&#x27;9&#x27;</span>]):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="859-亲密字符串"><a href="#859-亲密字符串" class="headerlink" title="859. 亲密字符串"></a>859. 亲密字符串</h2><p>给定两个由小写字母构成的字符串 A 和 B ，只要我们可以通过交换 A 中的两个字母得到与 B 相等的结果，就返回 true ；否则返回 false 。</p>
-<p>示例 1：</p>
-<pre>
-输入： A = "ab", B = "ba"
-输出： true
-</pre>
-<p>示例 2：</p>
-<pre>
-输入： A = "ab", B = "ab"
-输出： false
-</pre>
-<p>示例 3:</p>
-<pre>
-输入： A = "aa", B = "aa"
-输出： true
-</pre>
-<p>示例 4：</p>
-<pre>
-输入： A = "aaaaaaabc", B = "aaaaaaacb"
-输出： true
-</pre>
-<p>示例 5：</p>
-<pre>
-输入： A = "", B = "aa"
-输出： false
-</pre>
-
-<p>提示：</p>
-<ul>
-<li>0 &lt;= A.length &lt;= 20000</li>
-<li>0 &lt;= B.length &lt;= 20000</li>
-<li>A 和 B 仅由小写字母构成。</li>
-</ul>
-<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">buddyStrings</span>(<span class="params">self, A, B</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(A) != <span class="built_in">len</span>(B): <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> A == B:</span><br><span class="line">            seen = <span class="built_in">set</span>()</span><br><span class="line">            <span class="keyword">for</span> a <span class="keyword">in</span> A:</span><br><span class="line">                <span class="keyword">if</span> a <span class="keyword">in</span> seen:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">                seen.add(a)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            pairs = []</span><br><span class="line">            <span class="keyword">for</span> a, b <span class="keyword">in</span> <span class="built_in">zip</span>(A, B):</span><br><span class="line">                <span class="keyword">if</span> a != b:</span><br><span class="line">                    pairs.append((a, b))</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">len</span>(pairs) &gt; <span class="number">2</span>: <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">len</span>(pairs) == <span class="number">2</span> <span class="keyword">and</span> pairs[<span class="number">0</span>] == pairs[<span class="number">1</span>][::-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-
-<h2 id="925-长按键入"><a href="#925-长按键入" class="headerlink" title="925. 长按键入"></a>925. 长按键入</h2><p>你的朋友正在使用键盘输入他的名字 name。偶尔，在键入字符 c 时，按键可能会被长按，而字符可能被输入 1 次或多次。</p>
-<p>你将会检查键盘输入的字符 typed。如果它对应的可能是你的朋友的名字（其中一些字符可能被长按），那么就返回 True。</p>
-<p>示例 1：</p>
-<pre>
-输入：name = "alex", typed = "aaleex"
-输出：true
-解释：'alex' 中的 'a' 和 'e' 被长按。
-</pre>
-<p>示例 2：</p>
-<pre>
-输入：name = "saeed", typed = "ssaaedd"
-输出：false
-解释：'e' 一定需要被键入两次，但在 typed 的输出中不是这样。
-</pre>
-<p>示例 3：</p>
-<pre>
-输入：name = "leelee", typed = "lleeelee"
-输出：true
-</pre>
-<p>示例 4：</p>
-<pre>
-输入：name = "laiden", typed = "laiden"
-输出：true
-解释：长按名字中的字符并不是必要的。
-</pre>
-
-<p>提示：</p>
-<ul>
-<li>name.length &lt;= 1000</li>
-<li>typed.length &lt;= 1000</li>
-<li>name 和 typed 的字符都是小写字母。</li>
-</ul>
-<figure class="highlight python"><figcaption><span>Python</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isLongPressedName</span>(<span class="params">self, name, typed</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type name: str</span></span><br><span class="line"><span class="string">        :type typed: str</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        a = self.getHelper(name)</span><br><span class="line">        b = self.getHelper(typed)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(a) != <span class="built_in">len</span>(b):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">for</span> idx <span class="keyword">in</span> xrange(<span class="number">0</span>, <span class="built_in">len</span>(a), <span class="number">2</span>):</span><br><span class="line">            <span class="keyword">if</span> a[idx] != b[idx]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> a[idx + <span class="number">1</span>] &gt; b[idx + <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getHelper</span>(<span class="params">self, s</span>):</span></span><br><span class="line">        res = []</span><br><span class="line">        idx = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> idx &lt; <span class="built_in">len</span>(s):</span><br><span class="line">            cur_c, cnt = s[idx], <span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> idx &lt; <span class="built_in">len</span>(s) <span class="keyword">and</span> s[idx] == cur_c:</span><br><span class="line">                idx += <span class="number">1</span></span><br><span class="line">                cnt += <span class="number">1</span></span><br><span class="line">            res.append(cur_c)</span><br><span class="line">            res.append(cnt)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>LeetCode</category>
