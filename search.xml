@@ -987,7 +987,7 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
       </categories>
   </entry>
   <entry>
-    <title>那些我认为不错的计算机专业书(未完待续...)</title>
+    <title>那些我认为不错的计算机专业书(仅面向后台开发)</title>
     <url>/posts/4f424561.html</url>
     <content><![CDATA[<p>如果你是程序员新人，那么这篇文章对你很有用，能让你少走一些弯路，多看一些经典书籍，打下扎实的计算机基础。</p>
 <p>如果你是职场老鸟，那么这篇文章可能适合选读。有些书还是不错的，值得多读几遍。</p>
@@ -999,7 +999,58 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
 <h2 id="前言，那些我想对你说的话"><a href="#前言，那些我想对你说的话" class="headerlink" title="前言，那些我想对你说的话"></a>前言，那些我想对你说的话</h2><p>作为一名程序员，猿龄有四五年了。断断续续看了不少专业书，有些书还是让我成长了不少的，所以安耐不住内心的冲动，非常想分享一波，正好借本人的博客与大家交流一下☺️。</p>
 <p>可以这么说，每个分类都是本人精心挑选过的，本人也有看过才会推荐。不过一千个读者眼里有一千个哈姆雷特，每个人的经历和认知差异比较大，很难满足每个人的口味。所以这里只是挑选出每个分类下个人认为不错的top3。</p>
 <p>再次提示：<strong>点击图书可以跳转到豆瓣，查看相应图书的目录内容和用户评价哦~</strong></p>
-<h2 id="数据结构和算法"><a href="#数据结构和算法" class="headerlink" title="数据结构和算法"></a>数据结构和算法</h2><table>
+<h2 id="慢着，看XX语言之前你可能需要先看这里，嘿嘿"><a href="#慢着，看XX语言之前你可能需要先看这里，嘿嘿" class="headerlink" title="慢着，看XX语言之前你可能需要先看这里，嘿嘿"></a>慢着，看XX语言之前你可能需要先看这里，嘿嘿</h2><p>我想你的脑子里肯定蹦出来一句话:”你给我推荐这么多语言的书看虾米，我看不过来啊!“。是的，你看不过来的，我也看不过来，但是我为了推荐的完整性，就都罗列出来了。</p>
+<p>不瞒你说，你需要从上述基本语言挑出你自己喜欢的主力语言和辅助语言了，因为不同语言可以满足不同的需求，有它自身的一些特点。选择的话你可以考虑以下几点:</p>
+<ul>
+<li>不会就选C。所以说它是必修课!(是的，你没看错就是C语言！你没得选，因为计算机软件专业课，第一门要学的语言就是它！这里强调一点，Linux操作系统就是C语言实现的哦！)</li>
+<li>这门语言好学吗？我现在很想快点上手写一些代码呢？！(这条我推Python，只此一家，别无分店)</li>
+<li>简单的我不想学，我想先学有难度的，因为难得东西好哈哈！(这条不说了，大家都明白，选C++吧，你会爱上它的o(<em>￣︶￣</em>)o)</li>
+<li>我只想学一门语言，而且我想在这门语言深耕。(嗯不错，专一挺好的，那我推荐C++或者Java)</li>
+<li>我已经会了C，也学了一门面向对象的语言(C++或者Java)，我想扩展一下，那可以学下Go看看。</li>
+</ul>
+<p>时间是有限的，你不可能上来就什么都学，那样的话你什么都没有学会，还有可能因为学太多而走火入魔。早点做选择也没有坏处，需要做选择的时候就要果断点。当然你可以先大概了解一下每一门语言然后再深入学你喜欢的，这样也没问题的。</p>
+<p>废话少说，快开始你的表演吧~，那我就开始咯，show time!</p>
+<h2 id="C语言"><a href="#C语言" class="headerlink" title="C语言"></a>C语言</h2><table>
+    <tr>
+        <td>
+            <a href="https://book.douban.com/subject/1139336/"><img src="/images/book/cs_book_rec/c1.jpg" width = 240px height = 320px/></a>
+        </td>
+        <td>
+            <a href="https://book.douban.com/subject/20432061/"><img src="/images/book/cs_book_rec/c2.jpg" width = 240px height = 320px/></a>
+        </td>
+        <td>
+            <a href="https://book.douban.com/subject/2377310/"><img src="/images/book/cs_book_rec/c3.jpg" width = 240px height = 320px/></a>
+        </td>
+    </tr>
+</table>
+
+<h2 id="C-语言"><a href="#C-语言" class="headerlink" title="C++语言"></a>C++语言</h2><p>因为C++很难，所以这里多推荐一些书，哈哈，可能这里就劝退了一波人啦，坚持下来的人加油哦！高精尖技术等着你开发呢😀~</p>
+<table>
+    <tr>
+        <td>
+            <a href="https://book.douban.com/subject/25708312/"><img src="/images/book/cs_book_rec/cpp1.jpg" width = 240px height = 320px/></a>
+        </td>
+        <td>
+            <a href="https://book.douban.com/subject/10789789/"><img src="/images/book/cs_book_rec/cpp2.jpg" width = 240px height = 320px/></a>
+        </td>
+        <td>
+            <a href="https://book.douban.com/subject/5387403/"><img src="/images/book/cs_book_rec/cpp3.jpg" width = 240px height = 320px/></a>
+        </td>
+    </tr>
+        <tr>
+        <td>
+            <a href="https://book.douban.com/subject/1110934/"><img src="/images/book/cs_book_rec/cpp4.jpg" width = 240px height = 320px/></a>
+        </td>
+        <td>
+            <a href="https://book.douban.com/subject/1792179/"><img src="/images/book/cs_book_rec/cpp5.jpg" width = 240px height = 320px/></a>
+        </td>
+        <td>
+            <a href="https://book.douban.com/subject/10427315/"><img src="/images/book/cs_book_rec/cpp6.jpg" width = 240px height = 320px/></a>
+        </td>
+    </tr>
+</table>
+
+<h2 id="Java语言"><a href="#Java语言" class="headerlink" title="Java语言"></a>Java语言</h2><h2 id="Python语言"><a href="#Python语言" class="headerlink" title="Python语言"></a>Python语言</h2><h2 id="Go语言"><a href="#Go语言" class="headerlink" title="Go语言"></a>Go语言</h2><h2 id="数据结构和算法"><a href="#数据结构和算法" class="headerlink" title="数据结构和算法"></a>数据结构和算法</h2><table>
     <tr>
         <td>
             <a href="https://book.douban.com/subject/19952400/"><img src="/images/book/cs_book_rec/algorithm1.jpg" width = 240px height = 320px/></a>
@@ -1046,8 +1097,21 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
     </tr>
 </table>
 
+<h2 id="Linux编程"><a href="#Linux编程" class="headerlink" title="Linux编程"></a>Linux编程</h2><table>
+    <tr>
+        <td>
+            <a href="https://book.douban.com/subject/25900403/"><img src="/images/book/cs_book_rec/linux1.jpg" width = 240px height = 320px/></a>
+        </td>
+        <td>
+            <a href="https://book.douban.com/subject/1219329/"><img src="/images/book/cs_book_rec/linux2.jpg" width = 240px height = 320px/></a>
+        </td>
+        <td>
+            <a href="https://book.douban.com/subject/24722611/"><img src="/images/book/cs_book_rec/linux3.jpg" width = 240px height = 320px/></a>
+        </td>
+    </tr>
+</table>
 
-<h2 id="后记，既然看到这里了，再听我唠叨几句又何妨-手动狗头"><a href="#后记，既然看到这里了，再听我唠叨几句又何妨-手动狗头" class="headerlink" title="后记，既然看到这里了，再听我唠叨几句又何妨(手动狗头)"></a>后记，既然看到这里了，再听我唠叨几句又何妨(手动狗头)</h2><p>嘻嘻，暂时还没想好怎么写</p>
+<h2 id="后记，既然看到这里了，再听我唠叨几句又何妨-手动狗头"><a href="#后记，既然看到这里了，再听我唠叨几句又何妨-手动狗头" class="headerlink" title="后记，既然看到这里了，再听我唠叨几句又何妨(手动狗头)"></a>后记，既然看到这里了，再听我唠叨几句又何妨(手动狗头)</h2><p>如果你认真看完了上面所列的书籍，除了运气成分外，面大厂你的基础应该是很扎实了，但是有句话还是要讲一下就是”纸上得来终觉浅，绝知此事要躬行”，这句话对看这篇文章的人讲，也是对我自己讲。实践是1，看书是0，有了实践再看书相当于往1后面添加0，如果不实践看再多的书也是0。希望和大家一起共勉把！</p>
 ]]></content>
       <categories>
         <category>Book</category>
@@ -1088,7 +1152,7 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
 </li>
 </ul>
 </li>
-<li><p>驻留在内存中就绪的、等待运行的进程保存在就绪队列中，该队列通常用双向链表来实现。等待特定I/Os设备的进程列表称为设备队列，每个设备都有自己的设备队列。</p>
+<li><p>驻留在内存中就绪的、等待运行的进程保存在就绪队列中，该队列通常用双向链表来实现。等待特定I/O设备的进程列表称为设备队列，每个设备都有自己的设备队列。</p>
  <img src="/images/tech/process_and_thread/process4.png" width = 540px height = 500px/>
 </li>
 <li><p>绝大多数进程可以分为I/O密集型或CPU密集型。I/O密集型的进程在执行I/O方面比执行计算要花费更多的时间。CPU密集型的进程将更多的时间用在计算上。</p>
