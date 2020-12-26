@@ -776,6 +776,63 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
       </categories>
   </entry>
   <entry>
+    <title>LeetCode刷题指南(持续更新中)</title>
+    <url>/posts/af9ea9dd.html</url>
+    <content><![CDATA[<p>这个LeetCode分类是我刷题过程中整理出来的值得刷的题目。</p>
+<p>因为我对Python比较熟练，所以大部分代码是用Python实现的😬。</p>
+<img src="/images/leetcode/leetcode_note.jpg" width = 600px height = 300px/>
+
+<a id="more"></a>
+
+<p>首先需要说明的是，本人不做大而全的刷题目录，题目现在实在太多了，而且网上已经有一些人这么做了，对于刚开始刷题的你其实并不是十分友好。如果需要我可以在结尾给出一些链接，基本涵盖了所有题目，而且也有一些详细的解释。本人也不做题解，因为代码能看懂的话基本上不需要再阐释了，如果你需要，可以参考我给出的链接，我在刷题过程中也参考了别人的解法。总之三人行，必有我师。希望你的刷题之路顺利。</p>
+<p>本人刷题一开始是按照官方上Tag来刷了，因为自己的算法基础比较薄弱，就采取了相对比较容易的路子。同时按照Tag刷，暗示了题目可能会用到的算法和数据结构，本人又只选取了简单和中等的题目，所以刷起来相对轻松一点。为了方便，这里列出了一些本人认为非常重要的Tag(✅表示已完成)：</p>
+<table>
+<th>Tag类别</th><th>完成状态</th><th>防迷路链接</th>
+<tr><td>字符串(简单)</td><td>✅</td><td><a href="/posts/c026ad95.html" title="LeetCode之字符串(简单)">LeetCode之字符串(简单)</a></td></tr>
+<tr><td>字符串(中等)</td><td>✅</td><td><a href="/posts/723701661.html" title="LeetCode之字符串(中等)">LeetCode之字符串(中等)</a></td></tr>
+<tr><td>二叉树(简单)</td><td>✅</td><td><a href="/posts/94def828.html" title="LeetCode之二叉树(简单)">LeetCode之二叉树(简单)</a></td></tr>
+<tr><td>二叉树(中等)</td><td>✅</td><td><a href="/posts/3ddb3bb0.html" title="LeetCode之二叉树(中等)">LeetCode之二叉树(中等)</a></td></tr>
+<tr><td>链表</td><td>✅</td><td><a href="/posts/fb43e507.html" title="LeetCode之链表">LeetCode之链表</a></td></tr>
+<tr><td>哈希表</td><td>✅</td><td><a href="/posts/2d8b42bd.html" title="LeetCode之哈希表">LeetCode之哈希表</a></td></tr>
+<tr><td>栈和队列</td><td>✅</td><td><a href="/posts/1ccb8d85.html" title="LeetCode之栈和队列">LeetCode之栈和队列</a></td></tr>
+</table>
+
+<ul>
+<li>数组</li>
+<li>堆</li>
+<li>图</li>
+<li>二分查找</li>
+<li>深度优先遍历</li>
+<li>广度优先遍历</li>
+<li>双指针</li>
+<li>回溯</li>
+<li>动态规划(如果你很厉害，可以直接上，本人是最后统一刷的🤦‍♂️)</li>
+</ul>
+<p>如果按照这些Tag来刷，并选择简单和中等的题目，大概可以刷400-500的题目，基础和经典的题目基本都能覆盖到，对于首次刷题的你还是很友好的。</p>
+<p>另一种刷的方式就是按照公司来刷，比如你心意的FLAG(Facebook,Linkedin,Amazon,Google)和Microsoft。可以小试牛刀，看下各家面试题的风格。这里罗列几个比较出名的公司：</p>
+<ul>
+<li>Google [✅]</li>
+<li>Microsoft [✅]</li>
+<li>Linkedin [✅]</li>
+<li>Facebook [✅]</li>
+<li>Amazon [✅]</li>
+</ul>
+<p>最后的最后，给出本人认为比较好的几个人的刷题链接，在刷题的过程中可以看下别人的解法，对自己写代码的能力提升会很有帮助，废话不多讲，传送门如下：</p>
+<ol>
+<li>首推花花酱：<a href="https://zxi.mytechroad.com/blog/">https://zxi.mytechroad.com/blog/</a></li>
+<li>grandyang的博客： <a href="https://www.cnblogs.com/grandyang/p/4606334.html">https://www.cnblogs.com/grandyang/p/4606334.html</a></li>
+<li><a href="https://github.com/luliyucoordinate/Leetcode">https://github.com/luliyucoordinate/Leetcode</a></li>
+<li><a href="https://github.com/WuLC/LeetCode/tree/master/Algorithm/Python">https://github.com/WuLC/LeetCode/tree/master/Algorithm/Python</a></li>
+<li><a href="http://bookshadow.com/leetcode/">http://bookshadow.com/leetcode/</a></li>
+<li><a href="https://blog.csdn.net/fuxuemingzhu">https://blog.csdn.net/fuxuemingzhu</a></li>
+</ol>
+<p>如果你需要的话，可以联系我，把你的刷题链接附上来，方便大家你我他😁。</p>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+  </entry>
+  <entry>
     <title>LeetCode之链表</title>
     <url>/posts/fb43e507.html</url>
     <content><![CDATA[<p>链表的题目汇总在此了，欢迎大家光顾。</p>
@@ -967,63 +1024,6 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
 <li>对于链表中的每个节点，节点的值：-1000 &lt;= node.val &lt;= 1000.</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeZeroSumSublists</span>(<span class="params">self, head</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        m = &#123;&#125;</span><br><span class="line">        dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        dummy.<span class="built_in">next</span> = head</span><br><span class="line"></span><br><span class="line">        p = dummy</span><br><span class="line">        total = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> p:</span><br><span class="line">            total += p.val</span><br><span class="line">            m[total] = p</span><br><span class="line">            p = p.<span class="built_in">next</span></span><br><span class="line">        </span><br><span class="line">        total = <span class="number">0</span></span><br><span class="line">        p = dummy</span><br><span class="line">        <span class="keyword">while</span> p:</span><br><span class="line">            total += p.val</span><br><span class="line">            p.<span class="built_in">next</span> = m[total].<span class="built_in">next</span></span><br><span class="line">            p = p.<span class="built_in">next</span></span><br><span class="line">        </span><br><span class="line">        p = dummy.<span class="built_in">next</span> </span><br><span class="line">        dummy.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> p</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>LeetCode刷题指南(持续更新中)</title>
-    <url>/posts/af9ea9dd.html</url>
-    <content><![CDATA[<p>这个LeetCode分类是我刷题过程中整理出来的值得刷的题目。</p>
-<p>因为我对Python比较熟练，所以大部分代码是用Python实现的😬。</p>
-<img src="/images/leetcode/leetcode_note.jpg" width = 600px height = 300px/>
-
-<a id="more"></a>
-
-<p>首先需要说明的是，本人不做大而全的刷题目录，题目现在实在太多了，而且网上已经有一些人这么做了，对于刚开始刷题的你其实并不是十分友好。如果需要我可以在结尾给出一些链接，基本涵盖了所有题目，而且也有一些详细的解释。本人也不做题解，因为代码能看懂的话基本上不需要再阐释了，如果你需要，可以参考我给出的链接，我在刷题过程中也参考了别人的解法。总之三人行，必有我师。希望你的刷题之路顺利。</p>
-<p>本人刷题一开始是按照官方上Tag来刷了，因为自己的算法基础比较薄弱，就采取了相对比较容易的路子。同时按照Tag刷，暗示了题目可能会用到的算法和数据结构，本人又只选取了简单和中等的题目，所以刷起来相对轻松一点。为了方便，这里列出了一些本人认为非常重要的Tag(✅表示已完成)：</p>
-<table>
-<th>Tag类别</th><th>完成状态</th><th>防迷路链接</th>
-<tr><td>字符串(简单)</td><td>✅</td><td><a href="/posts/c026ad95.html" title="LeetCode之字符串(简单)">LeetCode之字符串(简单)</a></td></tr>
-<tr><td>字符串(中等)</td><td>✅</td><td><a href="/posts/723701661.html" title="LeetCode之字符串(中等)">LeetCode之字符串(中等)</a></td></tr>
-<tr><td>二叉树(简单)</td><td>✅</td><td><a href="/posts/94def828.html" title="LeetCode之二叉树(简单)">LeetCode之二叉树(简单)</a></td></tr>
-<tr><td>二叉树(中等)</td><td>✅</td><td><a href="/posts/3ddb3bb0.html" title="LeetCode之二叉树(中等)">LeetCode之二叉树(中等)</a></td></tr>
-<tr><td>链表</td><td>✅</td><td><a href="/posts/fb43e507.html" title="LeetCode之链表">LeetCode之链表</a></td></tr>
-<tr><td>哈希表</td><td>✅</td><td><a href="/posts/2d8b42bd.html" title="LeetCode之哈希表">LeetCode之哈希表</a></td></tr>
-<tr><td>栈和队列</td><td>✅</td><td><a href="/posts/1ccb8d85.html" title="LeetCode之栈和队列">LeetCode之栈和队列</a></td></tr>
-</table>
-
-<ul>
-<li>数组</li>
-<li>堆</li>
-<li>图</li>
-<li>二分查找</li>
-<li>深度优先遍历</li>
-<li>广度优先遍历</li>
-<li>双指针</li>
-<li>回溯</li>
-<li>动态规划(如果你很厉害，可以直接上，本人是最后统一刷的🤦‍♂️)</li>
-</ul>
-<p>如果按照这些Tag来刷，并选择简单和中等的题目，大概可以刷400-500的题目，基础和经典的题目基本都能覆盖到，对于首次刷题的你还是很友好的。</p>
-<p>另一种刷的方式就是按照公司来刷，比如你心意的FLAG(Facebook,Linkedin,Amazon,Google)和Microsoft。可以小试牛刀，看下各家面试题的风格。这里罗列几个比较出名的公司：</p>
-<ul>
-<li>Google [✅]</li>
-<li>Microsoft [✅]</li>
-<li>Linkedin [✅]</li>
-<li>Facebook [✅]</li>
-<li>Amazon [✅]</li>
-</ul>
-<p>最后的最后，给出本人认为比较好的几个人的刷题链接，在刷题的过程中可以看下别人的解法，对自己写代码的能力提升会很有帮助，废话不多讲，传送门如下：</p>
-<ol>
-<li>首推花花酱：<a href="https://zxi.mytechroad.com/blog/">https://zxi.mytechroad.com/blog/</a></li>
-<li>grandyang的博客： <a href="https://www.cnblogs.com/grandyang/p/4606334.html">https://www.cnblogs.com/grandyang/p/4606334.html</a></li>
-<li><a href="https://github.com/luliyucoordinate/Leetcode">https://github.com/luliyucoordinate/Leetcode</a></li>
-<li><a href="https://github.com/WuLC/LeetCode/tree/master/Algorithm/Python">https://github.com/WuLC/LeetCode/tree/master/Algorithm/Python</a></li>
-<li><a href="http://bookshadow.com/leetcode/">http://bookshadow.com/leetcode/</a></li>
-<li><a href="https://blog.csdn.net/fuxuemingzhu">https://blog.csdn.net/fuxuemingzhu</a></li>
-</ol>
-<p>如果你需要的话，可以联系我，把你的刷题链接附上来，方便大家你我他😁。</p>
 ]]></content>
       <categories>
         <category>LeetCode</category>
