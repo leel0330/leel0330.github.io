@@ -5,61 +5,7 @@
 s = "3[a]2[bc]", 返回 "aaabcbc".
 s = "3[a2[c]]", 返回 "accaccacc".
 s = "2[abc]3[cd]ef", 返回 "abcabccdcdcdef".
-</pre><div class="tabs" id="leetcode-394"><ul class="nav-tabs"><li class="tab active"><a class="#leetcode-394-1">Python</a></li><li class="tab"><a class="#leetcode-394-2">Java</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-394-1"><pre><code class="Python">class Solution(object):
-    def decodeString(self, s):
-        &quot;&quot;&quot;
-        :type s: str
-        :rtype: str
-        &quot;&quot;&quot;   
-        stack, res, multi = [], &quot;&quot;, 0
-        for c in s:
-            if c == &#39;[&#39;:
-                stack.append([multi, res])
-                res, multi = &quot;&quot;, 0
-            elif c == &#39;]&#39;:
-                cur_multi, last_res = stack.pop()
-                res = last_res + cur_multi * res
-            elif &#39;0&#39; &lt;= c &lt;= &#39;9&#39;:
-                multi = multi * 10 + int(c)            
-            else:
-                res += c
-        return res</code></pre></div><div class="tab-pane" id="leetcode-394-2"><pre><code class="Java">class Solution {
-    class Item {
-        public int num;
-        public String str;
-
-        public Item(int n, String s) {
-            this.num = n;
-            this.str = s;
-        }
-    }
-
-    public String decodeString(String s) {
-        String res = &quot;&quot;;
-        int multi = 0;
-        Stack&lt;Item&gt; stk = new Stack&lt;&gt;();
-        for(int i = 0; i &lt; s.length(); i++) {
-            char c = s.charAt(i);
-            if(c == &#39;[&#39;) {
-                stk.add(new Item(multi, res));
-                res = &quot;&quot;;
-                multi = 0;
-            }else if(c == &#39;]&#39;) {
-                Item item = stk.pop();
-                StringBuilder sb = new StringBuilder();
-                for(int k = 0; k &lt; item.num; k++) {
-                    sb.append(res);
-                }
-                res = item.str + sb.toString();
-            }else if(c &gt;= &#39;0&#39; &amp;&amp; c &lt;= &#39;9&#39;) {
-                multi = multi * 10 + Integer.parseInt(c + &quot;&quot;);
-            }else{
-                res += c;
-            }
-        }
-        return res;
-    }
-}</code></pre></div></div></div><h2 id="402-移掉K位数字"><a href="#402-移掉K位数字" class="headerlink" title="402. 移掉K位数字"></a>402. 移掉K位数字</h2><p>给定一个以字符串表示的非负整数 num，移除这个数中的 k 位数字，使得剩下的数字最小。</p><p>注意:</p><ul><li>num 的长度小于 10002 且 ≥ k。</li><li>num 不会包含任何前导零。</li></ul><p>示例 1 :</p><pre>
+</pre><div class="tabs" id="leetcode-394"><ul class="nav-tabs"><li class="tab active"><a class="#leetcode-394-1">Python</a></li><li class="tab"><a class="#leetcode-394-2">Java</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-394-1"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decodeString</span>(<span class="params">self, s</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span>   </span><br><span class="line">        stack, res, multi = [], <span class="string">&quot;&quot;</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">if</span> c == <span class="string">&#x27;[&#x27;</span>:</span><br><span class="line">                stack.append([multi, res])</span><br><span class="line">                res, multi = <span class="string">&quot;&quot;</span>, <span class="number">0</span></span><br><span class="line">            <span class="keyword">elif</span> c == <span class="string">&#x27;]&#x27;</span>:</span><br><span class="line">                cur_multi, last_res = stack.pop()</span><br><span class="line">                res = last_res + cur_multi * res</span><br><span class="line">            <span class="keyword">elif</span> <span class="string">&#x27;0&#x27;</span> &lt;= c &lt;= <span class="string">&#x27;9&#x27;</span>:</span><br><span class="line">                multi = multi * <span class="number">10</span> + <span class="built_in">int</span>(c)            </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res += c</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-394-2"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Item</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> num;</span><br><span class="line">        <span class="keyword">public</span> String str;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Item</span><span class="params">(<span class="keyword">int</span> n, String s)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.num = n;</span><br><span class="line">            <span class="keyword">this</span>.str = s;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">decodeString</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        String res = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">int</span> multi = <span class="number">0</span>;</span><br><span class="line">        Stack&lt;Item&gt; stk = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> c = s.charAt(i);</span><br><span class="line">            <span class="keyword">if</span>(c == <span class="string">&#x27;[&#x27;</span>) &#123;</span><br><span class="line">                stk.add(<span class="keyword">new</span> Item(multi, res));</span><br><span class="line">                res = <span class="string">&quot;&quot;</span>;</span><br><span class="line">                multi = <span class="number">0</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(c == <span class="string">&#x27;]&#x27;</span>) &#123;</span><br><span class="line">                Item item = stk.pop();</span><br><span class="line">                StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; item.num; k++) &#123;</span><br><span class="line">                    sb.append(res);</span><br><span class="line">                &#125;</span><br><span class="line">                res = item.str + sb.toString();</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(c &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; c &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;</span><br><span class="line">                multi = multi * <span class="number">10</span> + Integer.parseInt(c + <span class="string">&quot;&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                res += c;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div><h2 id="402-移掉K位数字"><a href="#402-移掉K位数字" class="headerlink" title="402. 移掉K位数字"></a>402. 移掉K位数字</h2><p>给定一个以字符串表示的非负整数 num，移除这个数中的 k 位数字，使得剩下的数字最小。</p><p>注意:</p><ul><li>num 的长度小于 10002 且 ≥ k。</li><li>num 不会包含任何前导零。</li></ul><p>示例 1 :</p><pre>
 输入: num = "1432219", k = 3
 输出: "1219"
 解释: 移除掉三个数字 4, 3, 和 2 形成一个新的最小的数字 1219。
@@ -71,52 +17,7 @@ s = "2[abc]3[cd]ef", 返回 "abcabccdcdcdef".
 输入: num = "10", k = 2
 输出: "0"
 解释: 从原数字移除所有的数字，剩余为空就是0。
-</pre><div class="tabs" id="leetcode-402"><ul class="nav-tabs"><li class="tab active"><a class="#leetcode-402-1">Python</a></li><li class="tab"><a class="#leetcode-402-2">Java</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-402-1"><pre><code class="Python">class Solution(object):
-    def removeKdigits(self, num, k):
-        &quot;&quot;&quot;
-        :type num: str
-        :type k: int
-        :rtype: str
-        &quot;&quot;&quot;
-        stk = []
-        for c in num:
-            while k and stk and stk[-1] &gt; c:
-                stk.pop(-1)
-                k -= 1
-            stk.append(c)
-        while k:
-            stk.pop(-1)
-            k -= 1
-        if not stk:
-            return &#39;0&#39;
-        return str(int(&#39;&#39;.join(stk)))</code></pre></div><div class="tab-pane" id="leetcode-402-2"><pre><code class="Java">class Solution {
-    public String removeKdigits(String num, int k) {
-        Stack&lt;Character&gt; stk = new Stack&lt;&gt;();
-        for (int i = 0; i &lt; num.length(); i++) {
-            char c = num.charAt(i);
-            while (k &gt; 0 &amp;&amp; !stk.empty() &amp;&amp; stk.peek() &gt; c) {
-                stk.pop();
-                k -= 1;
-            }
-            stk.add(c);
-        }
-        while (k &gt; 0) {
-            stk.pop();
-            k -= 1;
-        }
-        while (!stk.empty() &amp;&amp; stk.get(0) == &#39;0&#39;) {
-            stk.remove(0);
-        }
-        if (stk.empty()) {
-            return &quot;0&quot;;
-        }
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i &lt; stk.size(); i++) {
-            sb.append(stk.get(i));
-        }
-        return sb.toString();
-    }
-}</code></pre></div></div></div><h2 id="456-132模式"><a href="#456-132模式" class="headerlink" title="456. 132模式"></a>456. 132模式</h2><p>给定一个整数序列：a1, a2, …, an，一个132模式的子序列 ai, aj, ak 被定义为：当 i &lt; j &lt; k 时，ai &lt; ak &lt; aj。设计一个算法，当给定有 n 个数字的序列时，验证这个序列中是否含有132模式的子序列。</p><p>注意：n 的值小于15000。</p><p>示例1:</p><pre>
+</pre><div class="tabs" id="leetcode-402"><ul class="nav-tabs"><li class="tab active"><a class="#leetcode-402-1">Python</a></li><li class="tab"><a class="#leetcode-402-2">Java</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-402-1"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeKdigits</span>(<span class="params">self, num, k</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type num: str</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        stk = []</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> num:</span><br><span class="line">            <span class="keyword">while</span> k <span class="keyword">and</span> stk <span class="keyword">and</span> stk[-<span class="number">1</span>] &gt; c:</span><br><span class="line">                stk.pop(-<span class="number">1</span>)</span><br><span class="line">                k -= <span class="number">1</span></span><br><span class="line">            stk.append(c)</span><br><span class="line">        <span class="keyword">while</span> k:</span><br><span class="line">            stk.pop(-<span class="number">1</span>)</span><br><span class="line">            k -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> stk:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;0&#x27;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(<span class="built_in">int</span>(<span class="string">&#x27;&#x27;</span>.join(stk)))</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-402-2"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">removeKdigits</span><span class="params">(String num, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        Stack&lt;Character&gt; stk = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> c = num.charAt(i);</span><br><span class="line">            <span class="keyword">while</span> (k &gt; <span class="number">0</span> &amp;&amp; !stk.empty() &amp;&amp; stk.peek() &gt; c) &#123;</span><br><span class="line">                stk.pop();</span><br><span class="line">                k -= <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            stk.add(c);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (k &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            stk.pop();</span><br><span class="line">            k -= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (!stk.empty() &amp;&amp; stk.get(<span class="number">0</span>) == <span class="string">&#x27;0&#x27;</span>) &#123;</span><br><span class="line">            stk.remove(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (stk.empty()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;0&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; stk.size(); i++) &#123;</span><br><span class="line">            sb.append(stk.get(i));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div><h2 id="456-132模式"><a href="#456-132模式" class="headerlink" title="456. 132模式"></a>456. 132模式</h2><p>给定一个整数序列：a1, a2, …, an，一个132模式的子序列 ai, aj, ak 被定义为：当 i &lt; j &lt; k 时，ai &lt; ak &lt; aj。设计一个算法，当给定有 n 个数字的序列时，验证这个序列中是否含有132模式的子序列。</p><p>注意：n 的值小于15000。</p><p>示例1:</p><pre>
 输入: [1, 2, 3, 4]
 输出: False
 解释: 序列中不存在132模式的子序列。
@@ -128,38 +29,7 @@ s = "2[abc]3[cd]ef", 返回 "abcabccdcdcdef".
 输入: [-1, 3, 2, 0]
 输出: True
 解释: 序列中有 3 个132模式的的子序列: [-1, 3, 2], [-1, 3, 0] 和 [-1, 2, 0].
-</pre><div class="tabs" id="leetcode-456"><ul class="nav-tabs"><li class="tab active"><a class="#leetcode-456-1">Python</a></li><li class="tab"><a class="#leetcode-456-2">Java</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-456-1"><pre><code class="Python">class Solution(object):
-    def find132pattern(self, nums):
-        &quot;&quot;&quot;
-        :type nums: List[int]
-        :rtype: bool
-        &quot;&quot;&quot;
-        stk = []
-        INT_MIN = -(1 &lt;&lt; 31)
-        third = INT_MIN
-        for idx in xrange(len(nums) - 1, -1, -1):
-            if nums[idx] &lt; third:
-                return True
-            while stk and stk[-1] &lt; nums[idx]:
-                third = stk.pop(-1)
-            stk.append(nums[idx])
-        return False</code></pre></div><div class="tab-pane" id="leetcode-456-2"><pre><code class="Java">class Solution {
-    public boolean find132pattern(int[] nums) {
-        int INT_MIN = -(1 &lt;&lt; 31);
-        int third = INT_MIN;
-        Stack&lt;Integer&gt; stk = new Stack&lt;&gt;();
-        for (int i = nums.length - 1; i &gt;= 0; i--) {
-            if (nums[i] &lt; third) {
-                return true;
-            }
-            while (!stk.empty() &amp;&amp; stk.peek() &lt; nums[i]) {
-                third = stk.pop();
-            }
-            stk.add(nums[i]);
-        }
-        return false;
-    }
-}</code></pre></div></div></div><h2 id="496-下一个更大元素-I"><a href="#496-下一个更大元素-I" class="headerlink" title="496. 下一个更大元素 I"></a>496. 下一个更大元素 I</h2><p>给定两个没有重复元素的数组 nums1 和 nums2 ，其中nums1 是 nums2 的子集。找到 nums1 中每个元素在 nums2 中的下一个比其大的值。</p><p>nums1 中数字 x 的下一个更大元素是指 x 在 nums2 中对应位置的右边的第一个比 x 大的元素。如果不存在，对应位置输出-1。</p><p>示例 1:</p><pre>
+</pre><div class="tabs" id="leetcode-456"><ul class="nav-tabs"><li class="tab active"><a class="#leetcode-456-1">Python</a></li><li class="tab"><a class="#leetcode-456-2">Java</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-456-1"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">find132pattern</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        stk = []</span><br><span class="line">        INT_MIN = -(<span class="number">1</span> &lt;&lt; <span class="number">31</span>)</span><br><span class="line">        third = INT_MIN</span><br><span class="line">        <span class="keyword">for</span> idx <span class="keyword">in</span> xrange(<span class="built_in">len</span>(nums) - <span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> nums[idx] &lt; third:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">while</span> stk <span class="keyword">and</span> stk[-<span class="number">1</span>] &lt; nums[idx]:</span><br><span class="line">                third = stk.pop(-<span class="number">1</span>)</span><br><span class="line">            stk.append(nums[idx])</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-456-2"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">find132pattern</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> INT_MIN = -(<span class="number">1</span> &lt;&lt; <span class="number">31</span>);</span><br><span class="line">        <span class="keyword">int</span> third = INT_MIN;</span><br><span class="line">        Stack&lt;Integer&gt; stk = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = nums.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &lt; third) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (!stk.empty() &amp;&amp; stk.peek() &lt; nums[i]) &#123;</span><br><span class="line">                third = stk.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            stk.add(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div><h2 id="496-下一个更大元素-I"><a href="#496-下一个更大元素-I" class="headerlink" title="496. 下一个更大元素 I"></a>496. 下一个更大元素 I</h2><p>给定两个没有重复元素的数组 nums1 和 nums2 ，其中nums1 是 nums2 的子集。找到 nums1 中每个元素在 nums2 中的下一个比其大的值。</p><p>nums1 中数字 x 的下一个更大元素是指 x 在 nums2 中对应位置的右边的第一个比 x 大的元素。如果不存在，对应位置输出-1。</p><p>示例 1:</p><pre>
 输入: nums1 = [4,1,2], nums2 = [1,3,4,2].
 输出: [-1,3,-1]
 解释:
@@ -172,245 +42,13 @@ s = "2[abc]3[cd]ef", 返回 "abcabccdcdcdef".
 解释:
     对于num1中的数字2，第二个数组中的下一个较大数字是3。
     对于num1中的数字4，第二个数组中没有下一个更大的数字，因此输出 -1。
-</pre><p>注意:</p><ul><li>nums1和nums2中所有元素是唯一的。</li><li>nums1和nums2 的数组大小都不超过1000。</li></ul><pre><code class="Python">class Solution(object):
-    def nextGreaterElement(self, nums1, nums2):
-        &quot;&quot;&quot;
-        :type nums1: List[int]
-        :type nums2: List[int]
-        :rtype: List[int]
-        &quot;&quot;&quot;
-        m = &#123;&#125;
-        stk = []
-        res = [-1 for _ in xrange(len(nums1))]
-        for n in nums2:
-            while len(stk) &gt; 0 and stk[-1] &lt; n:
-                m[stk[-1]] = n
-                stk.pop(-1)
-            stk.append(n)
-        for idx, n in enumerate(nums1):
-            if n in m:
-                res[idx] = m[n]
-            else:
-                res[idx] = -1
-        return res</code></pre><h2 id="503-下一个更大元素-II-n"><a href="#503-下一个更大元素-II-n" class="headerlink" title="503. 下一个更大元素 II [n]"></a>503. 下一个更大元素 II [n]</h2><p>给定一个循环数组（最后一个元素的下一个元素是数组的第一个元素），输出每个元素的下一个更大元素。数字 x 的下一个更大的元素是按数组遍历顺序，这个数字之后的第一个比它更大的数，这意味着你应该循环地搜索它的下一个更大的数。如果不存在，则输出 -1。</p><p>示例 1:</p><pre>
+</pre><p>注意:</p><ul><li>nums1和nums2中所有元素是唯一的。</li><li>nums1和nums2 的数组大小都不超过1000。</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nextGreaterElement</span>(<span class="params">self, nums1, nums2</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums1: List[int]</span></span><br><span class="line"><span class="string">        :type nums2: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        m = &#123;&#125;</span><br><span class="line">        stk = []</span><br><span class="line">        res = [-<span class="number">1</span> <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(<span class="built_in">len</span>(nums1))]</span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> nums2:</span><br><span class="line">            <span class="keyword">while</span> <span class="built_in">len</span>(stk) &gt; <span class="number">0</span> <span class="keyword">and</span> stk[-<span class="number">1</span>] &lt; n:</span><br><span class="line">                m[stk[-<span class="number">1</span>]] = n</span><br><span class="line">                stk.pop(-<span class="number">1</span>)</span><br><span class="line">            stk.append(n)</span><br><span class="line">        <span class="keyword">for</span> idx, n <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums1):</span><br><span class="line">            <span class="keyword">if</span> n <span class="keyword">in</span> m:</span><br><span class="line">                res[idx] = m[n]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res[idx] = -<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure><h2 id="503-下一个更大元素-II-n"><a href="#503-下一个更大元素-II-n" class="headerlink" title="503. 下一个更大元素 II [n]"></a>503. 下一个更大元素 II [n]</h2><p>给定一个循环数组（最后一个元素的下一个元素是数组的第一个元素），输出每个元素的下一个更大元素。数字 x 的下一个更大的元素是按数组遍历顺序，这个数字之后的第一个比它更大的数，这意味着你应该循环地搜索它的下一个更大的数。如果不存在，则输出 -1。</p><p>示例 1:</p><pre>
 输入: [1,2,1]
 输出: [2,-1,2]
 解释: 第一个 1 的下一个更大的数是 2；
 数字 2 找不到下一个更大的数； 
 第二个 1 的下一个最大的数需要循环搜索，结果也是 2。
-</pre><p>注意: 输入数组的长度不会超过 10000。</p><pre><code class="Python">class Solution(object):
-    def nextGreaterElements(self, nums):
-        &quot;&quot;&quot;
-        :type nums: List[int]
-        :rtype: List[int]
-        &quot;&quot;&quot;
-        n = len(nums)
-        res = [-1 for _ in xrange(n)]
-        stk = []
-        for idx in xrange(n * 2 - 1, -1, -1):
-            while stk and stk[-1] &lt;= nums[idx % n]:
-                stk.pop(-1)
-            if len(stk) == 0:
-                res[idx % n] = -1
-            else:
-                res[idx % n] = stk[-1]
-            stk.append(nums[idx % n])
-        return res</code></pre><h2 id="622-设计循环队列"><a href="#622-设计循环队列" class="headerlink" title="622. 设计循环队列"></a>622. 设计循环队列</h2><pre><code class="Python">class MyCircularQueue(object):
-
-    def __init__(self, k):
-        &quot;&quot;&quot;
-        Initialize your data structure here. Set the size of the queue to be k.
-        :type k: int
-        &quot;&quot;&quot;
-        self.queue = [None] * k
-        self.size = k
-        self.real_cnt = 0
-        self.head = 0
-        self.tail = 0 # 有效元素尾部的下一个位置
-
-
-    def enQueue(self, value):
-        &quot;&quot;&quot;
-        Insert an element into the circular queue. Return true if the operation is successful.
-        :type value: int
-        :rtype: bool
-        &quot;&quot;&quot;
-        if self.isFull():
-            return False
-        self.queue[self.tail] = value
-        self.tail = (self.tail + 1) % self.size
-        self.real_cnt += 1
-        return True
-
-
-    def deQueue(self):
-        &quot;&quot;&quot;
-        Delete an element from the circular queue. Return true if the operation is successful.
-        :rtype: bool
-        &quot;&quot;&quot;
-        if self.isEmpty():
-            return False
-        self.head = (self.head + 1) % self.size
-        self.real_cnt -= 1
-        return True
-
-
-    def Front(self):
-        &quot;&quot;&quot;
-        Get the front item from the queue.
-        :rtype: int
-        &quot;&quot;&quot;
-        if self.isEmpty():
-            return -1
-        return self.queue[self.head]
-
-
-    def Rear(self):
-        &quot;&quot;&quot;
-        Get the last item from the queue.
-        :rtype: int
-        &quot;&quot;&quot;
-        if self.isEmpty():
-            return -1
-        if self.tail == 0:
-            return self.queue[self.size - 1]
-        return self.queue[self.tail - 1]
-
-
-    def isEmpty(self):
-        &quot;&quot;&quot;
-        Checks whether the circular queue is empty or not.
-        :rtype: bool
-        &quot;&quot;&quot;
-        return self.real_cnt == 0
-
-    def isFull(self):
-        &quot;&quot;&quot;
-        Checks whether the circular queue is full or not.
-        :rtype: bool
-        &quot;&quot;&quot;
-        return self.real_cnt == self.size</code></pre><h2 id="641-设计循环双端队列"><a href="#641-设计循环双端队列" class="headerlink" title="641. 设计循环双端队列"></a>641. 设计循环双端队列</h2><pre><code class="Python">class MyCircularDeque(object):
-
-    def __init__(self, k):
-        &quot;&quot;&quot;
-        Initialize your data structure here. Set the size of the deque to be k.
-        :type k: int
-        &quot;&quot;&quot;
-        self.deque = [None] * k
-        self.size = k
-        self.real_cnt = 0
-        self.head = 0
-        self.tail = 0 # 有效元素尾部的下一个位置
-
-
-    def insertFront(self, value):
-        &quot;&quot;&quot;
-        Adds an item at the front of Deque. Return true if the operation is successful.
-        :type value: int
-        :rtype: bool
-        &quot;&quot;&quot;
-        if self.isFull():
-            return False
-        if self.head == 0:
-            self.head = self.size - 1
-        else:
-            self.head = self.head - 1
-        self.deque[self.head] = value
-        self.real_cnt += 1
-        return True
-
-
-    def insertLast(self, value):
-        &quot;&quot;&quot;
-        Adds an item at the rear of Deque. Return true if the operation is successful.
-        :type value: int
-        :rtype: bool
-        &quot;&quot;&quot;
-        if self.isFull():
-            return False
-        self.deque[self.tail] = value
-        self.tail = (self.tail + 1) % self.size
-        self.real_cnt += 1
-        return True
-
-
-    def deleteFront(self):
-        &quot;&quot;&quot;
-        Deletes an item from the front of Deque. Return true if the operation is successful.
-        :rtype: bool
-        &quot;&quot;&quot;
-        if self.isEmpty():
-            return False
-        self.head = (self.head + 1) % self.size
-        self.real_cnt -= 1
-        return True
-
-
-    def deleteLast(self):
-        &quot;&quot;&quot;
-        Deletes an item from the rear of Deque. Return true if the operation is successful.
-        :rtype: bool
-        &quot;&quot;&quot;
-        if self.isEmpty():
-            return False
-        if self.tail == 0:
-            self.tail = self.size - 1
-        else:
-            self.tail = self.tail - 1
-        self.real_cnt -= 1
-        return True
-
-
-    def getFront(self):
-        &quot;&quot;&quot;
-        Get the front item from the deque.
-        :rtype: int
-        &quot;&quot;&quot;
-        if self.isEmpty():
-            return -1
-        return self.deque[self.head]
-
-
-    def getRear(self):
-        &quot;&quot;&quot;
-        Get the last item from the deque.
-        :rtype: int
-        &quot;&quot;&quot;
-        if self.isEmpty():
-            return -1
-        if self.tail == 0:
-            return self.deque[self.size - 1]
-        else:
-            return self.deque[self.tail - 1]
-
-
-    def isEmpty(self):
-        &quot;&quot;&quot;
-        Checks whether the circular deque is empty or not.
-        :rtype: bool
-        &quot;&quot;&quot;
-        return self.real_cnt == 0
-
-
-    def isFull(self):
-        &quot;&quot;&quot;
-        Checks whether the circular deque is full or not.
-        :rtype: bool
-        &quot;&quot;&quot;
-        return self.real_cnt == self.size</code></pre><h2 id="739-每日温度-n"><a href="#739-每日温度-n" class="headerlink" title="739. 每日温度 [n]"></a>739. 每日温度 [n]</h2><p>根据每日 气温 列表，请重新生成一个列表，对应位置的输入是你需要再等待多久温度才会升高超过该日的天数。如果之后都不会升高，请在该位置用 0 来代替。</p><p>例如，给定一个列表 temperatures = [73, 74, 75, 71, 69, 72, 76, 73]，你的输出应该是 [1, 1, 4, 2, 1, 1, 0, 0]。</p><p>提示：气温 列表长度的范围是 [1, 30000]。每个气温的值的均为华氏度，都是在 [30, 100] 范围内的整数。</p><pre><code class="Python">class Solution(object):
-    def dailyTemperatures(self, T):
-        &quot;&quot;&quot;
-        :type T: List[int]
-        :rtype: List[int]
-        &quot;&quot;&quot;
-        res = [0 for _ in xrange(len(T))]
-        stk = []
-        for i in xrange(len(T) - 1, -1, -1):
-            while stk and T[stk[-1]] &lt;= T[i]:
-                stk.pop(-1)
-            res[i] = 0 if not stk else stk[-1] - i
-            stk.append(i)
-        return res        </code></pre><h2 id="856-括号的分数"><a href="#856-括号的分数" class="headerlink" title="856. 括号的分数"></a>856. 括号的分数</h2><p>给定一个平衡括号字符串 S，按下述规则计算该字符串的分数：</p><p>() 得 1 分。<br>AB 得 A + B 分，其中 A 和 B 是平衡括号字符串。<br>(A) 得 2 * A 分，其中 A 是平衡括号字符串。  </p><p>示例 1：</p><pre>
+</pre><p>注意: 输入数组的长度不会超过 10000。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nextGreaterElements</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        res = [-<span class="number">1</span> <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(n)]</span><br><span class="line">        stk = []</span><br><span class="line">        <span class="keyword">for</span> idx <span class="keyword">in</span> xrange(n * <span class="number">2</span> - <span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">while</span> stk <span class="keyword">and</span> stk[-<span class="number">1</span>] &lt;= nums[idx % n]:</span><br><span class="line">                stk.pop(-<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(stk) == <span class="number">0</span>:</span><br><span class="line">                res[idx % n] = -<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res[idx % n] = stk[-<span class="number">1</span>]</span><br><span class="line">            stk.append(nums[idx % n])</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure><h2 id="622-设计循环队列"><a href="#622-设计循环队列" class="headerlink" title="622. 设计循环队列"></a>622. 设计循环队列</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCircularQueue</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, k</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Initialize your data structure here. Set the size of the queue to be k.</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.queue = [<span class="literal">None</span>] * k</span><br><span class="line">        self.size = k</span><br><span class="line">        self.real_cnt = <span class="number">0</span></span><br><span class="line">        self.head = <span class="number">0</span></span><br><span class="line">        self.tail = <span class="number">0</span> <span class="comment"># 有效元素尾部的下一个位置</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enQueue</span>(<span class="params">self, value</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Insert an element into the circular queue. Return true if the operation is successful.</span></span><br><span class="line"><span class="string">        :type value: int</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> self.isFull():</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        self.queue[self.tail] = value</span><br><span class="line">        self.tail = (self.tail + <span class="number">1</span>) % self.size</span><br><span class="line">        self.real_cnt += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">deQueue</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Delete an element from the circular queue. Return true if the operation is successful.</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> self.isEmpty():</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        self.head = (self.head + <span class="number">1</span>) % self.size</span><br><span class="line">        self.real_cnt -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Front</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Get the front item from the queue.</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> self.isEmpty():</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> self.queue[self.head]</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Rear</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Get the last item from the queue.</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> self.isEmpty():</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> self.tail == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> self.queue[self.size - <span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> self.queue[self.tail - <span class="number">1</span>]</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isEmpty</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Checks whether the circular queue is empty or not.</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> self.real_cnt == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isFull</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Checks whether the circular queue is full or not.</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> self.real_cnt == self.size</span><br></pre></td></tr></table></figure><h2 id="641-设计循环双端队列"><a href="#641-设计循环双端队列" class="headerlink" title="641. 设计循环双端队列"></a>641. 设计循环双端队列</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCircularDeque</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, k</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Initialize your data structure here. Set the size of the deque to be k.</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.deque = [<span class="literal">None</span>] * k</span><br><span class="line">        self.size = k</span><br><span class="line">        self.real_cnt = <span class="number">0</span></span><br><span class="line">        self.head = <span class="number">0</span></span><br><span class="line">        self.tail = <span class="number">0</span> <span class="comment"># 有效元素尾部的下一个位置</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insertFront</span>(<span class="params">self, value</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Adds an item at the front of Deque. Return true if the operation is successful.</span></span><br><span class="line"><span class="string">        :type value: int</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> self.isFull():</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> self.head == <span class="number">0</span>:</span><br><span class="line">            self.head = self.size - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.head = self.head - <span class="number">1</span></span><br><span class="line">        self.deque[self.head] = value</span><br><span class="line">        self.real_cnt += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insertLast</span>(<span class="params">self, value</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Adds an item at the rear of Deque. Return true if the operation is successful.</span></span><br><span class="line"><span class="string">        :type value: int</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> self.isFull():</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        self.deque[self.tail] = value</span><br><span class="line">        self.tail = (self.tail + <span class="number">1</span>) % self.size</span><br><span class="line">        self.real_cnt += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">deleteFront</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Deletes an item from the front of Deque. Return true if the operation is successful.</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> self.isEmpty():</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        self.head = (self.head + <span class="number">1</span>) % self.size</span><br><span class="line">        self.real_cnt -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">deleteLast</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Deletes an item from the rear of Deque. Return true if the operation is successful.</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> self.isEmpty():</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> self.tail == <span class="number">0</span>:</span><br><span class="line">            self.tail = self.size - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.tail = self.tail - <span class="number">1</span></span><br><span class="line">        self.real_cnt -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getFront</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Get the front item from the deque.</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> self.isEmpty():</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> self.deque[self.head]</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getRear</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Get the last item from the deque.</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> self.isEmpty():</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> self.tail == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> self.deque[self.size - <span class="number">1</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> self.deque[self.tail - <span class="number">1</span>]</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isEmpty</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Checks whether the circular deque is empty or not.</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> self.real_cnt == <span class="number">0</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isFull</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Checks whether the circular deque is full or not.</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> self.real_cnt == self.size</span><br></pre></td></tr></table></figure><h2 id="739-每日温度-n"><a href="#739-每日温度-n" class="headerlink" title="739. 每日温度 [n]"></a>739. 每日温度 [n]</h2><p>根据每日 气温 列表，请重新生成一个列表，对应位置的输入是你需要再等待多久温度才会升高超过该日的天数。如果之后都不会升高，请在该位置用 0 来代替。</p><p>例如，给定一个列表 temperatures = [73, 74, 75, 71, 69, 72, 76, 73]，你的输出应该是 [1, 1, 4, 2, 1, 1, 0, 0]。</p><p>提示：气温 列表长度的范围是 [1, 30000]。每个气温的值的均为华氏度，都是在 [30, 100] 范围内的整数。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dailyTemperatures</span>(<span class="params">self, T</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type T: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        res = [<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(<span class="built_in">len</span>(T))]</span><br><span class="line">        stk = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="built_in">len</span>(T) - <span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">while</span> stk <span class="keyword">and</span> T[stk[-<span class="number">1</span>]] &lt;= T[i]:</span><br><span class="line">                stk.pop(-<span class="number">1</span>)</span><br><span class="line">            res[i] = <span class="number">0</span> <span class="keyword">if</span> <span class="keyword">not</span> stk <span class="keyword">else</span> stk[-<span class="number">1</span>] - i</span><br><span class="line">            stk.append(i)</span><br><span class="line">        <span class="keyword">return</span> res        </span><br></pre></td></tr></table></figure><h2 id="856-括号的分数"><a href="#856-括号的分数" class="headerlink" title="856. 括号的分数"></a>856. 括号的分数</h2><p>给定一个平衡括号字符串 S，按下述规则计算该字符串的分数：</p><p>() 得 1 分。<br>AB 得 A + B 分，其中 A 和 B 是平衡括号字符串。<br>(A) 得 2 * A 分，其中 A 是平衡括号字符串。  </p><p>示例 1：</p><pre>
 输入： "()"
 输出： 1
 </pre><p>示例 2：</p><pre>
@@ -422,27 +60,7 @@ s = "2[abc]3[cd]ef", 返回 "abcabccdcdcdef".
 </pre><p>示例 4：</p><pre>
 输入： "(()(()))"
 输出： 6
-</pre><p>提示：</p><ul><li>S 是平衡括号字符串，且只含有 ( 和 ) 。</li><li>2 &lt;= S.length &lt;= 50</li></ul><pre><code class="Python">class Solution(object):
-    def scoreOfParentheses(self, S):
-        &quot;&quot;&quot;
-        :type S: str
-        :rtype: int
-        &quot;&quot;&quot;
-        stk = []
-        for c in S:
-            if c == &#39;(&#39;:
-                stk.append(-1)
-            else:
-                cnt = 0
-                while stk[-1] != -1:
-                    cnt += stk[-1]
-                    stk.pop(-1)
-                stk.pop(-1)
-                if cnt == 0:
-                    stk.append(1)
-                else:
-                    stk.append(2 * cnt)
-        return sum(stk)</code></pre><h2 id="880-索引处的解码字符串-n"><a href="#880-索引处的解码字符串-n" class="headerlink" title="880. 索引处的解码字符串 [n]"></a>880. 索引处的解码字符串 [n]</h2><p>给定一个编码字符串 S。为了找出解码字符串并将其写入磁带，从编码字符串中每次读取一个字符，并采取以下步骤：</p><p>如果所读的字符是字母，则将该字母写在磁带上。<br>如果所读的字符是数字（例如 d），则整个当前磁带总共会被重复写 d-1 次。<br>现在，对于给定的编码字符串 S 和索引 K，查找并返回解码字符串中的第 K 个字母。</p><p>示例 1：</p><pre>
+</pre><p>提示：</p><ul><li>S 是平衡括号字符串，且只含有 ( 和 ) 。</li><li>2 &lt;= S.length &lt;= 50</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">scoreOfParentheses</span>(<span class="params">self, S</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type S: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        stk = []</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> S:</span><br><span class="line">            <span class="keyword">if</span> c == <span class="string">&#x27;(&#x27;</span>:</span><br><span class="line">                stk.append(-<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                cnt = <span class="number">0</span></span><br><span class="line">                <span class="keyword">while</span> stk[-<span class="number">1</span>] != -<span class="number">1</span>:</span><br><span class="line">                    cnt += stk[-<span class="number">1</span>]</span><br><span class="line">                    stk.pop(-<span class="number">1</span>)</span><br><span class="line">                stk.pop(-<span class="number">1</span>)</span><br><span class="line">                <span class="keyword">if</span> cnt == <span class="number">0</span>:</span><br><span class="line">                    stk.append(<span class="number">1</span>)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    stk.append(<span class="number">2</span> * cnt)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(stk)</span><br></pre></td></tr></table></figure><h2 id="880-索引处的解码字符串-n"><a href="#880-索引处的解码字符串-n" class="headerlink" title="880. 索引处的解码字符串 [n]"></a>880. 索引处的解码字符串 [n]</h2><p>给定一个编码字符串 S。为了找出解码字符串并将其写入磁带，从编码字符串中每次读取一个字符，并采取以下步骤：</p><p>如果所读的字符是字母，则将该字母写在磁带上。<br>如果所读的字符是数字（例如 d），则整个当前磁带总共会被重复写 d-1 次。<br>现在，对于给定的编码字符串 S 和索引 K，查找并返回解码字符串中的第 K 个字母。</p><p>示例 1：</p><pre>
 输入：S = "leet2code3", K = 10
 输出："o"
 解释：
@@ -458,61 +76,13 @@ s = "2[abc]3[cd]ef", 返回 "abcabccdcdcdef".
 输出："a"
 解释：
 解码后的字符串为 "a" 重复 8301530446056247680 次。第 1 个字母是 "a"。
-</pre><p>提示：</p><ul><li>2 &lt;= S.length &lt;= 100</li><li>S 只包含小写字母与数字 2 到 9 。</li><li>S 以字母开头。</li><li>1 &lt;= K &lt;= 10^9</li><li>解码后的字符串保证少于 2^63 个字母。</li></ul><pre><code class="Python">class Solution(object):
-    def decodeAtIndex(self, S, K):
-        &quot;&quot;&quot;
-        :type S: str
-        :type K: int
-        :rtype: str
-        &quot;&quot;&quot;
-        sz = 0
-        for c in S:
-            if c.isdigit():
-                sz *= int(c)
-            else:
-                sz += 1
-
-        for c in S[::-1]:
-            K %= sz
-            if K == 0 and c.isalpha():
-                return c
-            if c.isdigit():
-                sz /= int(c)
-            else:
-                sz -= 1</code></pre><h2 id="907-子数组的最小值之和-n"><a href="#907-子数组的最小值之和-n" class="headerlink" title="907. 子数组的最小值之和 [n]"></a>907. 子数组的最小值之和 [n]</h2><p>给定一个整数数组 A，找到 min(B) 的总和，其中 B 的范围为 A 的每个（连续）子数组。</p><p>由于答案可能很大，因此返回答案模 10^9 + 7。</p><p>示例：</p><pre>
+</pre><p>提示：</p><ul><li>2 &lt;= S.length &lt;= 100</li><li>S 只包含小写字母与数字 2 到 9 。</li><li>S 以字母开头。</li><li>1 &lt;= K &lt;= 10^9</li><li>解码后的字符串保证少于 2^63 个字母。</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decodeAtIndex</span>(<span class="params">self, S, K</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type S: str</span></span><br><span class="line"><span class="string">        :type K: int</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        sz = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> S:</span><br><span class="line">            <span class="keyword">if</span> c.isdigit():</span><br><span class="line">                sz *= <span class="built_in">int</span>(c)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                sz += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> S[::-<span class="number">1</span>]:</span><br><span class="line">            K %= sz</span><br><span class="line">            <span class="keyword">if</span> K == <span class="number">0</span> <span class="keyword">and</span> c.isalpha():</span><br><span class="line">                <span class="keyword">return</span> c</span><br><span class="line">            <span class="keyword">if</span> c.isdigit():</span><br><span class="line">                sz /= <span class="built_in">int</span>(c)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                sz -= <span class="number">1</span></span><br></pre></td></tr></table></figure><h2 id="907-子数组的最小值之和-n"><a href="#907-子数组的最小值之和-n" class="headerlink" title="907. 子数组的最小值之和 [n]"></a>907. 子数组的最小值之和 [n]</h2><p>给定一个整数数组 A，找到 min(B) 的总和，其中 B 的范围为 A 的每个（连续）子数组。</p><p>由于答案可能很大，因此返回答案模 10^9 + 7。</p><p>示例：</p><pre>
 输入：[3,1,2,4]
 输出：17
 解释：
 子数组为 [3]，[1]，[2]，[4]，[3,1]，[1,2]，[2,4]，[3,1,2]，[1,2,4]，[3,1,2,4]。 
 最小值为 3，1，2，4，1，1，2，1，1，1，和为 17。
-</pre><p>提示：</p><ul><li>1 &lt;= A &lt;= 30000</li><li>1 &lt;= A[i] &lt;= 30000</li></ul><pre><code class="Python">class Solution(object):
-    def sumSubarrayMins(self, A):
-        MOD = 10**9 + 7
-        N = len(A)
-
-        # prev has i* - 1 in increasing order of A[i* - 1]
-        # where i* is the answer to query j
-        stack = []
-        prev = [None] * N
-        for i in xrange(N):
-            while stack and A[i] &lt;= A[stack[-1]]:
-                stack.pop()
-            prev[i] = stack[-1] if stack else -1
-            stack.append(i)
-
-        # next has k* + 1 in increasing order of A[k* + 1]
-        # where k* is the answer to query j
-        stack = []
-        next_ = [None] * N
-        for k in xrange(N-1, -1, -1):
-            while stack and A[k] &lt; A[stack[-1]]:
-                stack.pop()
-            next_[k] = stack[-1] if stack else N
-            stack.append(k)
-
-        # Use prev/next array to count answer
-        return sum((i - prev[i]) * (next_[i] - i) * A[i]
-                   for i in xrange(N)) % MOD</code></pre><h2 id="946-验证栈序列"><a href="#946-验证栈序列" class="headerlink" title="946. 验证栈序列"></a>946. 验证栈序列</h2><p>给定 pushed 和 popped 两个序列，每个序列中的 值都不重复，只有当它们可能是在最初空栈上进行的推入 push 和弹出 pop 操作序列的结果时，返回 true；否则，返回 false 。</p><p>示例 1：</p><pre>
+</pre><p>提示：</p><ul><li>1 &lt;= A &lt;= 30000</li><li>1 &lt;= A[i] &lt;= 30000</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sumSubarrayMins</span>(<span class="params">self, A</span>):</span></span><br><span class="line">        MOD = <span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span></span><br><span class="line">        N = <span class="built_in">len</span>(A)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># prev has i* - 1 in increasing order of A[i* - 1]</span></span><br><span class="line">        <span class="comment"># where i* is the answer to query j</span></span><br><span class="line">        stack = []</span><br><span class="line">        prev = [<span class="literal">None</span>] * N</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(N):</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> A[i] &lt;= A[stack[-<span class="number">1</span>]]:</span><br><span class="line">                stack.pop()</span><br><span class="line">            prev[i] = stack[-<span class="number">1</span>] <span class="keyword">if</span> stack <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line">            stack.append(i)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># next has k* + 1 in increasing order of A[k* + 1]</span></span><br><span class="line">        <span class="comment"># where k* is the answer to query j</span></span><br><span class="line">        stack = []</span><br><span class="line">        next_ = [<span class="literal">None</span>] * N</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> xrange(N-<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> A[k] &lt; A[stack[-<span class="number">1</span>]]:</span><br><span class="line">                stack.pop()</span><br><span class="line">            next_[k] = stack[-<span class="number">1</span>] <span class="keyword">if</span> stack <span class="keyword">else</span> N</span><br><span class="line">            stack.append(k)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Use prev/next array to count answer</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>((i - prev[i]) * (next_[i] - i) * A[i]</span><br><span class="line">                   <span class="keyword">for</span> i <span class="keyword">in</span> xrange(N)) % MOD</span><br></pre></td></tr></table></figure><h2 id="946-验证栈序列"><a href="#946-验证栈序列" class="headerlink" title="946. 验证栈序列"></a>946. 验证栈序列</h2><p>给定 pushed 和 popped 两个序列，每个序列中的 值都不重复，只有当它们可能是在最初空栈上进行的推入 push 和弹出 pop 操作序列的结果时，返回 true；否则，返回 false 。</p><p>示例 1：</p><pre>
 输入：pushed = [1,2,3,4,5], popped = [4,5,3,2,1]
 输出：true
 解释：我们可以按以下顺序执行：
@@ -522,26 +92,7 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
 输入：pushed = [1,2,3,4,5], popped = [4,3,5,1,2]
 输出：false
 解释：1 不能在 2 之前弹出。
-</pre><p>提示：</p><ul><li>0 &lt;= pushed.length == popped.length &lt;= 1000</li><li>0 &lt;= pushed[i], popped[i] &lt; 1000</li><li>pushed 是 popped 的排列。</li></ul><pre><code class="Python">class Solution(object):
-    def validateStackSequences(self, pushed, popped):
-        &quot;&quot;&quot;
-        :type pushed: List[int]
-        :type popped: List[int]
-        :rtype: bool
-        &quot;&quot;&quot;
-        stk = []
-        i, j = 0, 0
-        n = len(pushed)
-        m = len(popped)
-        if m != n :
-            return False
-        while i &lt; n:
-            stk.append(pushed[i])
-            while stk and stk[-1] == popped[j]:
-                j += 1
-                stk.pop(-1)
-            i += 1
-        return len(stk) == 0 and j == n</code></pre><h2 id="1019-链表中的下一个更大节点-n"><a href="#1019-链表中的下一个更大节点-n" class="headerlink" title="1019. 链表中的下一个更大节点 [n]"></a>1019. 链表中的下一个更大节点 [n]</h2><p>给出一个以头节点 head 作为第一个节点的链表。链表中的节点分别编号为：node_1, node_2, node_3, … 。</p><p>每个节点都可能有下一个更大值（next larger value）：对于 node_i，如果其 next_larger(node_i) 是 node_j.val，那么就有 j &gt; i 且  node_j.val &gt; node_i.val，而 j 是可能的选项中最小的那个。如果不存在这样的 j，那么下一个更大值为 0 。</p><p>返回整数答案数组 answer，其中 answer[i] = next_larger(node_{i+1}) 。</p><p>注意：在下面的示例中，诸如 [2,1,5] 这样的输入（不是输出）是链表的序列化表示，其头节点的值为 2，第二个节点值为 1，第三个节点值为 5 。</p><p>示例 1：</p><pre>
+</pre><p>提示：</p><ul><li>0 &lt;= pushed.length == popped.length &lt;= 1000</li><li>0 &lt;= pushed[i], popped[i] &lt; 1000</li><li>pushed 是 popped 的排列。</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">validateStackSequences</span>(<span class="params">self, pushed, popped</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type pushed: List[int]</span></span><br><span class="line"><span class="string">        :type popped: List[int]</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        stk = []</span><br><span class="line">        i, j = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        n = <span class="built_in">len</span>(pushed)</span><br><span class="line">        m = <span class="built_in">len</span>(popped)</span><br><span class="line">        <span class="keyword">if</span> m != n :</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; n:</span><br><span class="line">            stk.append(pushed[i])</span><br><span class="line">            <span class="keyword">while</span> stk <span class="keyword">and</span> stk[-<span class="number">1</span>] == popped[j]:</span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">                stk.pop(-<span class="number">1</span>)</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(stk) == <span class="number">0</span> <span class="keyword">and</span> j == n</span><br></pre></td></tr></table></figure><h2 id="1019-链表中的下一个更大节点-n"><a href="#1019-链表中的下一个更大节点-n" class="headerlink" title="1019. 链表中的下一个更大节点 [n]"></a>1019. 链表中的下一个更大节点 [n]</h2><p>给出一个以头节点 head 作为第一个节点的链表。链表中的节点分别编号为：node_1, node_2, node_3, … 。</p><p>每个节点都可能有下一个更大值（next larger value）：对于 node_i，如果其 next_larger(node_i) 是 node_j.val，那么就有 j &gt; i 且  node_j.val &gt; node_i.val，而 j 是可能的选项中最小的那个。如果不存在这样的 j，那么下一个更大值为 0 。</p><p>返回整数答案数组 answer，其中 answer[i] = next_larger(node_{i+1}) 。</p><p>注意：在下面的示例中，诸如 [2,1,5] 这样的输入（不是输出）是链表的序列化表示，其头节点的值为 2，第二个节点值为 1，第三个节点值为 5 。</p><p>示例 1：</p><pre>
 输入：[2,1,5]
 输出：[5,5,0]
 </pre><p>示例 2：</p><pre>
@@ -550,23 +101,7 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
 </pre><p>示例 3：</p><pre>
 输入：[1,7,5,1,9,2,5,1]
 输出：[7,9,9,9,0,5,0,0]
-</pre><p>提示：</p><ul><li>对于链表中的每个节点，1 &lt;= node.val &lt;= 10^9</li><li>给定列表的长度在 [0, 10000] 范围内</li></ul><pre><code class="Python">class Solution(object):
-    def nextLargerNodes(self, head):
-        &quot;&quot;&quot;
-        :type head: ListNode
-        :rtype: List[int]
-        &quot;&quot;&quot;
-        nums = []
-        while head:
-            nums.append(head.val)
-            head = head.next
-        res = [0] * len(nums)
-        stk = []
-        for i, v in enumerate(nums):
-            while stk and nums[stk[-1]] &lt; v:
-                res[stk.pop()] = v
-            stk.append(i)
-        return res</code></pre><h2 id="1209-删除字符串中的所有相邻重复项-II"><a href="#1209-删除字符串中的所有相邻重复项-II" class="headerlink" title="1209. 删除字符串中的所有相邻重复项 II"></a>1209. 删除字符串中的所有相邻重复项 II</h2><p>给你一个字符串 s，「k 倍重复项删除操作」将会从 s 中选择 k 个相邻且相等的字母，并删除它们，使被删去的字符串的左侧和右侧连在一起。</p><p>你需要对 s 重复进行无限次这样的删除操作，直到无法继续为止。</p><p>在执行完所有删除操作后，返回最终得到的字符串。</p><p>本题答案保证唯一。</p><p>示例 1：</p><pre>
+</pre><p>提示：</p><ul><li>对于链表中的每个节点，1 &lt;= node.val &lt;= 10^9</li><li>给定列表的长度在 [0, 10000] 范围内</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nextLargerNodes</span>(<span class="params">self, head</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        nums = []</span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            nums.append(head.val)</span><br><span class="line">            head = head.<span class="built_in">next</span></span><br><span class="line">        res = [<span class="number">0</span>] * <span class="built_in">len</span>(nums)</span><br><span class="line">        stk = []</span><br><span class="line">        <span class="keyword">for</span> i, v <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">            <span class="keyword">while</span> stk <span class="keyword">and</span> nums[stk[-<span class="number">1</span>]] &lt; v:</span><br><span class="line">                res[stk.pop()] = v</span><br><span class="line">            stk.append(i)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure><h2 id="1209-删除字符串中的所有相邻重复项-II"><a href="#1209-删除字符串中的所有相邻重复项-II" class="headerlink" title="1209. 删除字符串中的所有相邻重复项 II"></a>1209. 删除字符串中的所有相邻重复项 II</h2><p>给你一个字符串 s，「k 倍重复项删除操作」将会从 s 中选择 k 个相邻且相等的字母，并删除它们，使被删去的字符串的左侧和右侧连在一起。</p><p>你需要对 s 重复进行无限次这样的删除操作，直到无法继续为止。</p><p>在执行完所有删除操作后，返回最终得到的字符串。</p><p>本题答案保证唯一。</p><p>示例 1：</p><pre>
 输入：s = "abcd", k = 2
 输出："abcd"
 解释：没有要删除的内容。
@@ -580,25 +115,7 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
 </pre><p>示例 3：</p><pre>
 输入：s = "pbbcggttciiippooaais", k = 2
 输出："ps"
-</pre><p>提示：</p><ul><li>1 &lt;= s.length &lt;= 10^5</li><li>2 &lt;= k &lt;= 10^4</li><li>s 中只含有小写英文字母。</li></ul><pre><code class="Python">class Solution(object):
-    def removeDuplicates(self, s, k):
-        &quot;&quot;&quot;
-        :type s: str
-        :type k: int
-        :rtype: str
-        &quot;&quot;&quot;
-        stk = []
-        for c in s:
-            if stk and stk[-1][0] == c:
-                stk[-1][1] += 1
-                if stk[-1][1] == k:
-                    stk.pop(-1)
-            else:
-                stk.append([c, 1])
-        res = &#39;&#39;
-        for v, i in stk:
-            res += i * v
-        return res</code></pre><h2 id="1249-移除无效的括号-n"><a href="#1249-移除无效的括号-n" class="headerlink" title="1249. 移除无效的括号 [n]"></a>1249. 移除无效的括号 [n]</h2><p>给你一个由 ‘(‘、’)’ 和小写字母组成的字符串 s。</p><p>你需要从字符串中删除最少数目的 ‘(‘ 或者 ‘)’ （可以删除任意位置的括号)，使得剩下的「括号字符串」有效。</p><p>请返回任意一个合法字符串。</p><p>有效「括号字符串」应当符合以下 任意一条 要求：</p><ul><li>空字符串或只包含小写字母的字符串</li><li>可以被写作 AB（A 连接 B）的字符串，其中 A 和 B 都是有效「括号字符串」</li><li>可以被写作 (A) 的字符串，其中 A 是一个有效的「括号字符串」</li></ul><p>示例 1：</p><pre>
+</pre><p>提示：</p><ul><li>1 &lt;= s.length &lt;= 10^5</li><li>2 &lt;= k &lt;= 10^4</li><li>s 中只含有小写英文字母。</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeDuplicates</span>(<span class="params">self, s, k</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        stk = []</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">if</span> stk <span class="keyword">and</span> stk[-<span class="number">1</span>][<span class="number">0</span>] == c:</span><br><span class="line">                stk[-<span class="number">1</span>][<span class="number">1</span>] += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> stk[-<span class="number">1</span>][<span class="number">1</span>] == k:</span><br><span class="line">                    stk.pop(-<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                stk.append([c, <span class="number">1</span>])</span><br><span class="line">        res = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> v, i <span class="keyword">in</span> stk:</span><br><span class="line">            res += i * v</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure><h2 id="1249-移除无效的括号-n"><a href="#1249-移除无效的括号-n" class="headerlink" title="1249. 移除无效的括号 [n]"></a>1249. 移除无效的括号 [n]</h2><p>给你一个由 ‘(‘、’)’ 和小写字母组成的字符串 s。</p><p>你需要从字符串中删除最少数目的 ‘(‘ 或者 ‘)’ （可以删除任意位置的括号)，使得剩下的「括号字符串」有效。</p><p>请返回任意一个合法字符串。</p><p>有效「括号字符串」应当符合以下 任意一条 要求：</p><ul><li>空字符串或只包含小写字母的字符串</li><li>可以被写作 AB（A 连接 B）的字符串，其中 A 和 B 都是有效「括号字符串」</li><li>可以被写作 (A) 的字符串，其中 A 是一个有效的「括号字符串」</li></ul><p>示例 1：</p><pre>
 输入：s = "lee(t(c)o)de)"
 输出："lee(t(c)o)de"
 解释："lee(t(co)de)" , "lee(t(c)ode)" 也是一个可行答案。
@@ -612,28 +129,7 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
 </pre><p>示例 4：</p><pre>
 输入：s = "(a(b(c)d)"
 输出："a(b(c)d)"
-</pre><p>提示：</p><ul><li>1 &lt;= s.length &lt;= 10^5</li><li>s[i] 可能是 ‘(‘、’)’ 或英文小写字母</li></ul><pre><code class="Python">class Solution(object):
-    def minRemoveToMakeValid(self, s):
-        &quot;&quot;&quot;
-        :type s: str
-        :rtype: str
-        &quot;&quot;&quot;
-        stk = []
-        for i, v in enumerate(s):
-            if v == &#39;(&#39;:
-                stk.append((i, v))
-            elif v == &#39;)&#39;:
-                if stk and stk[-1][1] == &#39;(&#39;:
-                    stk.pop(-1)
-                else:
-                    stk.append((i, v))
-        res, j = &quot;&quot;, 0
-        for i, v in enumerate(s):
-            if j &lt; len(stk) and i == stk[j][0]:
-                j += 1
-            else:
-                res += v
-        return res</code></pre><div class="footer"><div class="copyright"><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href="https://leel0330.github.io/posts/1ccb8d85.html">https://leel0330.github.io/posts/1ccb8d85.html</a></p></blockquote></div></div><div class="article-meta" id="bottom"><div class="new-meta-box"><div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-26T15:22:05+08:00"><a class="notlink"><i class="fas fa-edit fa-fw" aria-hidden="true"></i><p>更新于：2020年12月26日</p></a></div></div></div><div class="prev-next"><a class="prev" href="/posts/fb43e507.html"><p class="title"><i class="fas fa-chevron-left" aria-hidden="true"></i>LeetCode之链表</p><p class="content">链表的题目汇总在此了，欢迎大家光顾。 来源：力扣（LeetCode） 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。 24. 两两交换链表中的节点给定一个链表，两两...</p></a><a class="next" href="/posts/2d8b42bd.html"><p class="title">LeetCode之哈希表<i class="fas fa-chevron-right" aria-hidden="true"></i></p><p class="content">哈希表的题目汇总在此了，欢迎大家光顾。 来源：力扣（LeetCode） 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。 202. 快乐数编写一个算法来判断一个数是不...</p></a></div></article></div><aside class="l_side"><section class="widget toc-wrapper shadow desktop mobile" id="toc-div"><header><i class="fas fa-list fa-fw" aria-hidden="true"></i><span class="name">本文目录</span></header><div class="content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#394-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81"><span class="toc-text">394. 字符串解码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#402-%E7%A7%BB%E6%8E%89K%E4%BD%8D%E6%95%B0%E5%AD%97"><span class="toc-text">402. 移掉K位数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#456-132%E6%A8%A1%E5%BC%8F"><span class="toc-text">456. 132模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#496-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A4%A7%E5%85%83%E7%B4%A0-I"><span class="toc-text">496. 下一个更大元素 I</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#503-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A4%A7%E5%85%83%E7%B4%A0-II-n"><span class="toc-text">503. 下一个更大元素 II [n]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#622-%E8%AE%BE%E8%AE%A1%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97"><span class="toc-text">622. 设计循环队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#641-%E8%AE%BE%E8%AE%A1%E5%BE%AA%E7%8E%AF%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97"><span class="toc-text">641. 设计循环双端队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#739-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6-n"><span class="toc-text">739. 每日温度 [n]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#856-%E6%8B%AC%E5%8F%B7%E7%9A%84%E5%88%86%E6%95%B0"><span class="toc-text">856. 括号的分数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#880-%E7%B4%A2%E5%BC%95%E5%A4%84%E7%9A%84%E8%A7%A3%E7%A0%81%E5%AD%97%E7%AC%A6%E4%B8%B2-n"><span class="toc-text">880. 索引处的解码字符串 [n]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#907-%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC%E4%B9%8B%E5%92%8C-n"><span class="toc-text">907. 子数组的最小值之和 [n]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#946-%E9%AA%8C%E8%AF%81%E6%A0%88%E5%BA%8F%E5%88%97"><span class="toc-text">946. 验证栈序列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1019-%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A4%A7%E8%8A%82%E7%82%B9-n"><span class="toc-text">1019. 链表中的下一个更大节点 [n]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1209-%E5%88%A0%E9%99%A4%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%9B%B8%E9%82%BB%E9%87%8D%E5%A4%8D%E9%A1%B9-II"><span class="toc-text">1209. 删除字符串中的所有相邻重复项 II</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1249-%E7%A7%BB%E9%99%A4%E6%97%A0%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7-n"><span class="toc-text">1249. 移除无效的括号 [n]</span></a></li></ol></div></section></aside><script>window.pdata={},pdata.ispage=!0,pdata.postTitle="LeetCode之栈和队列",pdata.commentPath="",pdata.commentPlaceholder="";var l_header=document.getElementById("l_header");l_header.classList.add("show")</script></div><footer class="footer clearfix"><br><br><div class="aplayer-container"></div><br><div class="social-wrapper"></div><div><p><span id="lc-sv">本站总访问量为 <span id="number"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id="number"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p></div><div class="copyright"><p><a href="/">Copyright © 2020 PingCoder</a></p></div></footer><a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a></div></div><div><script>function loadScript(e,t){var n=document.getElementsByTagName("head")[0]||document.documentElement,o=document.createElement("script");o.setAttribute("type","text/javascript"),t&&(o.onload=t),o.setAttribute("src",e),n.appendChild(o)}window.volantis={},window.volantis.loadcss=document.getElementById("loadcss");var loadCSS=function(e,t,n,o){var i,r,d=window.document,a=d.createElement("link");r=t||(i=(d.body||d.getElementsByTagName("head")[0]).childNodes)[i.length-1];var s=d.styleSheets;if(o)for(var l in o)o.hasOwnProperty(l)&&a.setAttribute(l,o[l]);a.rel="stylesheet",a.href=e,a.media="only x",function e(t){if(d.body)return t();setTimeout(function(){e(t)})}(function(){r.parentNode.insertBefore(a,t?r:r.nextSibling)});var c=function(e){for(var t=a.href,n=s.length;n--;)if(s[n].href===t)return e();setTimeout(function(){c(e)})};function u(){a.addEventListener&&a.removeEventListener("load",u),a.media=n||"all"}return a.addEventListener&&a.addEventListener("load",u),(a.onloadcssdefined=c)(u),a}</script><script>loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css",window.volantis.loadcss),loadCSS("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/styles/solarized-light.min.css",window.volantis.loadcss)</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script><script>function pjax_fancybox(){$(".md .gallery").find("img").each(function(){var a=document.createElement("a");$(a).attr("class","fancybox"),$(a).attr("pjax-fancybox",""),$(a).attr("href",$(this).attr("src")),$(this).attr("data-original")&&$(a).attr("href",$(this).attr("data-original")),$(a).attr("data-fancybox","images");var t="";$(this).attr("alt")&&($(a).attr("data-caption",$(this).attr("alt")),t=$(this).attr("alt"));var n=document.createElement("div");$(n).addClass("fancybox"),$(this).wrap(n);n=document.createElement("span");$(n).addClass("image-caption"),$(n).text(t),$(this).after(n),$(this).wrap(a)}),$(".md .gallery").find("img").fancybox({selector:'[data-fancybox="images"]',hash:!1,loop:!1,closeClick:!0,helpers:{overlay:{closeClick:!0}},buttons:["zoom","close"]})}function SCload_fancybox(){0!=$(".md .gallery").find("img").length&&(loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css",document.getElementById("loadcss")),setTimeout(function(){loadScript("https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js",pjax_fancybox)},1))}$(function(){SCload_fancybox()})</script><script>window.FPConfig={delay:0,ignoreKeywords:[],maxRPS:5,hoverDelay:25}</script><script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script><script>var clipboard=new ClipboardJS(".btn-copy",{target:function(e){return e.nextElementSibling}});function wait(e,i){window.setTimeout(e,i)}function pjax_initCopyCode(){var e;$(".highlight .code pre").length+$(".article pre code").length!=0&&(e="",e+='<button class="btn-copy" data-clipboard-snippet="">',e+='<i class="fas fa-copy"></i><span>COPY</span>',e+="</button>",$(".highlight .code pre").before(e),$(".article pre code").before(e),clipboard.off("success").on("success",function(e){let i=$(e.trigger);i.addClass("copied");let a=$(i.find("i"));a.removeClass("fa-copy"),a.addClass("fa-check-circle");let n=$(i.find("span"));n[0].innerText="COPIED",wait(function(){a.removeClass("fa-check-circle"),a.addClass("fa-copy"),n[0].innerText="COPY"},2e3)}),clipboard.off("error").on("error",function(e){e.clearSelection();let i=$(e.trigger);i.addClass("copy-failed");let a=$(i.find("i"));a.removeClass("fa-copy"),a.addClass("fa-times-circle");let n=$(i.find("span"));n[0].innerText="COPY FAILED",wait(function(){a.removeClass("fa-times-circle"),a.addClass("fa-copy"),n[0].innerText="COPY"},2e3)}))}$(function(){pjax_initCopyCode()})</script><script src="/js/valine.js"></script><script>var GUEST_INFO=["nick","mail","link"],meta="nick,mail,link".split(",").filter(function(i){return-1<GUEST_INFO.indexOf(i)}),REQUIRED_FIELDS=["nick","mail","link"],requiredFields="nick,mail".split(",").filter(function(i){return-1<REQUIRED_FIELDS.indexOf(i)});function emoji(i,e,a){return i+"/"+i+"-"+e+"."+a}for(var emojiMaps={},i=1;i<=54;i++)emojiMaps["tieba-"+i]=emoji("tieba",i,"png");for(i=1;i<=101;i++)emojiMaps["qq-"+i]=emoji("qq",i,"gif");for(i=1;i<=116;i++)emojiMaps["aru-"+i]=emoji("aru",i,"gif");for(i=1;i<=125;i++)emojiMaps["twemoji-"+i]=emoji("twemoji",i,"png");for(i=1;i<=4;i++)emojiMaps["weibo-"+i]=emoji("weibo",i,"png");function pjax_valine(){if(document.querySelectorAll("#valine_container")[0]){var e=pdata.commentPlaceholder||"写下你的高见~";let i=pdata.commentPath;0==i.length&&(i=decodeURI(window.location.pathname)),(new Valine).init({el:"#valine_container",meta:meta,placeholder:e,path:i,appId:"",appKey:"",pageSize:"10",avatar:"robohash",lang:"zh-cn",visitor:"true",highlight:"true",mathJax:"true",enableQQ:"false",recordIP:"false",requiredFields:requiredFields,emojiCDN:"https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/",emojiMaps:emojiMaps})}}$(function(){pjax_valine()})</script><script src="/js/app.js"></script><script>const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/",ROOT="/".endsWith("/")?"/":"//";function listenSearch(){customSearch=new HexoSearch({imagePath:SearchServiceimagePath})}function setSearchService(){listenSearch()}$(".input.u-search-input").one("focus",function(){loadScript("/js/search/hexo.js",setSearchService)})</script><script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10/build/highlight.min.js"></script><script>hljs.initHighlightingOnLoad()</script><script defer>const LCCounter = {
+</pre><p>提示：</p><ul><li>1 &lt;= s.length &lt;= 10^5</li><li>s[i] 可能是 ‘(‘、’)’ 或英文小写字母</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minRemoveToMakeValid</span>(<span class="params">self, s</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type s: str</span></span><br><span class="line"><span class="string">        :rtype: str</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        stk = []</span><br><span class="line">        <span class="keyword">for</span> i, v <span class="keyword">in</span> <span class="built_in">enumerate</span>(s):</span><br><span class="line">            <span class="keyword">if</span> v == <span class="string">&#x27;(&#x27;</span>:</span><br><span class="line">                stk.append((i, v))</span><br><span class="line">            <span class="keyword">elif</span> v == <span class="string">&#x27;)&#x27;</span>:</span><br><span class="line">                <span class="keyword">if</span> stk <span class="keyword">and</span> stk[-<span class="number">1</span>][<span class="number">1</span>] == <span class="string">&#x27;(&#x27;</span>:</span><br><span class="line">                    stk.pop(-<span class="number">1</span>)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    stk.append((i, v))</span><br><span class="line">        res, j = <span class="string">&quot;&quot;</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i, v <span class="keyword">in</span> <span class="built_in">enumerate</span>(s):</span><br><span class="line">            <span class="keyword">if</span> j &lt; <span class="built_in">len</span>(stk) <span class="keyword">and</span> i == stk[j][<span class="number">0</span>]:</span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res += v</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure><div class="footer"><div class="copyright"><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href="https://leel0330.github.io/posts/1ccb8d85.html">https://leel0330.github.io/posts/1ccb8d85.html</a></p></blockquote></div></div><div class="article-meta" id="bottom"><div class="new-meta-box"><div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-26T15:22:05+08:00"><a class="notlink"><i class="fas fa-edit fa-fw" aria-hidden="true"></i><p>更新于：2020年12月26日</p></a></div></div></div><div class="prev-next"><a class="prev" href="/posts/fb43e507.html"><p class="title"><i class="fas fa-chevron-left" aria-hidden="true"></i>LeetCode之链表</p><p class="content">链表的题目汇总在此了，欢迎大家光顾。 来源：力扣（LeetCode） 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。 24. 两两交换链表中的节点给定一个链表，两两...</p></a><a class="next" href="/posts/2d8b42bd.html"><p class="title">LeetCode之哈希表<i class="fas fa-chevron-right" aria-hidden="true"></i></p><p class="content">哈希表的题目汇总在此了，欢迎大家光顾。 来源：力扣（LeetCode） 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。 202. 快乐数编写一个算法来判断一个数是不...</p></a></div></article></div><aside class="l_side"><section class="widget toc-wrapper shadow desktop mobile" id="toc-div"><header><i class="fas fa-list fa-fw" aria-hidden="true"></i><span class="name">本文目录</span></header><div class="content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#394-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81"><span class="toc-text">394. 字符串解码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#402-%E7%A7%BB%E6%8E%89K%E4%BD%8D%E6%95%B0%E5%AD%97"><span class="toc-text">402. 移掉K位数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#456-132%E6%A8%A1%E5%BC%8F"><span class="toc-text">456. 132模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#496-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A4%A7%E5%85%83%E7%B4%A0-I"><span class="toc-text">496. 下一个更大元素 I</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#503-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A4%A7%E5%85%83%E7%B4%A0-II-n"><span class="toc-text">503. 下一个更大元素 II [n]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#622-%E8%AE%BE%E8%AE%A1%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97"><span class="toc-text">622. 设计循环队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#641-%E8%AE%BE%E8%AE%A1%E5%BE%AA%E7%8E%AF%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97"><span class="toc-text">641. 设计循环双端队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#739-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6-n"><span class="toc-text">739. 每日温度 [n]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#856-%E6%8B%AC%E5%8F%B7%E7%9A%84%E5%88%86%E6%95%B0"><span class="toc-text">856. 括号的分数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#880-%E7%B4%A2%E5%BC%95%E5%A4%84%E7%9A%84%E8%A7%A3%E7%A0%81%E5%AD%97%E7%AC%A6%E4%B8%B2-n"><span class="toc-text">880. 索引处的解码字符串 [n]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#907-%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC%E4%B9%8B%E5%92%8C-n"><span class="toc-text">907. 子数组的最小值之和 [n]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#946-%E9%AA%8C%E8%AF%81%E6%A0%88%E5%BA%8F%E5%88%97"><span class="toc-text">946. 验证栈序列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1019-%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A4%A7%E8%8A%82%E7%82%B9-n"><span class="toc-text">1019. 链表中的下一个更大节点 [n]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1209-%E5%88%A0%E9%99%A4%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%9B%B8%E9%82%BB%E9%87%8D%E5%A4%8D%E9%A1%B9-II"><span class="toc-text">1209. 删除字符串中的所有相邻重复项 II</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1249-%E7%A7%BB%E9%99%A4%E6%97%A0%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7-n"><span class="toc-text">1249. 移除无效的括号 [n]</span></a></li></ol></div></section></aside><script>window.pdata={},pdata.ispage=!0,pdata.postTitle="LeetCode之栈和队列",pdata.commentPath="",pdata.commentPlaceholder="";var l_header=document.getElementById("l_header");l_header.classList.add("show")</script></div><footer class="footer clearfix"><br><br><div class="aplayer-container"></div><br><div class="social-wrapper"></div><div><p><span id="lc-sv">本站总访问量为 <span id="number"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id="number"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p></div><div class="copyright"><p><a href="/">Copyright © 2020 PingCoder</a></p></div></footer><a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a></div></div><div><script>function loadScript(e,t){var n=document.getElementsByTagName("head")[0]||document.documentElement,o=document.createElement("script");o.setAttribute("type","text/javascript"),t&&(o.onload=t),o.setAttribute("src",e),n.appendChild(o)}window.volantis={},window.volantis.loadcss=document.getElementById("loadcss");var loadCSS=function(e,t,n,o){var i,r,d=window.document,a=d.createElement("link");r=t||(i=(d.body||d.getElementsByTagName("head")[0]).childNodes)[i.length-1];var s=d.styleSheets;if(o)for(var l in o)o.hasOwnProperty(l)&&a.setAttribute(l,o[l]);a.rel="stylesheet",a.href=e,a.media="only x",function e(t){if(d.body)return t();setTimeout(function(){e(t)})}(function(){r.parentNode.insertBefore(a,t?r:r.nextSibling)});var c=function(e){for(var t=a.href,n=s.length;n--;)if(s[n].href===t)return e();setTimeout(function(){c(e)})};function u(){a.addEventListener&&a.removeEventListener("load",u),a.media=n||"all"}return a.addEventListener&&a.addEventListener("load",u),(a.onloadcssdefined=c)(u),a}</script><script>loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css",window.volantis.loadcss)</script><script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script><script>function pjax_fancybox(){$(".md .gallery").find("img").each(function(){var a=document.createElement("a");$(a).attr("class","fancybox"),$(a).attr("pjax-fancybox",""),$(a).attr("href",$(this).attr("src")),$(this).attr("data-original")&&$(a).attr("href",$(this).attr("data-original")),$(a).attr("data-fancybox","images");var t="";$(this).attr("alt")&&($(a).attr("data-caption",$(this).attr("alt")),t=$(this).attr("alt"));var n=document.createElement("div");$(n).addClass("fancybox"),$(this).wrap(n);n=document.createElement("span");$(n).addClass("image-caption"),$(n).text(t),$(this).after(n),$(this).wrap(a)}),$(".md .gallery").find("img").fancybox({selector:'[data-fancybox="images"]',hash:!1,loop:!1,closeClick:!0,helpers:{overlay:{closeClick:!0}},buttons:["zoom","close"]})}function SCload_fancybox(){0!=$(".md .gallery").find("img").length&&(loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css",document.getElementById("loadcss")),setTimeout(function(){loadScript("https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js",pjax_fancybox)},1))}$(function(){SCload_fancybox()})</script><script>window.FPConfig={delay:0,ignoreKeywords:[],maxRPS:5,hoverDelay:25}</script><script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script><script>var clipboard=new ClipboardJS(".btn-copy",{target:function(e){return e.nextElementSibling}});function wait(e,i){window.setTimeout(e,i)}function pjax_initCopyCode(){var e;$(".highlight .code pre").length+$(".article pre code").length!=0&&(e="",e+='<button class="btn-copy" data-clipboard-snippet="">',e+='<i class="fas fa-copy"></i><span>COPY</span>',e+="</button>",$(".highlight .code pre").before(e),$(".article pre code").before(e),clipboard.off("success").on("success",function(e){let i=$(e.trigger);i.addClass("copied");let a=$(i.find("i"));a.removeClass("fa-copy"),a.addClass("fa-check-circle");let n=$(i.find("span"));n[0].innerText="COPIED",wait(function(){a.removeClass("fa-check-circle"),a.addClass("fa-copy"),n[0].innerText="COPY"},2e3)}),clipboard.off("error").on("error",function(e){e.clearSelection();let i=$(e.trigger);i.addClass("copy-failed");let a=$(i.find("i"));a.removeClass("fa-copy"),a.addClass("fa-times-circle");let n=$(i.find("span"));n[0].innerText="COPY FAILED",wait(function(){a.removeClass("fa-times-circle"),a.addClass("fa-copy"),n[0].innerText="COPY"},2e3)}))}$(function(){pjax_initCopyCode()})</script><script src="/js/valine.js"></script><script>var GUEST_INFO=["nick","mail","link"],meta="nick,mail,link".split(",").filter(function(i){return-1<GUEST_INFO.indexOf(i)}),REQUIRED_FIELDS=["nick","mail","link"],requiredFields="nick,mail".split(",").filter(function(i){return-1<REQUIRED_FIELDS.indexOf(i)});function emoji(i,e,a){return i+"/"+i+"-"+e+"."+a}for(var emojiMaps={},i=1;i<=54;i++)emojiMaps["tieba-"+i]=emoji("tieba",i,"png");for(i=1;i<=101;i++)emojiMaps["qq-"+i]=emoji("qq",i,"gif");for(i=1;i<=116;i++)emojiMaps["aru-"+i]=emoji("aru",i,"gif");for(i=1;i<=125;i++)emojiMaps["twemoji-"+i]=emoji("twemoji",i,"png");for(i=1;i<=4;i++)emojiMaps["weibo-"+i]=emoji("weibo",i,"png");function pjax_valine(){if(document.querySelectorAll("#valine_container")[0]){var e=pdata.commentPlaceholder||"写下你的高见~";let i=pdata.commentPath;0==i.length&&(i=decodeURI(window.location.pathname)),(new Valine).init({el:"#valine_container",meta:meta,placeholder:e,path:i,appId:"",appKey:"",pageSize:"10",avatar:"robohash",lang:"zh-cn",visitor:"true",highlight:"true",mathJax:"true",enableQQ:"false",recordIP:"false",requiredFields:requiredFields,emojiCDN:"https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/",emojiMaps:emojiMaps})}}$(function(){pjax_valine()})</script><script src="/js/app.js"></script><script>const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/",ROOT="/".endsWith("/")?"/":"//";function listenSearch(){customSearch=new HexoSearch({imagePath:SearchServiceimagePath})}function setSearchService(){listenSearch()}$(".input.u-search-input").one("focus",function(){loadScript("/js/search/hexo.js",setSearchService)})</script><script defer>const LCCounter = {
     app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
     app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
     custom_api_server: '',
@@ -987,10 +483,6 @@ document.addEventListener("pjax:success", listennSidebarTOC);</script><!-- more 
             pjax_fancybox();
           }
         
-        
-        document.querySelectorAll('pre code').forEach((block) => {
-          hljs.highlightBlock(block);
-        });
         
         
         
