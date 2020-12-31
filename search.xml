@@ -776,6 +776,120 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
       </categories>
   </entry>
   <entry>
+    <title>LeetCode之数组(困难)</title>
+    <url>/posts/801922082.html</url>
+    <content><![CDATA[<p>数组(困难)的题目汇总在此了，欢迎大家光顾。</p>
+<p>来源：力扣（LeetCode）</p>
+<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/leetcode/array3.png" style="width:600px;height:300px;"/></div></div>
+
+<a id="more"></a>
+
+<h2 id="4-寻找两个正序数组的中位数-n"><a href="#4-寻找两个正序数组的中位数-n" class="headerlink" title="4. 寻找两个正序数组的中位数 [n]"></a>4. 寻找两个正序数组的中位数 [n]</h2><p>给定两个大小为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的中位数。</p>
+<p>进阶：你能设计一个时间复杂度为 O(log (m+n)) 的算法解决此问题吗？</p>
+<p>示例 1：</p>
+<pre>
+输入：nums1 = [1,3], nums2 = [2]
+输出：2.00000
+解释：合并数组 = [1,2,3] ，中位数 2
+</pre>
+<p>示例 2：</p>
+<pre>
+输入：nums1 = [1,2], nums2 = [3,4]
+输出：2.50000
+解释：合并数组 = [1,2,3,4] ，中位数 (2 + 3) / 2 = 2.5
+</pre>
+<p>示例 3：</p>
+<pre>
+输入：nums1 = [0,0], nums2 = [0,0]
+输出：0.00000
+</pre>
+<p>示例 4：</p>
+<pre>
+输入：nums1 = [], nums2 = [1]
+输出：1.00000
+</pre>
+<p>示例 5：</p>
+<pre>
+输入：nums1 = [2], nums2 = []
+输出：2.00000
+</pre>
+
+<p>提示：</p>
+<ul>
+<li>nums1.length == m</li>
+<li>nums2.length == n</li>
+<li>0 &lt;= m &lt;= 1000</li>
+<li>0 &lt;= n &lt;= 1000</li>
+<li>1 &lt;= m + n &lt;= 2000</li>
+<li>-106 &lt;= nums1[i], nums2[i] &lt;= 106</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMedianSortedArrays</span>(<span class="params">self, nums1, nums2</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums1: List[int]</span></span><br><span class="line"><span class="string">        :type nums2: List[int]</span></span><br><span class="line"><span class="string">        :rtype: float</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        len1, len2 = <span class="built_in">len</span>(nums1), <span class="built_in">len</span>(nums2)</span><br><span class="line">        total_len = len1 + len2</span><br><span class="line">        <span class="keyword">if</span> total_len &amp; <span class="number">1</span> == <span class="number">1</span>:</span><br><span class="line">            mid = total_len / <span class="number">2</span></span><br><span class="line">            res = self.findK(nums1, nums2, mid + <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            mid1 = total_len / <span class="number">2</span> - <span class="number">1</span></span><br><span class="line">            mid2 = mid1 + <span class="number">1</span></span><br><span class="line">            res = (self.findK(nums1, nums2, mid1 + <span class="number">1</span>) + self.findK(nums1, nums2, mid2 + <span class="number">1</span>)) / <span class="number">2.0</span></span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findK</span>(<span class="params">self, nums1, nums2, k</span>):</span></span><br><span class="line">        len1, len2 = <span class="built_in">len</span>(nums1), <span class="built_in">len</span>(nums2)</span><br><span class="line">        idx1, idx2 = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">if</span> idx1 == len1:</span><br><span class="line">                <span class="keyword">return</span> nums2[idx2 + k - <span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> idx2 == len2:</span><br><span class="line">                <span class="keyword">return</span> nums1[idx1 + k - <span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> k == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">min</span>(nums1[idx1], nums2[idx2])</span><br><span class="line">            half = k / <span class="number">2</span></span><br><span class="line">            new_idx1 = <span class="built_in">min</span>(idx1 + half, len1) - <span class="number">1</span></span><br><span class="line">            new_idx2 = <span class="built_in">min</span>(idx2 + half, len2) - <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> nums1[new_idx1] &lt;= nums2[new_idx2]:</span><br><span class="line">                k -= (new_idx1 - idx1 + <span class="number">1</span>)</span><br><span class="line">                idx1 = new_idx1 + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                k -= (new_idx2 - idx2 + <span class="number">1</span>)</span><br><span class="line">                idx2 = new_idx2 + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="41-缺失的第一个正数"><a href="#41-缺失的第一个正数" class="headerlink" title="41. 缺失的第一个正数"></a>41. 缺失的第一个正数</h2><p>给你一个未排序的整数数组，请你找出其中没有出现的最小的正整数。</p>
+<p>示例 1:</p>
+<pre>
+输入: [1,2,0]
+输出: 3
+</pre>
+<p>示例 2:</p>
+<pre>
+输入: [3,4,-1,1]
+输出: 2
+</pre>
+<p>示例 3:</p>
+<pre>
+输入: [7,8,9,11,12]
+输出: 1
+</pre>
+
+<p>提示：</p>
+<p>你的算法的时间复杂度应为O(n)，并且只能使用常数级别的额外空间。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">firstMissingPositive</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &lt;= <span class="number">0</span>:</span><br><span class="line">                nums[i] = n + <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</span><br><span class="line">            cur_num = <span class="built_in">abs</span>(nums[i])</span><br><span class="line">            <span class="keyword">if</span> cur_num &lt;= n:</span><br><span class="line">                nums[cur_num - <span class="number">1</span>] = -<span class="built_in">abs</span>(nums[cur_num - <span class="number">1</span>])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> n + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="42-接雨水-n"><a href="#42-接雨水-n" class="headerlink" title="42. 接雨水 [n]"></a>42. 接雨水 [n]</h2><p>给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
+<p>示例 1：</p>
+<pre>
+输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]
+输出：6
+解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。 
+</pre>
+<p>示例 2：</p>
+<pre>
+输入：height = [4,2,0,3,2,5]
+输出：9
+</pre>
+
+<p>提示：</p>
+<ul>
+<li>n == height.length</li>
+<li>0 &lt;= n &lt;= 3 * 104</li>
+<li>0 &lt;= height[i] &lt;= 105</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">trap</span>(<span class="params">self, height</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type height: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> height:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        n = <span class="built_in">len</span>(height)</span><br><span class="line">        left_max = [<span class="number">0</span>] * n</span><br><span class="line">        right_max = [<span class="number">0</span>] * n</span><br><span class="line">        left_max[<span class="number">0</span>] = height[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, n):</span><br><span class="line">            left_max[i] = <span class="built_in">max</span>(height[i], left_max[i - <span class="number">1</span>])</span><br><span class="line">        right_max[n - <span class="number">1</span>] = height[n - <span class="number">1</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n - <span class="number">2</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            right_max[i] = <span class="built_in">max</span>(height[i], right_max[i + <span class="number">1</span>])</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, n - <span class="number">1</span>):</span><br><span class="line">            res += <span class="built_in">min</span>(left_max[i], right_max[i]) - height[i]</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<h2 id="45-跳跃游戏-II"><a href="#45-跳跃游戏-II" class="headerlink" title="45. 跳跃游戏 II"></a>45. 跳跃游戏 II</h2><p>给定一个非负整数数组，你最初位于数组的第一个位置。</p>
+<p>数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
+<p>你的目标是使用最少的跳跃次数到达数组的最后一个位置。</p>
+<p>示例:</p>
+<pre>
+输入: [2,3,1,1,4]
+输出: 2
+解释: 跳到最后一个位置的最小跳跃数是 2。
+     从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。
+</pre>
+<p>说明:</p>
+<ul>
+<li>假设你总是可以到达数组的最后一个位置。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        max_pos = <span class="number">0</span></span><br><span class="line">        end = <span class="number">0</span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n - <span class="number">1</span>):</span><br><span class="line">            max_pos = <span class="built_in">max</span>(max_pos, i + nums[i])</span><br><span class="line">            <span class="keyword">if</span> i == end:</span><br><span class="line">                end = max_pos</span><br><span class="line">                res += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+  </entry>
+  <entry>
     <title>LeetCode之链表</title>
     <url>/posts/fb43e507.html</url>
     <content><![CDATA[<p>链表的题目汇总在此了，欢迎大家光顾。</p>
@@ -973,81 +1087,60 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
       </categories>
   </entry>
   <entry>
-    <title>谈一谈你对进程和线程的认识(未完待续...)</title>
-    <url>/posts/3970838420.html</url>
-    <content><![CDATA[<p>这是自己看完几本操作系统书和网上一些博客后，为了加深自己对进程和线程的认识，写的总结性的文章，也希望这篇文章能让你耳目一新^_^。</p>
-<p>这篇文章只谈概念，不谈代码。如果你理解了概念，写代码的时候思路就会变得很清晰，不会陷入我也不知道自己在写神马的困境。</p>
-<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/tech/process_and_thread/process_and_thread_preivew.png" style="width:600px;height:300px;"/></div></div>
+    <title>LeetCode刷题指南(持续更新中)</title>
+    <url>/posts/af9ea9dd.html</url>
+    <content><![CDATA[<p>这个LeetCode分类是我刷题过程中整理出来的值得刷的题目。</p>
+<p>因为我对Python比较熟练，所以大部分代码是用Python实现的😬。</p>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/leetcode/leetcode_note.jpg" style="width:600px;height:300px;"/></div></div>
 
 <a id="more"></a>
 
-<h2 id="什么是进程？"><a href="#什么是进程？" class="headerlink" title="什么是进程？"></a>什么是进程？</h2><ol>
-<li><p>进程是执行中的程序，是<strong>操作系统分配资源的基本单位</strong>。</p>
-</li>
-<li><p>内存中的进程结构如图所示:</p>
-<img src="/images/tech/process_and_thread/process1.png" width = 240px height = 360px/></li>
-<li><p>进程在执行时会改变状态，每个进程可能处于下列状态中的某一个，如图所示:</p>
- <img src="/images/tech/process_and_thread/process2.png" width = 600px height = 300px/></li>
-<li><p>每个进程在操作系统内用程序控制块(PCB)来表示。PCB通常包含了以下几类信息:</p>
-<ul>
-<li><p>程序状态:包括新的、就绪、运行、等待、停止等。</p>
-</li>
-<li><p>程序计数器:计数器表示进程要执行的下个指令的地址。</p>
-</li>
-<li><p>CPU寄存器:与程序计数器一起，寄存器的状态信息在出现中断时也需要保存，以便进程以后能正确地继续执行。</p>
-</li>
-<li><p>CPU调度信息:包括进程优先级、调度队列的指针和其他调度参数。</p>
-</li>
-<li><p>内存管理信息:包括基址和界限寄存器的值、页表或段表。</p>
-</li>
-<li><p>记账信息:包括CPU时间、实际使用时间、时间界限、记账数据、作业或进程数量等。</p>
-</li>
-<li><p>I/O状态信息:包括分配给进程的I/O设备列表、打开的文件列表等。</p>
-<img src="/images/tech/process_and_thread/process3.png" width = 500px height = 500px/>
-</li>
-</ul>
-</li>
-<li><p>驻留在内存中就绪的、等待运行的进程保存在就绪队列中，该队列通常用双向链表来实现。等待特定I/O设备的进程列表称为设备队列，每个设备都有自己的设备队列。</p>
- <img src="/images/tech/process_and_thread/process4.png" width = 540px height = 500px/>
-</li>
-<li><p>绝大多数进程可以分为I/O密集型或CPU密集型。I/O密集型的进程在执行I/O方面比执行计算要花费更多的时间。CPU密集型的进程将更多的时间用在计算上。</p>
-</li>
-<li><p>将CPU切换到另一个进程需要保存当前进程的状态并恢复另一个进程的状态，这一任务被称为<strong>上下文切换</strong>。上下文切换时间是额外开销，因为切换时系统并不能做什么有用的工作。</p>
-</li>
-<li><p>进程在执行过程中，能够通过创建进程系统调用创建多个新进程。大多数操作系统根据一个唯一的进程标识符来识别进程，pid(process identifier)通常是一个整数值。</p>
-</li>
-<li><p>进程间通信有两种基本模式:共享内存和消息传递。在共享内存模式中，建立起一块共进程共享的内存区域，进程通过向此共享区域读或写入数据来交换信息。在消息传递模式中，通过在进程间交换消息来实现通信。</p>
- <img src="/images/tech/process_and_thread/process5.png" width = 580px height = 440px/>
+<p>首先需要说明的是，本人不做大而全的刷题目录，题目现在实在太多了，而且网上已经有一些人这么做了，对于刚开始刷题的你其实并不是十分友好。如果需要我可以在结尾给出一些链接，基本涵盖了所有题目，而且也有一些详细的解释。本人也不做题解，因为代码能看懂的话基本上不需要再阐释了，如果你需要，可以参考我给出的链接，我在刷题过程中也参考了别人的解法。总之三人行，必有我师。希望你的刷题之路顺利。</p>
+<p>本人刷题一开始是按照官方上Tag来刷了，因为自己的算法基础比较薄弱，就采取了相对比较容易的路子。同时按照Tag刷，暗示了题目可能会用到的算法和数据结构，本人又只选取了简单和中等的题目，所以刷起来相对轻松一点。为了方便，这里列出了一些本人认为非常重要的Tag(✅表示已完成)：</p>
+<table>
+<th>Tag类别</th><th>完成状态</th><th>防迷路链接</th>
+<tr><td>字符串(简单)</td><td>✅</td><td><a href="/posts/c026ad95.html" title="LeetCode之字符串(简单)">LeetCode之字符串(简单)</a></td></tr>
+<tr><td>字符串(中等)</td><td>✅</td><td><a href="/posts/723701661.html" title="LeetCode之字符串(中等)">LeetCode之字符串(中等)</a></td></tr>
+<tr><td>二叉树(简单)</td><td>✅</td><td><a href="/posts/94def828.html" title="LeetCode之二叉树(简单)">LeetCode之二叉树(简单)</a></td></tr>
+<tr><td>二叉树(中等)</td><td>✅</td><td><a href="/posts/3ddb3bb0.html" title="LeetCode之二叉树(中等)">LeetCode之二叉树(中等)</a></td></tr>
+<tr><td>链表</td><td>✅</td><td><a href="/posts/fb43e507.html" title="LeetCode之链表">LeetCode之链表</a></td></tr>
+<tr><td>哈希表</td><td>✅</td><td><a href="/posts/2d8b42bd.html" title="LeetCode之哈希表">LeetCode之哈希表</a></td></tr>
+<tr><td>栈和队列</td><td>✅</td><td><a href="/posts/1ccb8d85.html" title="LeetCode之栈和队列">LeetCode之栈和队列</a></td></tr>
+</table>
 
-</li>
-</ol>
-<p>消息传递对于交换较少数量的数据很有用，因为不需要避免冲突。对于计算机间的通信，消息传递也比共享内存更易于实现。共享内存允许以最快的速度进行方便的通信，在计算机中它可以达到内存的速度。共享内存比消息传递快，消息传递系统通常用系统调用来实现，因此需要更多的内核介入的时间消耗。共享内存系统中仅在建立共享内存区域时需要系统调用，一旦建立共享内存，所有的访问都被处理为常规的内存访问，不需要内核的帮助。(<strong>共享内存和消息传递的比较</strong>)</p>
-<h2 id="什么是线程？"><a href="#什么是线程？" class="headerlink" title="什么是线程？"></a>什么是线程？</h2><ol>
-<li><p>线程是<strong>操作系统调度的基本单位</strong>，由线程ID、程序计数器、寄存器集合和栈组成。它与属于同一进程的其他线程共享代码段、数据段和其他操作系统资源，如打开文件和信号。</p>
- <img src="/images/tech/process_and_thread/thread1.png" width = 580px height = 400px/>
-</li>
-<li><p>多线程编程有4个优点:</p>
 <ul>
-<li>响应度高:如果对一个交互程序采用多线程，那么即使其他部分阻塞或执行较冗长的操作，该程序仍能继续执行，从而增加了对用户的响应程度。</li>
-<li>资源共享:线程默认共享它们所属进程的内存和资源。</li>
-<li>经济:进程创建所需要的内存和资源的分配比较昂贵。由于线程共享它们所属进程的资源，所以创建和切换线程会更为经济。</li>
-<li>多处理器体系结构的利用:能充分利用多处理器体系结构，以便每个进程能并行运行在不同的处理器上。<strong>在多CPU上使用多线程加强了并发功能</strong>。</li>
+<li>数组</li>
+<li>堆</li>
+<li>图</li>
+<li>二分查找</li>
+<li>深度优先遍历</li>
+<li>广度优先遍历</li>
+<li>双指针</li>
+<li>回溯</li>
+<li>动态规划(如果你很厉害，可以直接上，本人是最后统一刷的🤦‍♂️)</li>
 </ul>
-</li>
-<li><p><strong>线程池</strong>的主要思想是在进程开始时创建一定数量的线程，并放入到池中以等待工作。当服务器收到请求时，它会唤醒池中的一个线程，并将要处理的请求传递给它。一旦线程完成了服务，它会返回池中再等待工作。如果池中没有可用的线程，那么服务器会一直等到有空线程为止。<strong>线程池有如下几个优点</strong>:</p>
+<p>如果按照这些Tag来刷，并选择简单和中等的题目，大概可以刷400-500的题目，基础和经典的题目基本都能覆盖到，对于首次刷题的你还是很友好的。</p>
+<p>另一种刷的方式就是按照公司来刷，比如你心意的FLAG(Facebook,Linkedin,Amazon,Google)和Microsoft。可以小试牛刀，看下各家面试题的风格。这里罗列几个比较出名的公司：</p>
 <ul>
-<li>通常用现有线程处理请求要比等待创建新的线程要快。</li>
-<li>线程池限制了在任何时候可用线程的数量。这对那些不能支持大量并发线程的系统非常重要。</li>
+<li>Google [✅]</li>
+<li>Microsoft [✅]</li>
+<li>Linkedin [✅]</li>
+<li>Facebook [✅]</li>
+<li>Amazon [✅]</li>
 </ul>
-</li>
+<p>最后的最后，给出本人认为比较好的几个人的刷题链接，在刷题的过程中可以看下别人的解法，对自己写代码的能力提升会很有帮助，废话不多讲，传送门如下：</p>
+<ol>
+<li>首推花花酱：<a href="https://zxi.mytechroad.com/blog/">https://zxi.mytechroad.com/blog/</a></li>
+<li>grandyang的博客： <a href="https://www.cnblogs.com/grandyang/p/4606334.html">https://www.cnblogs.com/grandyang/p/4606334.html</a></li>
+<li><a href="https://github.com/luliyucoordinate/Leetcode">https://github.com/luliyucoordinate/Leetcode</a></li>
+<li><a href="https://github.com/WuLC/LeetCode/tree/master/Algorithm/Python">https://github.com/WuLC/LeetCode/tree/master/Algorithm/Python</a></li>
+<li><a href="http://bookshadow.com/leetcode/">http://bookshadow.com/leetcode/</a></li>
+<li><a href="https://blog.csdn.net/fuxuemingzhu">https://blog.csdn.net/fuxuemingzhu</a></li>
 </ol>
-<p>线程池中的线程数量由系统CPU的数量、物理内存的大小和并发客户请求的期望值等因素决定。</p>
-<h2 id="进程和线程有哪些联系和区别？"><a href="#进程和线程有哪些联系和区别？" class="headerlink" title="进程和线程有哪些联系和区别？"></a>进程和线程有哪些联系和区别？</h2><h2 id="多进程还是多线程？我该怎么选择呢？"><a href="#多进程还是多线程？我该怎么选择呢？" class="headerlink" title="多进程还是多线程？我该怎么选择呢？"></a>多进程还是多线程？我该怎么选择呢？</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li>《操作系统概念》</li>
-</ul>
+<p>如果你需要的话，可以联系我，把你的刷题链接附上来，方便大家你我他😁。</p>
 ]]></content>
       <categories>
-        <category>Tech</category>
+        <category>LeetCode</category>
       </categories>
   </entry>
   <entry>
@@ -1237,60 +1330,81 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
       </categories>
   </entry>
   <entry>
-    <title>LeetCode刷题指南(持续更新中)</title>
-    <url>/posts/af9ea9dd.html</url>
-    <content><![CDATA[<p>这个LeetCode分类是我刷题过程中整理出来的值得刷的题目。</p>
-<p>因为我对Python比较熟练，所以大部分代码是用Python实现的😬。</p>
-<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/leetcode/leetcode_note.jpg" style="width:600px;height:300px;"/></div></div>
+    <title>谈一谈你对进程和线程的认识(未完待续...)</title>
+    <url>/posts/3970838420.html</url>
+    <content><![CDATA[<p>这是自己看完几本操作系统书和网上一些博客后，为了加深自己对进程和线程的认识，写的总结性的文章，也希望这篇文章能让你耳目一新^_^。</p>
+<p>这篇文章只谈概念，不谈代码。如果你理解了概念，写代码的时候思路就会变得很清晰，不会陷入我也不知道自己在写神马的困境。</p>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/tech/process_and_thread/process_and_thread_preivew.png" style="width:600px;height:300px;"/></div></div>
 
 <a id="more"></a>
 
-<p>首先需要说明的是，本人不做大而全的刷题目录，题目现在实在太多了，而且网上已经有一些人这么做了，对于刚开始刷题的你其实并不是十分友好。如果需要我可以在结尾给出一些链接，基本涵盖了所有题目，而且也有一些详细的解释。本人也不做题解，因为代码能看懂的话基本上不需要再阐释了，如果你需要，可以参考我给出的链接，我在刷题过程中也参考了别人的解法。总之三人行，必有我师。希望你的刷题之路顺利。</p>
-<p>本人刷题一开始是按照官方上Tag来刷了，因为自己的算法基础比较薄弱，就采取了相对比较容易的路子。同时按照Tag刷，暗示了题目可能会用到的算法和数据结构，本人又只选取了简单和中等的题目，所以刷起来相对轻松一点。为了方便，这里列出了一些本人认为非常重要的Tag(✅表示已完成)：</p>
-<table>
-<th>Tag类别</th><th>完成状态</th><th>防迷路链接</th>
-<tr><td>字符串(简单)</td><td>✅</td><td><a href="/posts/c026ad95.html" title="LeetCode之字符串(简单)">LeetCode之字符串(简单)</a></td></tr>
-<tr><td>字符串(中等)</td><td>✅</td><td><a href="/posts/723701661.html" title="LeetCode之字符串(中等)">LeetCode之字符串(中等)</a></td></tr>
-<tr><td>二叉树(简单)</td><td>✅</td><td><a href="/posts/94def828.html" title="LeetCode之二叉树(简单)">LeetCode之二叉树(简单)</a></td></tr>
-<tr><td>二叉树(中等)</td><td>✅</td><td><a href="/posts/3ddb3bb0.html" title="LeetCode之二叉树(中等)">LeetCode之二叉树(中等)</a></td></tr>
-<tr><td>链表</td><td>✅</td><td><a href="/posts/fb43e507.html" title="LeetCode之链表">LeetCode之链表</a></td></tr>
-<tr><td>哈希表</td><td>✅</td><td><a href="/posts/2d8b42bd.html" title="LeetCode之哈希表">LeetCode之哈希表</a></td></tr>
-<tr><td>栈和队列</td><td>✅</td><td><a href="/posts/1ccb8d85.html" title="LeetCode之栈和队列">LeetCode之栈和队列</a></td></tr>
-</table>
+<h2 id="什么是进程？"><a href="#什么是进程？" class="headerlink" title="什么是进程？"></a>什么是进程？</h2><ol>
+<li><p>进程是执行中的程序，是<strong>操作系统分配资源的基本单位</strong>。</p>
+</li>
+<li><p>内存中的进程结构如图所示:</p>
+<img src="/images/tech/process_and_thread/process1.png" width = 240px height = 360px/></li>
+<li><p>进程在执行时会改变状态，每个进程可能处于下列状态中的某一个，如图所示:</p>
+ <img src="/images/tech/process_and_thread/process2.png" width = 600px height = 300px/></li>
+<li><p>每个进程在操作系统内用程序控制块(PCB)来表示。PCB通常包含了以下几类信息:</p>
+<ul>
+<li><p>程序状态:包括新的、就绪、运行、等待、停止等。</p>
+</li>
+<li><p>程序计数器:计数器表示进程要执行的下个指令的地址。</p>
+</li>
+<li><p>CPU寄存器:与程序计数器一起，寄存器的状态信息在出现中断时也需要保存，以便进程以后能正确地继续执行。</p>
+</li>
+<li><p>CPU调度信息:包括进程优先级、调度队列的指针和其他调度参数。</p>
+</li>
+<li><p>内存管理信息:包括基址和界限寄存器的值、页表或段表。</p>
+</li>
+<li><p>记账信息:包括CPU时间、实际使用时间、时间界限、记账数据、作业或进程数量等。</p>
+</li>
+<li><p>I/O状态信息:包括分配给进程的I/O设备列表、打开的文件列表等。</p>
+<img src="/images/tech/process_and_thread/process3.png" width = 500px height = 500px/>
+</li>
+</ul>
+</li>
+<li><p>驻留在内存中就绪的、等待运行的进程保存在就绪队列中，该队列通常用双向链表来实现。等待特定I/O设备的进程列表称为设备队列，每个设备都有自己的设备队列。</p>
+ <img src="/images/tech/process_and_thread/process4.png" width = 540px height = 500px/>
+</li>
+<li><p>绝大多数进程可以分为I/O密集型或CPU密集型。I/O密集型的进程在执行I/O方面比执行计算要花费更多的时间。CPU密集型的进程将更多的时间用在计算上。</p>
+</li>
+<li><p>将CPU切换到另一个进程需要保存当前进程的状态并恢复另一个进程的状态，这一任务被称为<strong>上下文切换</strong>。上下文切换时间是额外开销，因为切换时系统并不能做什么有用的工作。</p>
+</li>
+<li><p>进程在执行过程中，能够通过创建进程系统调用创建多个新进程。大多数操作系统根据一个唯一的进程标识符来识别进程，pid(process identifier)通常是一个整数值。</p>
+</li>
+<li><p>进程间通信有两种基本模式:共享内存和消息传递。在共享内存模式中，建立起一块共进程共享的内存区域，进程通过向此共享区域读或写入数据来交换信息。在消息传递模式中，通过在进程间交换消息来实现通信。</p>
+ <img src="/images/tech/process_and_thread/process5.png" width = 580px height = 440px/>
 
-<ul>
-<li>数组</li>
-<li>堆</li>
-<li>图</li>
-<li>二分查找</li>
-<li>深度优先遍历</li>
-<li>广度优先遍历</li>
-<li>双指针</li>
-<li>回溯</li>
-<li>动态规划(如果你很厉害，可以直接上，本人是最后统一刷的🤦‍♂️)</li>
-</ul>
-<p>如果按照这些Tag来刷，并选择简单和中等的题目，大概可以刷400-500的题目，基础和经典的题目基本都能覆盖到，对于首次刷题的你还是很友好的。</p>
-<p>另一种刷的方式就是按照公司来刷，比如你心意的FLAG(Facebook,Linkedin,Amazon,Google)和Microsoft。可以小试牛刀，看下各家面试题的风格。这里罗列几个比较出名的公司：</p>
-<ul>
-<li>Google [✅]</li>
-<li>Microsoft [✅]</li>
-<li>Linkedin [✅]</li>
-<li>Facebook [✅]</li>
-<li>Amazon [✅]</li>
-</ul>
-<p>最后的最后，给出本人认为比较好的几个人的刷题链接，在刷题的过程中可以看下别人的解法，对自己写代码的能力提升会很有帮助，废话不多讲，传送门如下：</p>
-<ol>
-<li>首推花花酱：<a href="https://zxi.mytechroad.com/blog/">https://zxi.mytechroad.com/blog/</a></li>
-<li>grandyang的博客： <a href="https://www.cnblogs.com/grandyang/p/4606334.html">https://www.cnblogs.com/grandyang/p/4606334.html</a></li>
-<li><a href="https://github.com/luliyucoordinate/Leetcode">https://github.com/luliyucoordinate/Leetcode</a></li>
-<li><a href="https://github.com/WuLC/LeetCode/tree/master/Algorithm/Python">https://github.com/WuLC/LeetCode/tree/master/Algorithm/Python</a></li>
-<li><a href="http://bookshadow.com/leetcode/">http://bookshadow.com/leetcode/</a></li>
-<li><a href="https://blog.csdn.net/fuxuemingzhu">https://blog.csdn.net/fuxuemingzhu</a></li>
+</li>
 </ol>
-<p>如果你需要的话，可以联系我，把你的刷题链接附上来，方便大家你我他😁。</p>
+<p>消息传递对于交换较少数量的数据很有用，因为不需要避免冲突。对于计算机间的通信，消息传递也比共享内存更易于实现。共享内存允许以最快的速度进行方便的通信，在计算机中它可以达到内存的速度。共享内存比消息传递快，消息传递系统通常用系统调用来实现，因此需要更多的内核介入的时间消耗。共享内存系统中仅在建立共享内存区域时需要系统调用，一旦建立共享内存，所有的访问都被处理为常规的内存访问，不需要内核的帮助。(<strong>共享内存和消息传递的比较</strong>)</p>
+<h2 id="什么是线程？"><a href="#什么是线程？" class="headerlink" title="什么是线程？"></a>什么是线程？</h2><ol>
+<li><p>线程是<strong>操作系统调度的基本单位</strong>，由线程ID、程序计数器、寄存器集合和栈组成。它与属于同一进程的其他线程共享代码段、数据段和其他操作系统资源，如打开文件和信号。</p>
+ <img src="/images/tech/process_and_thread/thread1.png" width = 580px height = 400px/>
+</li>
+<li><p>多线程编程有4个优点:</p>
+<ul>
+<li>响应度高:如果对一个交互程序采用多线程，那么即使其他部分阻塞或执行较冗长的操作，该程序仍能继续执行，从而增加了对用户的响应程度。</li>
+<li>资源共享:线程默认共享它们所属进程的内存和资源。</li>
+<li>经济:进程创建所需要的内存和资源的分配比较昂贵。由于线程共享它们所属进程的资源，所以创建和切换线程会更为经济。</li>
+<li>多处理器体系结构的利用:能充分利用多处理器体系结构，以便每个进程能并行运行在不同的处理器上。<strong>在多CPU上使用多线程加强了并发功能</strong>。</li>
+</ul>
+</li>
+<li><p><strong>线程池</strong>的主要思想是在进程开始时创建一定数量的线程，并放入到池中以等待工作。当服务器收到请求时，它会唤醒池中的一个线程，并将要处理的请求传递给它。一旦线程完成了服务，它会返回池中再等待工作。如果池中没有可用的线程，那么服务器会一直等到有空线程为止。<strong>线程池有如下几个优点</strong>:</p>
+<ul>
+<li>通常用现有线程处理请求要比等待创建新的线程要快。</li>
+<li>线程池限制了在任何时候可用线程的数量。这对那些不能支持大量并发线程的系统非常重要。</li>
+</ul>
+</li>
+</ol>
+<p>线程池中的线程数量由系统CPU的数量、物理内存的大小和并发客户请求的期望值等因素决定。</p>
+<h2 id="进程和线程有哪些联系和区别？"><a href="#进程和线程有哪些联系和区别？" class="headerlink" title="进程和线程有哪些联系和区别？"></a>进程和线程有哪些联系和区别？</h2><h2 id="多进程还是多线程？我该怎么选择呢？"><a href="#多进程还是多线程？我该怎么选择呢？" class="headerlink" title="多进程还是多线程？我该怎么选择呢？"></a>多进程还是多线程？我该怎么选择呢？</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>《操作系统概念》</li>
+</ul>
 ]]></content>
       <categories>
-        <category>LeetCode</category>
+        <category>Tech</category>
       </categories>
   </entry>
   <entry>
@@ -1650,6 +1764,370 @@ s = "AABABBA", k = 1
 <li>1 &lt;= pattern.length = words[i].length &lt;= 20</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findAndReplacePattern</span>(<span class="params">self, words, pattern</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type words: List[str]</span></span><br><span class="line"><span class="string">        :type pattern: str</span></span><br><span class="line"><span class="string">        :rtype: List[str]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        res = []</span><br><span class="line">        p = self.helper(pattern)</span><br><span class="line">        <span class="keyword">for</span> w <span class="keyword">in</span> words:</span><br><span class="line">            pw = self.helper(w)</span><br><span class="line">            <span class="keyword">if</span> pw == p:</span><br><span class="line">                res.append(w)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">self, pattern</span>):</span></span><br><span class="line">        m = &#123;&#125;</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> pattern:</span><br><span class="line">            <span class="keyword">if</span> c <span class="keyword">in</span> m:</span><br><span class="line">                res.append(m[c])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                m[c] = <span class="built_in">len</span>(m) + <span class="number">1</span></span><br><span class="line">                res.append(m[c])</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join([<span class="built_in">str</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> res])</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LeetCode之数组(中等)</title>
+    <url>/posts/3239008047.html</url>
+    <content><![CDATA[<p>数组(中等)的题目汇总在此了，欢迎大家光顾。</p>
+<p>来源：力扣（LeetCode）</p>
+<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/leetcode/array2.png" style="width:600px;height:300px;"/></div></div>
+
+<a id="more"></a>
+
+<h2 id="31-下一个排列-n"><a href="#31-下一个排列-n" class="headerlink" title="31. 下一个排列 [n]"></a>31. 下一个排列 [n]</h2><p>实现获取下一个排列的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。</p>
+<p>如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。</p>
+<p>必须原地修改，只允许使用额外常数空间。</p>
+<p>以下是一些例子，输入位于左侧列，其相应输出位于右侧列。</p>
+<pre>
+1,2,3 → 1,3,2
+3,2,1 → 1,2,3
+1,1,5 → 1,5,1
+</pre>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nextPermutation</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: None Do not return anything, modify nums in-place instead.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        i = n - <span class="number">2</span></span><br><span class="line">        <span class="keyword">while</span> i &gt;= <span class="number">0</span> <span class="keyword">and</span> nums[i + <span class="number">1</span>] &lt;= nums[i]:</span><br><span class="line">            i -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> i &gt;= <span class="number">0</span>:</span><br><span class="line">            j = n - <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> nums[j] &lt;= nums[i]:</span><br><span class="line">                j -= <span class="number">1</span></span><br><span class="line">            nums[i], nums[j] =  nums[j], nums[i]</span><br><span class="line">        self.helper(nums, i + <span class="number">1</span>, n - <span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">self, nums, i, j</span>):</span></span><br><span class="line">        s, e = i, j</span><br><span class="line">        <span class="keyword">while</span> s &lt; e:</span><br><span class="line">            nums[s], nums[e] = nums[e], nums[s]</span><br><span class="line">            s += <span class="number">1</span></span><br><span class="line">            e -= <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="40-组合总和-II"><a href="#40-组合总和-II" class="headerlink" title="40. 组合总和 II"></a>40. 组合总和 II</h2><p>给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。</p>
+<p>candidates 中的每个数字在每个组合中只能使用一次。</p>
+<p>说明：</p>
+<ul>
+<li>所有数字（包括目标数）都是正整数。</li>
+<li>解集不能包含重复的组合。 </li>
+</ul>
+<p>示例 1:</p>
+<pre>
+输入: candidates = [10,1,2,7,6,1,5], target = 8,
+所求解集为:
+[
+  [1, 7],
+  [1, 2, 5],
+  [2, 6],
+  [1, 1, 6]
+]
+</pre>
+<p>示例 2:</p>
+<pre>
+输入: candidates = [2,5,2,1,2], target = 5,
+所求解集为:
+[
+  [1,2,2],
+  [5]
+]
+</pre>
+
+<div class="tabs" id="leetcode-40"><ul class="nav-tabs"><li class="tab active"><a class="#leetcode-40-1">Python</a></li><li class="tab"><a class="#leetcode-40-2">Java</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-40-1"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">combinationSum2</span>(<span class="params">self, candidates, target</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type candidates: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        candidates = <span class="built_in">sorted</span>(candidates)</span><br><span class="line">        item, res = [], []</span><br><span class="line">        self.helper(candidates, target, <span class="number">0</span>, item, res)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">self, candidates, target, idx, item, res</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">sum</span>(item) == target:</span><br><span class="line">            res.append(item[:])</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(idx, <span class="built_in">len</span>(candidates)):</span><br><span class="line">            <span class="keyword">if</span> i &gt; idx <span class="keyword">and</span> candidates[i] == candidates[i - <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">sum</span>(item) + candidates[i] &gt; target:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            item.append(candidates[i])</span><br><span class="line">            self.helper(candidates, target, i + <span class="number">1</span>, item, res)</span><br><span class="line">            item.pop(-<span class="number">1</span>)</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-40-2"><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; combinationSum2(<span class="keyword">int</span>[] candidates, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        Arrays.sort(candidates);</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        List&lt;Integer&gt; item = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        helper(candidates, <span class="number">0</span>, target, item, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(<span class="keyword">int</span>[] candidates, <span class="keyword">int</span> idx, <span class="keyword">int</span> target, List&lt;Integer&gt; item, List&lt;List&lt;Integer&gt;&gt; res)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (target &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (target == <span class="number">0</span>) &#123;</span><br><span class="line">            List&lt;Integer&gt; tmp = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            tmp.addAll(item);</span><br><span class="line">            res.add(tmp);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = idx; i &lt; candidates.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; idx &amp;&amp; candidates[i] == candidates[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            item.add(candidates[i]);</span><br><span class="line">            helper(candidates, i + <span class="number">1</span>, target - candidates[i], item, res);</span><br><span class="line">            item.remove(item.size() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div>
+
+
+<h2 id="55-跳跃游戏-n"><a href="#55-跳跃游戏-n" class="headerlink" title="55. 跳跃游戏 [n]"></a>55. 跳跃游戏 [n]</h2><p>给定一个非负整数数组，你最初位于数组的第一个位置。</p>
+<p>数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
+<p>判断你是否能够到达最后一个位置。</p>
+<p>示例 1:</p>
+<pre>
+输入: [2,3,1,1,4]
+输出: true
+解释: 从位置 0 到 1 跳 1 步, 然后跳 3 步到达最后一个位置。
+</pre>
+<p>示例 2:</p>
+<pre>
+输入: [3,2,1,0,4]
+输出: false
+解释: 无论怎样，你总会到达索引为 3 的位置。但该位置的最大跳跃长度是 0 ， 所以你永远不可能到达最后一个位置。
+</pre>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canJump</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        last_pos = <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="built_in">len</span>(nums) - <span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> i + nums[i] &gt;= last_pos:</span><br><span class="line">                last_pos = i</span><br><span class="line">        <span class="keyword">return</span> last_pos == <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="81-搜索旋转排序数组-II"><a href="#81-搜索旋转排序数组-II" class="headerlink" title="81. 搜索旋转排序数组 II"></a>81. 搜索旋转排序数组 II</h2><p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p>
+<p>( 例如，数组 [0,0,1,2,2,5,6] 可能变为 [2,5,6,0,0,1,2] )。</p>
+<p>编写一个函数来判断给定的目标值是否存在于数组中。若存在返回 true，否则返回 false。</p>
+<p>示例 1:</p>
+<pre>
+输入: nums = [2,5,6,0,0,1,2], target = 0
+输出: true
+</pre>
+<p>示例 2:</p>
+<pre>
+输入: nums = [2,5,6,0,0,1,2], target = 3
+输出: false
+</pre>
+<p>进阶:</p>
+<ul>
+<li>这是 搜索旋转排序数组 的延伸题目，本题中的 nums  可能包含重复元素。</li>
+<li>这会影响到程序的时间复杂度吗？会有怎样的影响，为什么？</li>
+</ul>
+<div class="tabs" id="leetcode-81"><ul class="nav-tabs"><li class="tab active"><a class="#leetcode-81-1">Python</a></li><li class="tab"><a class="#leetcode-81-2">Java</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-81-1"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search</span>(<span class="params">self, nums, target</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        left, right = <span class="number">0</span>, <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">            mid = (left + right) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> nums[mid] == target:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">if</span> nums[mid] &gt; nums[left]:</span><br><span class="line">                <span class="keyword">if</span> nums[left] &lt;= target &lt; nums[mid]:</span><br><span class="line">                    right = mid - <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    left = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> nums[mid] &lt; nums[left]:</span><br><span class="line">                <span class="keyword">if</span> nums[mid] &lt; target &lt;= nums[right]:</span><br><span class="line">                    left = mid + <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    right = mid - <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-81-2"><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] == target) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt; nums[left]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[left] &lt;= target &amp;&amp; target &lt; nums[mid]) &#123;</span><br><span class="line">                    right = mid - <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    left = mid + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; nums[left]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[mid] &lt; target &amp;&amp; target &lt;= nums[right]) &#123;</span><br><span class="line">                    left = mid + <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    right = mid - <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                left += <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div>
+
+
+<h2 id="90-子集-II"><a href="#90-子集-II" class="headerlink" title="90. 子集 II"></a>90. 子集 II</h2><p>给定一个可能包含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。</p>
+<p>说明：解集不能包含重复的子集。</p>
+<p>示例:</p>
+<pre>
+输入: [1,2,2]
+输出:
+[
+  [2],
+  [1],
+  [1,2,2],
+  [2,2],
+  [1,2],
+  []
+]
+</pre>
+
+<div class="tabs" id="leetcode-90"><ul class="nav-tabs"><li class="tab active"><a class="#leetcode-90-1">Python</a></li><li class="tab"><a class="#leetcode-90-2">Java</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-90-1"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subsetsWithDup</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        nums = <span class="built_in">sorted</span>(nums)</span><br><span class="line">        item, res = [], []</span><br><span class="line">        self.helper(nums, <span class="number">0</span>, item, res)</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">self, nums, idx, item, res</span>):</span></span><br><span class="line">        res.append(item[:])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(idx, <span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="keyword">if</span> i &gt; idx <span class="keyword">and</span> nums[i] == nums[i - <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            item.append(nums[i])</span><br><span class="line">            self.helper(nums, i + <span class="number">1</span>, item, res)</span><br><span class="line">            item.pop(-<span class="number">1</span>)</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-90-2"><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; subsetsWithDup(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        List&lt;Integer&gt; item = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        helper(nums, <span class="number">0</span>, item, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> idx, List&lt;Integer&gt; item, List&lt;List&lt;Integer&gt;&gt; res)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; tmp = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        tmp.addAll(item);</span><br><span class="line">        res.add(tmp);</span><br><span class="line">        <span class="keyword">if</span> (idx == nums.length) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = idx; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; idx &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            item.add(nums[i]);</span><br><span class="line">            helper(nums, i + <span class="number">1</span>, item, res);</span><br><span class="line">            item.remove(item.size() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div>
+
+
+<h2 id="153-寻找旋转排序数组中的最小值"><a href="#153-寻找旋转排序数组中的最小值" class="headerlink" title="153. 寻找旋转排序数组中的最小值"></a>153. 寻找旋转排序数组中的最小值</h2><p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p>
+<p>( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。</p>
+<p>请找出其中最小的元素。</p>
+<p>你可以假设数组中不存在重复元素。</p>
+<p>示例 1:</p>
+<pre>
+输入: [3,4,5,1,2]
+输出: 1
+</pre>
+<p>示例 2:</p>
+<pre>
+输入: [4,5,6,7,0,1,2]
+输出: 0
+</pre>
+
+<div class="tabs" id="leetcode-153"><ul class="nav-tabs"><li class="tab active"><a class="#leetcode-153-1">Python</a></li><li class="tab"><a class="#leetcode-153-2">Java</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-153-1"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMin</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        left, right = <span class="number">0</span>, <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt; right:</span><br><span class="line">            mid = left + (right - left) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> nums[mid] &gt; nums[right]:</span><br><span class="line">                left = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                right = mid</span><br><span class="line">        <span class="keyword">return</span> nums[left]</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-153-2"><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt; nums[right]) &#123;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[left];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div>
+
+
+<h2 id="229-求众数-II"><a href="#229-求众数-II" class="headerlink" title="229. 求众数 II"></a>229. 求众数 II</h2><p>给定一个大小为 n 的数组，找出其中所有出现超过 ⌊ n/3 ⌋ 次的元素。</p>
+<p>说明: 要求算法的时间复杂度为 O(n)，空间复杂度为 O(1)。</p>
+<p>示例 1:</p>
+<pre>
+输入: [3,2,3]
+输出: [3]
+示例 2:
+
+输入: [1,1,1,3,3,2,2,2]
+输出: [1,2]
+</pre>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">majorityElement</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> nums <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> <span class="built_in">len</span>(nums) &lt; <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        cnt1, cnt2, num1, num2 = <span class="number">0</span>, <span class="number">0</span>, nums[<span class="number">0</span>], nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i, v <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">            <span class="keyword">if</span> v == num1:</span><br><span class="line">                cnt1 += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> v == num2:</span><br><span class="line">                cnt2 += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> cnt1 == <span class="number">0</span>:</span><br><span class="line">                num1 = v</span><br><span class="line">                cnt1 = <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> cnt2 == <span class="number">0</span>:</span><br><span class="line">                num2 = v</span><br><span class="line">                cnt2 = <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                cnt1 -= <span class="number">1</span></span><br><span class="line">                cnt2 -= <span class="number">1</span></span><br><span class="line">        cnt1, cnt2 = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> n == num1:</span><br><span class="line">                cnt1 += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> n == num2:</span><br><span class="line">                cnt2 += <span class="number">1</span></span><br><span class="line">        res = []</span><br><span class="line">        n = <span class="built_in">len</span>(nums) / <span class="number">3</span></span><br><span class="line">        <span class="keyword">if</span> cnt1 &gt; n:</span><br><span class="line">            res.append(num1)</span><br><span class="line">        <span class="keyword">if</span> cnt2 &gt; n:</span><br><span class="line">            res.append(num2)</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<h2 id="287-寻找重复数-n"><a href="#287-寻找重复数-n" class="headerlink" title="287. 寻找重复数 [n]"></a>287. 寻找重复数 [n]</h2><p>给定一个包含 n + 1 个整数的数组 nums，其数字都在 1 到 n 之间（包括 1 和 n），可知至少存在一个重复的整数。假设只有一个重复的整数，找出这个重复的数。</p>
+<p>示例 1:</p>
+<pre>
+输入: [1,3,4,2,2]
+输出: 2
+</pre>
+<p>示例 2:</p>
+<pre>
+输入: [3,1,3,4,2]
+输出: 3
+</pre>
+<p>说明：</p>
+<ul>
+<li>不能更改原数组（假设数组是只读的）。</li>
+<li>只能使用额外的 O(1) 的空间。</li>
+<li>时间复杂度小于 O(n2) 。</li>
+<li>数组中只有一个重复的数字，但它可能不止重复出现一次。</li>
+</ul>
+<div class="tabs" id="leetcode-287"><ul class="nav-tabs"><li class="tab active"><a class="#leetcode-287-1">Python</a></li><li class="tab"><a class="#leetcode-287-2">Java</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leetcode-287-1"><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findDuplicate</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        fast, slow = nums[<span class="number">0</span>], nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            fast = nums[nums[fast]]</span><br><span class="line">            slow = nums[slow]</span><br><span class="line">            <span class="keyword">if</span> fast == slow:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        slow = nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">while</span> slow != fast:</span><br><span class="line">            slow = nums[slow]</span><br><span class="line">            fast = nums[fast]</span><br><span class="line">        <span class="keyword">return</span> slow</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leetcode-287-2"><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> slow = nums[<span class="number">0</span>], fast = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            slow = nums[slow];</span><br><span class="line">            fast = nums[nums[fast]];</span><br><span class="line">            <span class="keyword">if</span> (slow == fast) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        slow = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">while</span> (slow != fast) &#123;</span><br><span class="line">            slow = nums[slow];</span><br><span class="line">            fast = nums[fast];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div>
+
+
+<h2 id="560-和为K的子数组"><a href="#560-和为K的子数组" class="headerlink" title="560. 和为K的子数组"></a>560. 和为K的子数组</h2><p>给定一个整数数组和一个整数 k，你需要找到该数组中和为 k 的连续的子数组的个数。</p>
+<p>示例 1 :</p>
+<pre>
+输入:nums = [1,1,1], k = 2
+输出: 2 , [1,1] 与 [1,1] 为两种不同的情况。
+</pre>
+<p>说明 :</p>
+<ul>
+<li>数组的长度为 [1, 20,000]。</li>
+<li>数组中元素的范围是 [-1000, 1000] ，且整数 k 的范围是 [-1e7, 1e7]。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subarraySum</span>(<span class="params">self, nums, k</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        res, cur_sum, pre_sum_map = <span class="number">0</span>, <span class="number">0</span>, &#123;<span class="number">0</span>:<span class="number">1</span>&#125;</span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> nums:</span><br><span class="line">            cur_sum += n</span><br><span class="line">            <span class="keyword">if</span> cur_sum - k <span class="keyword">in</span> pre_sum_map:</span><br><span class="line">                res += pre_sum_map[cur_sum - k]</span><br><span class="line">            <span class="keyword">if</span> cur_sum <span class="keyword">in</span> pre_sum_map:</span><br><span class="line">                pre_sum_map[cur_sum] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                pre_sum_map[cur_sum] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<h2 id="670-最大交换-n"><a href="#670-最大交换-n" class="headerlink" title="670. 最大交换 [n]"></a>670. 最大交换 [n]</h2><p>给定一个非负整数，你至多可以交换一次数字中的任意两位。返回你能得到的最大值。</p>
+<p>示例 1 :</p>
+<pre>
+输入: 2736
+输出: 7236
+解释: 交换数字2和数字7。
+</pre>
+<p>示例 2 :</p>
+<pre>
+输入: 9973
+输出: 9973
+解释: 不需要交换。
+</pre>
+<p>注意:</p>
+<ul>
+<li>给定数字的范围是 [0, 108]</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maximumSwap</span>(<span class="params">self, num</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type num: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        nums = [<span class="built_in">int</span>(c) <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">str</span>(num)]</span><br><span class="line">        sorted_nums = <span class="built_in">sorted</span>(nums[:], reverse=<span class="literal">True</span>)</span><br><span class="line">        i, n = <span class="number">0</span>, <span class="built_in">len</span>(nums)</span><br><span class="line">        <span class="keyword">while</span> i &lt; n:</span><br><span class="line">            <span class="keyword">if</span> nums[i] != sorted_nums[i]:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> i == n:</span><br><span class="line">            <span class="keyword">return</span> num</span><br><span class="line">        j = n - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> j &gt; i <span class="keyword">and</span> nums[j] != sorted_nums[i]:</span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        nums[i], nums[j] = nums[j], nums[i]</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">int</span>(<span class="string">&#x27;&#x27;</span>.join([<span class="built_in">str</span>(c) <span class="keyword">for</span> c <span class="keyword">in</span> nums]))</span><br></pre></td></tr></table></figure>
+
+<h2 id="713-乘积小于K的子数组"><a href="#713-乘积小于K的子数组" class="headerlink" title="713. 乘积小于K的子数组"></a>713. 乘积小于K的子数组</h2><p>给定一个正整数数组 nums。</p>
+<p>找出该数组内乘积小于 k 的连续的子数组的个数。</p>
+<p>示例 1:</p>
+<pre>
+输入: nums = [10,5,2,6], k = 100
+输出: 8
+解释: 8个乘积小于100的子数组分别为: [10], [5], [2], [6], [10,5], [5,2], [2,6], [5,2,6]。
+需要注意的是 [10,5,2] 并不是乘积小于100的子数组。
+</pre>
+<p>说明:</p>
+<ul>
+<li>0 &lt; nums.length &lt;= 50000</li>
+<li>0 &lt; nums[i] &lt; 1000</li>
+<li>0 &lt;= k &lt; 10^6</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numSubarrayProductLessThanK</span>(<span class="params">self, nums, k</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        i, j, n = <span class="number">0</span>, <span class="number">0</span>, <span class="built_in">len</span>(nums)</span><br><span class="line">        res, prod = <span class="number">0</span>, <span class="number">1</span> </span><br><span class="line">        <span class="keyword">while</span> j &lt; n:</span><br><span class="line">            prod *= nums[j]</span><br><span class="line">            <span class="keyword">while</span> i &lt;= j <span class="keyword">and</span> prod &gt;= k:</span><br><span class="line">                prod /= nums[i]</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">            res += j - i + <span class="number">1</span></span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<h2 id="714-买卖股票的最佳时机含手续费-n"><a href="#714-买卖股票的最佳时机含手续费-n" class="headerlink" title="714. 买卖股票的最佳时机含手续费 [n]"></a>714. 买卖股票的最佳时机含手续费 [n]</h2><p>给定一个整数数组 prices，其中第 i 个元素代表了第 i 天的股票价格 ；非负整数 fee 代表了交易股票的手续费用。</p>
+<p>你可以无限次地完成交易，但是你每次交易都需要付手续费。如果你已经购买了一个股票，在卖出它之前你就不能再继续购买股票了。</p>
+<p>返回获得利润的最大值。</p>
+<p>示例 1:</p>
+<pre>
+输入: prices = [1, 3, 2, 8, 4, 9], fee = 2
+输出: 8
+解释: 能够达到的最大利润:  
+在此处买入 prices[0] = 1
+在此处卖出 prices[3] = 8
+在此处买入 prices[4] = 4
+在此处卖出 prices[5] = 9
+总利润: ((8 - 1) - 2) + ((9 - 4) - 2) = 8.
+</pre>
+<p>注意:</p>
+<ul>
+<li>0 &lt; prices.length &lt;= 50000.</li>
+<li>0 &lt; prices[i] &lt; 50000.</li>
+<li>0 &lt;= fee &lt; 50000.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxProfit</span>(<span class="params">self, prices, fee</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type prices: List[int]</span></span><br><span class="line"><span class="string">        :type fee: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        cash, hold = <span class="number">0</span>, -prices[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, <span class="built_in">len</span>(prices)):</span><br><span class="line">            cash = <span class="built_in">max</span>(cash, hold + prices[i] - fee)</span><br><span class="line">            hold = <span class="built_in">max</span>(hold, cash - prices[i])</span><br><span class="line">        <span class="keyword">return</span> cash</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="718-最长重复子数组"><a href="#718-最长重复子数组" class="headerlink" title="718. 最长重复子数组"></a>718. 最长重复子数组</h2><p>给两个整数数组 A 和 B ，返回两个数组中公共的、长度最长的子数组的长度。</p>
+<p>示例 1:</p>
+<pre>
+输入:
+A: [1,2,3,2,1]
+B: [3,2,1,4,7]
+输出: 3
+解释: 
+长度最长的公共子数组是 [3, 2, 1]。
+</pre>
+<p>说明:</p>
+<ul>
+<li>1 &lt;= len(A), len(B) &lt;= 1000</li>
+<li>0 &lt;= A[i], B[i] &lt; 100</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findLength</span>(<span class="params">self, A, B</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type A: List[int]</span></span><br><span class="line"><span class="string">        :type B: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        m, n = <span class="built_in">len</span>(A), <span class="built_in">len</span>(B)</span><br><span class="line">        dp = [[<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(n + <span class="number">1</span>)] <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(m + <span class="number">1</span>)]</span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(m + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(n + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">or</span> j == <span class="number">0</span>:</span><br><span class="line">                    dp[i][j] = <span class="number">0</span></span><br><span class="line">                <span class="keyword">elif</span> A[i - <span class="number">1</span>] == B[j - <span class="number">1</span>]:</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">                    res = <span class="built_in">max</span>(res, dp[i][j])</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="792-匹配子序列的单词数"><a href="#792-匹配子序列的单词数" class="headerlink" title="792. 匹配子序列的单词数"></a>792. 匹配子序列的单词数</h2><p>给定字符串 S 和单词字典 words, 求 words[i] 中是 S 的子序列的单词个数。</p>
+<p>示例:</p>
+<pre>
+输入: 
+S = "abcde"
+words = ["a", "bb", "acd", "ace"]
+输出: 3
+解释: 有三个是 S 的子序列的单词: "a", "acd", "ace"。
+</pre>
+<p>注意:</p>
+<ul>
+<li>所有在words和 S 里的单词都只由小写字母组成。</li>
+<li>S 的长度在 [1, 50000]。</li>
+<li>words 的长度在 [1, 5000]。</li>
+<li>words[i]的长度在[1, 50]。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numMatchingSubseq</span>(<span class="params">self, S, words</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type S: str</span></span><br><span class="line"><span class="string">        :type words: List[str]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        m = <span class="built_in">dict</span>()</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">word, d</span>):</span></span><br><span class="line">            <span class="keyword">if</span> word <span class="keyword">in</span> m:</span><br><span class="line">                <span class="keyword">return</span> m[word]</span><br><span class="line">            prev = -<span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> w <span class="keyword">in</span> word:</span><br><span class="line">                i = bisect.bisect_left(d[w], prev + <span class="number">1</span>)</span><br><span class="line">                <span class="keyword">if</span> i == <span class="built_in">len</span>(d[w]):</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">                prev = d[w][i]</span><br><span class="line">            m[word] = <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        d = collections.defaultdict(<span class="built_in">list</span>)</span><br><span class="line">        <span class="keyword">for</span> i, s <span class="keyword">in</span> <span class="built_in">enumerate</span>(S):</span><br><span class="line">            d[s].append(i)</span><br><span class="line">        ans = [helper(word, d) <span class="keyword">for</span> word <span class="keyword">in</span> words]</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(ans)</span><br></pre></td></tr></table></figure>
+
+<h2 id="795-区间子数组个数"><a href="#795-区间子数组个数" class="headerlink" title="795. 区间子数组个数"></a>795. 区间子数组个数</h2><p>给定一个元素都是正整数的数组A ，正整数 L 以及 R (L &lt;= R)。</p>
+<p>求连续、非空且其中最大元素满足大于等于L 小于等于R的子数组个数。</p>
+<p>例如 :</p>
+<pre>
+输入: 
+A = [2, 1, 4, 3]
+L = 2
+R = 3
+输出: 3
+解释: 满足条件的子数组: [2], [2, 1], [3].
+</pre>
+<p>注意:</p>
+<ul>
+<li>L, R  和 A[i] 都是整数，范围在 [0, 10^9]。</li>
+<li>数组 A 的长度范围在[1, 50000]。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numSubarrayBoundedMax</span>(<span class="params">self, A, L, R</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type A: List[int]</span></span><br><span class="line"><span class="string">        :type L: int</span></span><br><span class="line"><span class="string">        :type R: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        i, j, n = <span class="number">0</span>, <span class="number">0</span>, <span class="built_in">len</span>(A)</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> j &lt; n:</span><br><span class="line">            <span class="keyword">if</span> L &lt;= A[j] &lt;= R:</span><br><span class="line">                ans += j - i + <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> A[j] &lt; L:</span><br><span class="line">                t = j - <span class="number">1</span></span><br><span class="line">                <span class="keyword">while</span> t &gt;= i <span class="keyword">and</span> A[t] &lt; L:</span><br><span class="line">                    t -= <span class="number">1</span></span><br><span class="line">                ans += t - i + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                i = j + <span class="number">1</span></span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+<h2 id="907-子数组的最小值之和"><a href="#907-子数组的最小值之和" class="headerlink" title="907. 子数组的最小值之和"></a>907. 子数组的最小值之和</h2><p>给定一个整数数组 A，找到 min(B) 的总和，其中 B 的范围为 A 的每个（连续）子数组。</p>
+<p>由于答案可能很大，因此返回答案模 10^9 + 7。</p>
+<p>示例：</p>
+<pre>
+输入：[3,1,2,4]
+输出：17
+解释：
+子数组为 [3]，[1]，[2]，[4]，[3,1]，[1,2]，[2,4]，[3,1,2]，[1,2,4]，[3,1,2,4]。 
+最小值为 3，1，2，4，1，1，2，1，1，1，和为 17。
+</pre>
+<p>提示：</p>
+<ul>
+<li>1 &lt;= A &lt;= 30000</li>
+<li>1 &lt;= A[i] &lt;= 30000</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sumSubarrayMins</span>(<span class="params">self, A</span>):</span></span><br><span class="line">        MOD = <span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span></span><br><span class="line">        N = <span class="built_in">len</span>(A)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># prev has i* - 1 in increasing order of A[i* - 1]</span></span><br><span class="line">        <span class="comment"># where i* is the answer to query j</span></span><br><span class="line">        stack = []</span><br><span class="line">        prev = [<span class="literal">None</span>] * N</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(N):</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> A[i] &lt;= A[stack[-<span class="number">1</span>]]:</span><br><span class="line">                stack.pop()</span><br><span class="line">            prev[i] = stack[-<span class="number">1</span>] <span class="keyword">if</span> stack <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line">            stack.append(i)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># next has k* + 1 in increasing order of A[k* + 1]</span></span><br><span class="line">        <span class="comment"># where k* is the answer to query j</span></span><br><span class="line">        stack = []</span><br><span class="line">        next_ = [<span class="literal">None</span>] * N</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> xrange(N-<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> A[k] &lt; A[stack[-<span class="number">1</span>]]:</span><br><span class="line">                stack.pop()</span><br><span class="line">            next_[k] = stack[-<span class="number">1</span>] <span class="keyword">if</span> stack <span class="keyword">else</span> N</span><br><span class="line">            stack.append(k)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Use prev/next array to count answer</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>((i - prev[i]) * (next_[i] - i) * A[i]</span><br><span class="line">                   <span class="keyword">for</span> i <span class="keyword">in</span> xrange(N)) % MOD</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="915-分割数组"><a href="#915-分割数组" class="headerlink" title="915. 分割数组"></a>915. 分割数组</h2><p>给定一个数组 A，将其划分为两个不相交（没有公共元素）的连续子数组 left 和 right， 使得：</p>
+<p>left 中的每个元素都小于或等于 right 中的每个元素。<br>left 和 right 都是非空的。<br>left 要尽可能小。<br>在完成这样的分组后返回 left 的长度。可以保证存在这样的划分方法。</p>
+<p>示例 1：</p>
+<pre>
+输入：[5,0,3,8,6]
+输出：3
+解释：left = [5,0,3]，right = [8,6]
+</pre>
+<p>示例 2：</p>
+<pre>
+输入：[1,1,1,0,6,12]
+输出：4
+解释：left = [1,1,1,0]，right = [6,12]
+</pre>
+
+<p>提示：</p>
+<ul>
+<li>2 &lt;= A.length &lt;= 30000</li>
+<li>0 &lt;= A[i] &lt;= 10^6</li>
+<li>可以保证至少有一种方法能够按题目所描述的那样对 A 进行划分。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">partitionDisjoint</span>(<span class="params">self, A</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type A: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        n = <span class="built_in">len</span>(A)</span><br><span class="line">        max_left, min_right = [<span class="number">0</span>] * n, [<span class="number">0</span>] * n</span><br><span class="line">        </span><br><span class="line">        m = A[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</span><br><span class="line">            m = <span class="built_in">max</span>(m, A[i])</span><br><span class="line">            max_left[i] = m</span><br><span class="line">        </span><br><span class="line">        m = A[-<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n - <span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            m = <span class="built_in">min</span>(m, A[i])</span><br><span class="line">            min_right[i] = m</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> max_left[i - <span class="number">1</span>] &lt;= min_right[i]:</span><br><span class="line">                <span class="keyword">return</span> i</span><br></pre></td></tr></table></figure>
+
+<h2 id="926-将字符串翻转到单调递增-n"><a href="#926-将字符串翻转到单调递增-n" class="headerlink" title="926. 将字符串翻转到单调递增 [n]"></a>926. 将字符串翻转到单调递增 [n]</h2><p>如果一个由 ‘0’ 和 ‘1’ 组成的字符串，是以一些 ‘0’（可能没有 ‘0’）后面跟着一些 ‘1’（也可能没有 ‘1’）的形式组成的，那么该字符串是单调递增的。</p>
+<p>我们给出一个由字符 ‘0’ 和 ‘1’ 组成的字符串 S，我们可以将任何 ‘0’ 翻转为 ‘1’ 或者将 ‘1’ 翻转为 ‘0’。</p>
+<p>返回使 S 单调递增的最小翻转次数。</p>
+<p>示例 1：</p>
+<pre>
+输入："00110"
+输出：1
+解释：我们翻转最后一位得到 00111.
+</pre>
+<p>示例 2：</p>
+<pre>
+输入："010110"
+输出：2
+解释：我们翻转得到 011111，或者是 000111。
+</pre>
+<p>示例 3：</p>
+<pre>
+输入："00011000"
+输出：2
+解释：我们翻转得到 00000000。
+</pre>
+
+<p>提示：</p>
+<ul>
+<li>1 &lt;= S.length &lt;= 20000</li>
+<li>S 中只包含字符 ‘0’ 和 ‘1’</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minFlipsMonoIncr</span>(<span class="params">self, S</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type S: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        n, num_of_one = <span class="built_in">len</span>(S), <span class="number">0</span></span><br><span class="line">        dp = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</span><br><span class="line">            <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">                dp[i] = <span class="number">0</span></span><br><span class="line">                <span class="keyword">if</span> S[i] == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                    num_of_one += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> S[i] == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                    dp[i] = <span class="built_in">min</span>(dp[i - <span class="number">1</span>], num_of_one + <span class="number">1</span>)</span><br><span class="line">                    num_of_one += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[i] = <span class="built_in">min</span>(dp[i - <span class="number">1</span>] + <span class="number">1</span>, num_of_one)</span><br><span class="line">        <span class="keyword">return</span> dp[n - <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>LeetCode</category>
