@@ -6,7 +6,7 @@
     <content><![CDATA[<p>晚上花了点时间研究了下如何在Docker环境下构建属于自己的Ubuntu。该Ubuntu包含了zsh和Oh-my-zsh插件，也包含了YouCompleteMe插件的Vim编辑器。</p>
 <p>含泪说下:<strong>网上的YouCompleteMe很多教程都已经过时了，还是得以官方文档为主来配置该插件，否则你会安装的很痛苦</strong>。</p>
 <p>另外，该Ubuntu也包含了C/C++的编译环境，如gcc、g++、gdb和valgrind常用工具。</p>
-<img src="/images/tech/docker_zsh_vim/banner.png" width = 600px height = 300px/>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/tech/docker_zsh_vim/banner.png" style="width:600px;height:300px;"/></div></div>
 
 <a id="more"></a>
 
@@ -49,7 +49,7 @@
     <content><![CDATA[<p>二叉树(简单)的题目汇总在此了，欢迎大家光顾。</p>
 <p>来源：力扣（LeetCode）</p>
 <p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<img src="/images/leetcode/bst.jpg" width = 600px height = 300px/>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/leetcode/bst.jpg" style="width:600px;height:300px;"/></div></div>
 
 <a id="more"></a>
 
@@ -370,7 +370,7 @@
     <content><![CDATA[<p>哈希表的题目汇总在此了，欢迎大家光顾。</p>
 <p>来源：力扣（LeetCode）</p>
 <p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<img src="/images/leetcode/hash.jpg" width = 600px height = 300px/>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/leetcode/hash.jpg" style="width:600px;height:300px;"/></div></div>
 
 <a id="more"></a>
 
@@ -579,7 +579,7 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
     <content><![CDATA[<p>字符串(简单)的题目汇总在此了，欢迎大家光顾。</p>
 <p>来源：力扣（LeetCode）</p>
 <p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<img src="/images/leetcode/string.png" width = 600px height = 300px/>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/leetcode/string.png" style="width:600px;height:300px;"/></div></div>
 
 <a id="more"></a>
 
@@ -776,69 +776,12 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
       </categories>
   </entry>
   <entry>
-    <title>LeetCode刷题指南(持续更新中)</title>
-    <url>/posts/af9ea9dd.html</url>
-    <content><![CDATA[<p>这个LeetCode分类是我刷题过程中整理出来的值得刷的题目。</p>
-<p>因为我对Python比较熟练，所以大部分代码是用Python实现的😬。</p>
-<img src="/images/leetcode/leetcode_note.jpg" width = 600px height = 300px/>
-
-<a id="more"></a>
-
-<p>首先需要说明的是，本人不做大而全的刷题目录，题目现在实在太多了，而且网上已经有一些人这么做了，对于刚开始刷题的你其实并不是十分友好。如果需要我可以在结尾给出一些链接，基本涵盖了所有题目，而且也有一些详细的解释。本人也不做题解，因为代码能看懂的话基本上不需要再阐释了，如果你需要，可以参考我给出的链接，我在刷题过程中也参考了别人的解法。总之三人行，必有我师。希望你的刷题之路顺利。</p>
-<p>本人刷题一开始是按照官方上Tag来刷了，因为自己的算法基础比较薄弱，就采取了相对比较容易的路子。同时按照Tag刷，暗示了题目可能会用到的算法和数据结构，本人又只选取了简单和中等的题目，所以刷起来相对轻松一点。为了方便，这里列出了一些本人认为非常重要的Tag(✅表示已完成)：</p>
-<table>
-<th>Tag类别</th><th>完成状态</th><th>防迷路链接</th>
-<tr><td>字符串(简单)</td><td>✅</td><td><a href="/posts/c026ad95.html" title="LeetCode之字符串(简单)">LeetCode之字符串(简单)</a></td></tr>
-<tr><td>字符串(中等)</td><td>✅</td><td><a href="/posts/723701661.html" title="LeetCode之字符串(中等)">LeetCode之字符串(中等)</a></td></tr>
-<tr><td>二叉树(简单)</td><td>✅</td><td><a href="/posts/94def828.html" title="LeetCode之二叉树(简单)">LeetCode之二叉树(简单)</a></td></tr>
-<tr><td>二叉树(中等)</td><td>✅</td><td><a href="/posts/3ddb3bb0.html" title="LeetCode之二叉树(中等)">LeetCode之二叉树(中等)</a></td></tr>
-<tr><td>链表</td><td>✅</td><td><a href="/posts/fb43e507.html" title="LeetCode之链表">LeetCode之链表</a></td></tr>
-<tr><td>哈希表</td><td>✅</td><td><a href="/posts/2d8b42bd.html" title="LeetCode之哈希表">LeetCode之哈希表</a></td></tr>
-<tr><td>栈和队列</td><td>✅</td><td><a href="/posts/1ccb8d85.html" title="LeetCode之栈和队列">LeetCode之栈和队列</a></td></tr>
-</table>
-
-<ul>
-<li>数组</li>
-<li>堆</li>
-<li>图</li>
-<li>二分查找</li>
-<li>深度优先遍历</li>
-<li>广度优先遍历</li>
-<li>双指针</li>
-<li>回溯</li>
-<li>动态规划(如果你很厉害，可以直接上，本人是最后统一刷的🤦‍♂️)</li>
-</ul>
-<p>如果按照这些Tag来刷，并选择简单和中等的题目，大概可以刷400-500的题目，基础和经典的题目基本都能覆盖到，对于首次刷题的你还是很友好的。</p>
-<p>另一种刷的方式就是按照公司来刷，比如你心意的FLAG(Facebook,Linkedin,Amazon,Google)和Microsoft。可以小试牛刀，看下各家面试题的风格。这里罗列几个比较出名的公司：</p>
-<ul>
-<li>Google [✅]</li>
-<li>Microsoft [✅]</li>
-<li>Linkedin [✅]</li>
-<li>Facebook [✅]</li>
-<li>Amazon [✅]</li>
-</ul>
-<p>最后的最后，给出本人认为比较好的几个人的刷题链接，在刷题的过程中可以看下别人的解法，对自己写代码的能力提升会很有帮助，废话不多讲，传送门如下：</p>
-<ol>
-<li>首推花花酱：<a href="https://zxi.mytechroad.com/blog/">https://zxi.mytechroad.com/blog/</a></li>
-<li>grandyang的博客： <a href="https://www.cnblogs.com/grandyang/p/4606334.html">https://www.cnblogs.com/grandyang/p/4606334.html</a></li>
-<li><a href="https://github.com/luliyucoordinate/Leetcode">https://github.com/luliyucoordinate/Leetcode</a></li>
-<li><a href="https://github.com/WuLC/LeetCode/tree/master/Algorithm/Python">https://github.com/WuLC/LeetCode/tree/master/Algorithm/Python</a></li>
-<li><a href="http://bookshadow.com/leetcode/">http://bookshadow.com/leetcode/</a></li>
-<li><a href="https://blog.csdn.net/fuxuemingzhu">https://blog.csdn.net/fuxuemingzhu</a></li>
-</ol>
-<p>如果你需要的话，可以联系我，把你的刷题链接附上来，方便大家你我他😁。</p>
-]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-  </entry>
-  <entry>
     <title>LeetCode之链表</title>
     <url>/posts/fb43e507.html</url>
     <content><![CDATA[<p>链表的题目汇总在此了，欢迎大家光顾。</p>
 <p>来源：力扣（LeetCode）</p>
 <p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<img src="/images/leetcode/linkedlist.png" width = 600px height = 300px/>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/leetcode/linkedlist.png" style="width:600px;height:300px;"/></div></div>
 
 <a id="more"></a>
 
@@ -1030,12 +973,90 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
       </categories>
   </entry>
   <entry>
+    <title>谈一谈你对进程和线程的认识(未完待续...)</title>
+    <url>/posts/3970838420.html</url>
+    <content><![CDATA[<p>这是自己看完几本操作系统书和网上一些博客后，为了加深自己对进程和线程的认识，写的总结性的文章，也希望这篇文章能让你耳目一新^_^。</p>
+<p>这篇文章只谈概念，不谈代码。如果你理解了概念，写代码的时候思路就会变得很清晰，不会陷入我也不知道自己在写神马的困境。</p>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/tech/process_and_thread/process_and_thread_preivew.png" style="width:600px;height:300px;"/></div></div>
+
+<a id="more"></a>
+
+<h2 id="什么是进程？"><a href="#什么是进程？" class="headerlink" title="什么是进程？"></a>什么是进程？</h2><ol>
+<li><p>进程是执行中的程序，是<strong>操作系统分配资源的基本单位</strong>。</p>
+</li>
+<li><p>内存中的进程结构如图所示:</p>
+<img src="/images/tech/process_and_thread/process1.png" width = 240px height = 360px/></li>
+<li><p>进程在执行时会改变状态，每个进程可能处于下列状态中的某一个，如图所示:</p>
+ <img src="/images/tech/process_and_thread/process2.png" width = 600px height = 300px/></li>
+<li><p>每个进程在操作系统内用程序控制块(PCB)来表示。PCB通常包含了以下几类信息:</p>
+<ul>
+<li><p>程序状态:包括新的、就绪、运行、等待、停止等。</p>
+</li>
+<li><p>程序计数器:计数器表示进程要执行的下个指令的地址。</p>
+</li>
+<li><p>CPU寄存器:与程序计数器一起，寄存器的状态信息在出现中断时也需要保存，以便进程以后能正确地继续执行。</p>
+</li>
+<li><p>CPU调度信息:包括进程优先级、调度队列的指针和其他调度参数。</p>
+</li>
+<li><p>内存管理信息:包括基址和界限寄存器的值、页表或段表。</p>
+</li>
+<li><p>记账信息:包括CPU时间、实际使用时间、时间界限、记账数据、作业或进程数量等。</p>
+</li>
+<li><p>I/O状态信息:包括分配给进程的I/O设备列表、打开的文件列表等。</p>
+<img src="/images/tech/process_and_thread/process3.png" width = 500px height = 500px/>
+</li>
+</ul>
+</li>
+<li><p>驻留在内存中就绪的、等待运行的进程保存在就绪队列中，该队列通常用双向链表来实现。等待特定I/O设备的进程列表称为设备队列，每个设备都有自己的设备队列。</p>
+ <img src="/images/tech/process_and_thread/process4.png" width = 540px height = 500px/>
+</li>
+<li><p>绝大多数进程可以分为I/O密集型或CPU密集型。I/O密集型的进程在执行I/O方面比执行计算要花费更多的时间。CPU密集型的进程将更多的时间用在计算上。</p>
+</li>
+<li><p>将CPU切换到另一个进程需要保存当前进程的状态并恢复另一个进程的状态，这一任务被称为<strong>上下文切换</strong>。上下文切换时间是额外开销，因为切换时系统并不能做什么有用的工作。</p>
+</li>
+<li><p>进程在执行过程中，能够通过创建进程系统调用创建多个新进程。大多数操作系统根据一个唯一的进程标识符来识别进程，pid(process identifier)通常是一个整数值。</p>
+</li>
+<li><p>进程间通信有两种基本模式:共享内存和消息传递。在共享内存模式中，建立起一块共进程共享的内存区域，进程通过向此共享区域读或写入数据来交换信息。在消息传递模式中，通过在进程间交换消息来实现通信。</p>
+ <img src="/images/tech/process_and_thread/process5.png" width = 580px height = 440px/>
+
+</li>
+</ol>
+<p>消息传递对于交换较少数量的数据很有用，因为不需要避免冲突。对于计算机间的通信，消息传递也比共享内存更易于实现。共享内存允许以最快的速度进行方便的通信，在计算机中它可以达到内存的速度。共享内存比消息传递快，消息传递系统通常用系统调用来实现，因此需要更多的内核介入的时间消耗。共享内存系统中仅在建立共享内存区域时需要系统调用，一旦建立共享内存，所有的访问都被处理为常规的内存访问，不需要内核的帮助。(<strong>共享内存和消息传递的比较</strong>)</p>
+<h2 id="什么是线程？"><a href="#什么是线程？" class="headerlink" title="什么是线程？"></a>什么是线程？</h2><ol>
+<li><p>线程是<strong>操作系统调度的基本单位</strong>，由线程ID、程序计数器、寄存器集合和栈组成。它与属于同一进程的其他线程共享代码段、数据段和其他操作系统资源，如打开文件和信号。</p>
+ <img src="/images/tech/process_and_thread/thread1.png" width = 580px height = 400px/>
+</li>
+<li><p>多线程编程有4个优点:</p>
+<ul>
+<li>响应度高:如果对一个交互程序采用多线程，那么即使其他部分阻塞或执行较冗长的操作，该程序仍能继续执行，从而增加了对用户的响应程度。</li>
+<li>资源共享:线程默认共享它们所属进程的内存和资源。</li>
+<li>经济:进程创建所需要的内存和资源的分配比较昂贵。由于线程共享它们所属进程的资源，所以创建和切换线程会更为经济。</li>
+<li>多处理器体系结构的利用:能充分利用多处理器体系结构，以便每个进程能并行运行在不同的处理器上。<strong>在多CPU上使用多线程加强了并发功能</strong>。</li>
+</ul>
+</li>
+<li><p><strong>线程池</strong>的主要思想是在进程开始时创建一定数量的线程，并放入到池中以等待工作。当服务器收到请求时，它会唤醒池中的一个线程，并将要处理的请求传递给它。一旦线程完成了服务，它会返回池中再等待工作。如果池中没有可用的线程，那么服务器会一直等到有空线程为止。<strong>线程池有如下几个优点</strong>:</p>
+<ul>
+<li>通常用现有线程处理请求要比等待创建新的线程要快。</li>
+<li>线程池限制了在任何时候可用线程的数量。这对那些不能支持大量并发线程的系统非常重要。</li>
+</ul>
+</li>
+</ol>
+<p>线程池中的线程数量由系统CPU的数量、物理内存的大小和并发客户请求的期望值等因素决定。</p>
+<h2 id="进程和线程有哪些联系和区别？"><a href="#进程和线程有哪些联系和区别？" class="headerlink" title="进程和线程有哪些联系和区别？"></a>进程和线程有哪些联系和区别？</h2><h2 id="多进程还是多线程？我该怎么选择呢？"><a href="#多进程还是多线程？我该怎么选择呢？" class="headerlink" title="多进程还是多线程？我该怎么选择呢？"></a>多进程还是多线程？我该怎么选择呢？</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>《操作系统概念》</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Tech</category>
+      </categories>
+  </entry>
+  <entry>
     <title>那些我认为不错的计算机专业书(仅面向后台开发)</title>
     <url>/posts/4f424561.html</url>
     <content><![CDATA[<p>如果你是程序员新人，那么这篇文章对你很有用，能让你少走一些弯路，多看一些经典书籍，打下扎实的计算机基础。</p>
 <p>如果你是职场老鸟，那么这篇文章可能适合选读。有些书还是不错的，值得多读几遍。</p>
 <p>友情提示：点击图书可以跳转到豆瓣，查看相应图书的目录内容和用户评价。</p>
-<img src="/images/book/cs_book_rec/cs_banner.png" width = 600px height = 300px/>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/book/cs_book_rec/cs_banner.png" style="width:600px;height:300px;"/></div></div>
 
 <a id="more"></a>
 
@@ -1216,81 +1237,60 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
       </categories>
   </entry>
   <entry>
-    <title>谈一谈你对进程和线程的认识(未完待续...)</title>
-    <url>/posts/3970838420.html</url>
-    <content><![CDATA[<p>这是自己看完几本操作系统书和网上一些博客后，为了加深自己对进程和线程的认识，写的总结性的文章，也希望这篇文章能让你耳目一新^_^。</p>
-<p>这篇文章只谈概念，不谈代码。如果你理解了概念，写代码的时候思路就会变得很清晰，不会陷入我也不知道自己在写神马的困境。</p>
-<img src="/images/tech/process_and_thread/process_and_thread_preivew.png" width = 600px height = 300px/>
+    <title>LeetCode刷题指南(持续更新中)</title>
+    <url>/posts/af9ea9dd.html</url>
+    <content><![CDATA[<p>这个LeetCode分类是我刷题过程中整理出来的值得刷的题目。</p>
+<p>因为我对Python比较熟练，所以大部分代码是用Python实现的😬。</p>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/leetcode/leetcode_note.jpg" style="width:600px;height:300px;"/></div></div>
 
 <a id="more"></a>
 
-<h2 id="什么是进程？"><a href="#什么是进程？" class="headerlink" title="什么是进程？"></a>什么是进程？</h2><ol>
-<li><p>进程是执行中的程序，是<strong>操作系统分配资源的基本单位</strong>。</p>
-</li>
-<li><p>内存中的进程结构如图所示:</p>
-<img src="/images/tech/process_and_thread/process1.png" width = 240px height = 360px/></li>
-<li><p>进程在执行时会改变状态，每个进程可能处于下列状态中的某一个，如图所示:</p>
- <img src="/images/tech/process_and_thread/process2.png" width = 600px height = 300px/></li>
-<li><p>每个进程在操作系统内用程序控制块(PCB)来表示。PCB通常包含了以下几类信息:</p>
-<ul>
-<li><p>程序状态:包括新的、就绪、运行、等待、停止等。</p>
-</li>
-<li><p>程序计数器:计数器表示进程要执行的下个指令的地址。</p>
-</li>
-<li><p>CPU寄存器:与程序计数器一起，寄存器的状态信息在出现中断时也需要保存，以便进程以后能正确地继续执行。</p>
-</li>
-<li><p>CPU调度信息:包括进程优先级、调度队列的指针和其他调度参数。</p>
-</li>
-<li><p>内存管理信息:包括基址和界限寄存器的值、页表或段表。</p>
-</li>
-<li><p>记账信息:包括CPU时间、实际使用时间、时间界限、记账数据、作业或进程数量等。</p>
-</li>
-<li><p>I/O状态信息:包括分配给进程的I/O设备列表、打开的文件列表等。</p>
-<img src="/images/tech/process_and_thread/process3.png" width = 500px height = 500px/>
-</li>
-</ul>
-</li>
-<li><p>驻留在内存中就绪的、等待运行的进程保存在就绪队列中，该队列通常用双向链表来实现。等待特定I/O设备的进程列表称为设备队列，每个设备都有自己的设备队列。</p>
- <img src="/images/tech/process_and_thread/process4.png" width = 540px height = 500px/>
-</li>
-<li><p>绝大多数进程可以分为I/O密集型或CPU密集型。I/O密集型的进程在执行I/O方面比执行计算要花费更多的时间。CPU密集型的进程将更多的时间用在计算上。</p>
-</li>
-<li><p>将CPU切换到另一个进程需要保存当前进程的状态并恢复另一个进程的状态，这一任务被称为<strong>上下文切换</strong>。上下文切换时间是额外开销，因为切换时系统并不能做什么有用的工作。</p>
-</li>
-<li><p>进程在执行过程中，能够通过创建进程系统调用创建多个新进程。大多数操作系统根据一个唯一的进程标识符来识别进程，pid(process identifier)通常是一个整数值。</p>
-</li>
-<li><p>进程间通信有两种基本模式:共享内存和消息传递。在共享内存模式中，建立起一块共进程共享的内存区域，进程通过向此共享区域读或写入数据来交换信息。在消息传递模式中，通过在进程间交换消息来实现通信。</p>
- <img src="/images/tech/process_and_thread/process5.png" width = 580px height = 440px/>
+<p>首先需要说明的是，本人不做大而全的刷题目录，题目现在实在太多了，而且网上已经有一些人这么做了，对于刚开始刷题的你其实并不是十分友好。如果需要我可以在结尾给出一些链接，基本涵盖了所有题目，而且也有一些详细的解释。本人也不做题解，因为代码能看懂的话基本上不需要再阐释了，如果你需要，可以参考我给出的链接，我在刷题过程中也参考了别人的解法。总之三人行，必有我师。希望你的刷题之路顺利。</p>
+<p>本人刷题一开始是按照官方上Tag来刷了，因为自己的算法基础比较薄弱，就采取了相对比较容易的路子。同时按照Tag刷，暗示了题目可能会用到的算法和数据结构，本人又只选取了简单和中等的题目，所以刷起来相对轻松一点。为了方便，这里列出了一些本人认为非常重要的Tag(✅表示已完成)：</p>
+<table>
+<th>Tag类别</th><th>完成状态</th><th>防迷路链接</th>
+<tr><td>字符串(简单)</td><td>✅</td><td><a href="/posts/c026ad95.html" title="LeetCode之字符串(简单)">LeetCode之字符串(简单)</a></td></tr>
+<tr><td>字符串(中等)</td><td>✅</td><td><a href="/posts/723701661.html" title="LeetCode之字符串(中等)">LeetCode之字符串(中等)</a></td></tr>
+<tr><td>二叉树(简单)</td><td>✅</td><td><a href="/posts/94def828.html" title="LeetCode之二叉树(简单)">LeetCode之二叉树(简单)</a></td></tr>
+<tr><td>二叉树(中等)</td><td>✅</td><td><a href="/posts/3ddb3bb0.html" title="LeetCode之二叉树(中等)">LeetCode之二叉树(中等)</a></td></tr>
+<tr><td>链表</td><td>✅</td><td><a href="/posts/fb43e507.html" title="LeetCode之链表">LeetCode之链表</a></td></tr>
+<tr><td>哈希表</td><td>✅</td><td><a href="/posts/2d8b42bd.html" title="LeetCode之哈希表">LeetCode之哈希表</a></td></tr>
+<tr><td>栈和队列</td><td>✅</td><td><a href="/posts/1ccb8d85.html" title="LeetCode之栈和队列">LeetCode之栈和队列</a></td></tr>
+</table>
 
-</li>
-</ol>
-<p>消息传递对于交换较少数量的数据很有用，因为不需要避免冲突。对于计算机间的通信，消息传递也比共享内存更易于实现。共享内存允许以最快的速度进行方便的通信，在计算机中它可以达到内存的速度。共享内存比消息传递快，消息传递系统通常用系统调用来实现，因此需要更多的内核介入的时间消耗。共享内存系统中仅在建立共享内存区域时需要系统调用，一旦建立共享内存，所有的访问都被处理为常规的内存访问，不需要内核的帮助。(<strong>共享内存和消息传递的比较</strong>)</p>
-<h2 id="什么是线程？"><a href="#什么是线程？" class="headerlink" title="什么是线程？"></a>什么是线程？</h2><ol>
-<li><p>线程是<strong>操作系统调度的基本单位</strong>，由线程ID、程序计数器、寄存器集合和栈组成。它与属于同一进程的其他线程共享代码段、数据段和其他操作系统资源，如打开文件和信号。</p>
- <img src="/images/tech/process_and_thread/thread1.png" width = 580px height = 400px/>
-</li>
-<li><p>多线程编程有4个优点:</p>
 <ul>
-<li>响应度高:如果对一个交互程序采用多线程，那么即使其他部分阻塞或执行较冗长的操作，该程序仍能继续执行，从而增加了对用户的响应程度。</li>
-<li>资源共享:线程默认共享它们所属进程的内存和资源。</li>
-<li>经济:进程创建所需要的内存和资源的分配比较昂贵。由于线程共享它们所属进程的资源，所以创建和切换线程会更为经济。</li>
-<li>多处理器体系结构的利用:能充分利用多处理器体系结构，以便每个进程能并行运行在不同的处理器上。<strong>在多CPU上使用多线程加强了并发功能</strong>。</li>
+<li>数组</li>
+<li>堆</li>
+<li>图</li>
+<li>二分查找</li>
+<li>深度优先遍历</li>
+<li>广度优先遍历</li>
+<li>双指针</li>
+<li>回溯</li>
+<li>动态规划(如果你很厉害，可以直接上，本人是最后统一刷的🤦‍♂️)</li>
 </ul>
-</li>
-<li><p><strong>线程池</strong>的主要思想是在进程开始时创建一定数量的线程，并放入到池中以等待工作。当服务器收到请求时，它会唤醒池中的一个线程，并将要处理的请求传递给它。一旦线程完成了服务，它会返回池中再等待工作。如果池中没有可用的线程，那么服务器会一直等到有空线程为止。<strong>线程池有如下几个优点</strong>:</p>
+<p>如果按照这些Tag来刷，并选择简单和中等的题目，大概可以刷400-500的题目，基础和经典的题目基本都能覆盖到，对于首次刷题的你还是很友好的。</p>
+<p>另一种刷的方式就是按照公司来刷，比如你心意的FLAG(Facebook,Linkedin,Amazon,Google)和Microsoft。可以小试牛刀，看下各家面试题的风格。这里罗列几个比较出名的公司：</p>
 <ul>
-<li>通常用现有线程处理请求要比等待创建新的线程要快。</li>
-<li>线程池限制了在任何时候可用线程的数量。这对那些不能支持大量并发线程的系统非常重要。</li>
+<li>Google [✅]</li>
+<li>Microsoft [✅]</li>
+<li>Linkedin [✅]</li>
+<li>Facebook [✅]</li>
+<li>Amazon [✅]</li>
 </ul>
-</li>
+<p>最后的最后，给出本人认为比较好的几个人的刷题链接，在刷题的过程中可以看下别人的解法，对自己写代码的能力提升会很有帮助，废话不多讲，传送门如下：</p>
+<ol>
+<li>首推花花酱：<a href="https://zxi.mytechroad.com/blog/">https://zxi.mytechroad.com/blog/</a></li>
+<li>grandyang的博客： <a href="https://www.cnblogs.com/grandyang/p/4606334.html">https://www.cnblogs.com/grandyang/p/4606334.html</a></li>
+<li><a href="https://github.com/luliyucoordinate/Leetcode">https://github.com/luliyucoordinate/Leetcode</a></li>
+<li><a href="https://github.com/WuLC/LeetCode/tree/master/Algorithm/Python">https://github.com/WuLC/LeetCode/tree/master/Algorithm/Python</a></li>
+<li><a href="http://bookshadow.com/leetcode/">http://bookshadow.com/leetcode/</a></li>
+<li><a href="https://blog.csdn.net/fuxuemingzhu">https://blog.csdn.net/fuxuemingzhu</a></li>
 </ol>
-<p>线程池中的线程数量由系统CPU的数量、物理内存的大小和并发客户请求的期望值等因素决定。</p>
-<h2 id="进程和线程有哪些联系和区别？"><a href="#进程和线程有哪些联系和区别？" class="headerlink" title="进程和线程有哪些联系和区别？"></a>进程和线程有哪些联系和区别？</h2><h2 id="多进程还是多线程？我该怎么选择呢？"><a href="#多进程还是多线程？我该怎么选择呢？" class="headerlink" title="多进程还是多线程？我该怎么选择呢？"></a>多进程还是多线程？我该怎么选择呢？</h2><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li>《操作系统概念》</li>
-</ul>
+<p>如果你需要的话，可以联系我，把你的刷题链接附上来，方便大家你我他😁。</p>
 ]]></content>
       <categories>
-        <category>Tech</category>
+        <category>LeetCode</category>
       </categories>
   </entry>
   <entry>
@@ -1299,7 +1299,7 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
     <content><![CDATA[<p>字符串(中等)的题目汇总在此了，欢迎大家光顾。</p>
 <p>来源：力扣（LeetCode）</p>
 <p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<img src="/images/leetcode/string2.png" width = 600px height = 300px/>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/leetcode/string2.png" style="width:600px;height:300px;"/></div></div>
 
 <a id="more"></a>
 
@@ -1661,7 +1661,7 @@ s = "AABABBA", k = 1
     <content><![CDATA[<p>栈与队列的题目汇总在此了，欢迎大家光顾。</p>
 <p>来源：力扣（LeetCode）</p>
 <p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<img src="/images/leetcode/queue_and_stack.png" width = 600px height = 300px/>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/leetcode/queue_and_stack.png" style="width:600px;height:300px;"/></div></div>
 
 <a id="more"></a>
 
@@ -1996,7 +1996,7 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
     <title>牛客题霸-名企高频面试题</title>
     <url>/posts/1369037266.html</url>
     <content><![CDATA[<p>终于把牛客题霸-名企高频面试题刷完了，在这里汇总一下。</p>
-<img src="/images/tech/niuke/banner.png" width = 600px height = 300px/>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/tech/niuke/banner.png" style="width:600px;height:300px;"/></div></div>
 
 <a id="more"></a>
 
@@ -2256,7 +2256,7 @@ true
     <content><![CDATA[<p>二叉树(中等)的题目汇总在此了，欢迎大家光顾。</p>
 <p>来源：力扣（LeetCode）</p>
 <p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<img src="/images/leetcode/hongheishu.png" width = 600px height = 300px/>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/leetcode/hongheishu.png" style="width:600px;height:300px;"/></div></div>
 
 <a id="more"></a>
 
