@@ -144,7 +144,7 @@
 
   <url>
     <loc>https://leel0330.github.io/</loc>
-    <lastmod>2021-01-02</lastmod>
+    <lastmod>2021-01-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -153,22 +153,22 @@
 
   
   <url>
-    <loc>https://leel0330.github.io/categories/Tech/</loc>
-    <lastmod>2021-01-02</lastmod>
+    <loc>https://leel0330.github.io/categories/LeetCode/</loc>
+    <lastmod>2021-01-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://leel0330.github.io/categories/LeetCode/</loc>
-    <lastmod>2021-01-02</lastmod>
+    <loc>https://leel0330.github.io/categories/Tech/</loc>
+    <lastmod>2021-01-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://leel0330.github.io/categories/Book/</loc>
-    <lastmod>2021-01-02</lastmod>
+    <lastmod>2021-01-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
