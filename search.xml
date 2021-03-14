@@ -776,6 +776,227 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
       </categories>
   </entry>
   <entry>
+    <title>LeetCode之广度优先遍历</title>
+    <url>/posts/160200368.html</url>
+    <content><![CDATA[<p>广度优先遍历的题目汇总在此了，欢迎大家光顾。</p>
+<p>来源：力扣（LeetCode）</p>
+<p>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<div class="img-wrap"><div class="img-bg"><img class="img" src="/images/leetcode/bfs.png" style="width:600px;height:300px;"/></div></div>
+
+<a id="more"></a>
+
+<h2 id="101-对称二叉树"><a href="#101-对称二叉树" class="headerlink" title="101. 对称二叉树"></a>101. 对称二叉树</h2><p>给定一个二叉树，检查它是否是镜像对称的。</p>
+<p>例如，二叉树 [1,2,2,3,4,4,3] 是对称的。</p>
+<pre>
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:
+
+    1
+   / \
+  2   2
+   \   \
+   3    3
+</pre>
+<p>说明:</p>
+<ul>
+<li>如果你可以运用递归和迭代两种方法解决这个问题，会很加分。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isSymmetric</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        queue = [root, root]</span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            t1 = queue.pop(<span class="number">0</span>)</span><br><span class="line">            t2 = queue.pop(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">if</span> t1 <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> t2 <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">if</span> t1 <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> t2 <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> t1.val != t2.val:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            queue.append(t1.left)</span><br><span class="line">            queue.append(t2.right)</span><br><span class="line">            queue.append(t1.right)</span><br><span class="line">            queue.append(t2.left)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="111-二叉树的最小深度"><a href="#111-二叉树的最小深度" class="headerlink" title="111. 二叉树的最小深度"></a>111. 二叉树的最小深度</h2><p>给定一个二叉树，找出其最小深度。</p>
+<p>最小深度是从根节点到最近叶子节点的最短路径上的节点数量。</p>
+<p>说明: 叶子节点是指没有子节点的节点。</p>
+<p>示例:</p>
+<pre>
+给定二叉树 [3,9,20,null,null,15,7],
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+返回它的最小深度  2.
+</pre>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minDepth</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        depth = <span class="number">0</span></span><br><span class="line">        queue = [root]</span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            sz = <span class="built_in">len</span>(queue)</span><br><span class="line">            depth += <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> xrange(sz):</span><br><span class="line">                node = queue.pop(<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">if</span> node.left <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> node.right <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                    <span class="keyword">return</span> depth</span><br><span class="line">                <span class="keyword">if</span> node.left:</span><br><span class="line">                    queue.append(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.right:</span><br><span class="line">                    queue.append(node.right)</span><br></pre></td></tr></table></figure>
+
+<h2 id="127-单词接龙-n"><a href="#127-单词接龙-n" class="headerlink" title="127. 单词接龙 [n]"></a>127. 单词接龙 [n]</h2><p>给定两个单词（beginWord 和 endWord）和一个字典，找到从 beginWord 到 endWord 的最短转换序列的长度。转换需遵循如下规则：</p>
+<p>每次转换只能改变一个字母。<br>转换过程中的中间单词必须是字典中的单词。</p>
+<p>说明:</p>
+<ul>
+<li>如果不存在这样的转换序列，返回 0。</li>
+<li>所有单词具有相同的长度。</li>
+<li>所有单词只由小写字母组成。</li>
+<li>字典中不存在重复的单词。</li>
+<li>你可以假设 beginWord 和 endWord 是非空的，且二者不相同。</li>
+</ul>
+<p>示例 1:</p>
+<pre>
+输入:
+beginWord = "hit",
+endWord = "cog",
+wordList = ["hot","dot","dog","lot","log","cog"]
+
+输出: 5
+
+解释: 一个最短转换序列是 "hit" -> "hot" -> "dot" -> "dog" -> "cog",
+     返回它的长度 5。
+</pre>
+<p>示例 2:</p>
+<pre>
+输入:
+beginWord = "hit"
+endWord = "cog"
+wordList = ["hot","dot","dog","lot","log"]
+
+输出: 0
+
+解释: endWord "cog" 不在字典中，所以无法进行转换。
+</pre>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ladderLength</span>(<span class="params">self, beginWord, endWord, wordList</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type beginWord: str</span></span><br><span class="line"><span class="string">        :type endWord: str</span></span><br><span class="line"><span class="string">        :type wordList: List[str]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        word_set = <span class="built_in">set</span>(wordList)</span><br><span class="line">        <span class="keyword">if</span> endWord <span class="keyword">not</span> <span class="keyword">in</span> word_set:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        chrs = [<span class="built_in">chr</span>(<span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>) + i) <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">26</span>)]</span><br><span class="line">        step = <span class="number">0</span></span><br><span class="line">        queue = [beginWord]</span><br><span class="line">        used = &#123;beginWord:<span class="literal">True</span>&#125;</span><br><span class="line">        n = <span class="built_in">len</span>(beginWord)</span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            sz = <span class="built_in">len</span>(queue)</span><br><span class="line">            step += <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> xrange(sz):</span><br><span class="line">                word = <span class="built_in">list</span>(queue.pop(<span class="number">0</span>))</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> xrange(n):</span><br><span class="line">                    original_c = word[j]</span><br><span class="line">                    <span class="keyword">for</span> c <span class="keyword">in</span> chrs:</span><br><span class="line">                        word[j] = c</span><br><span class="line">                        tmp = <span class="string">&#x27;&#x27;</span>.join(word)</span><br><span class="line">                        <span class="keyword">if</span> tmp <span class="keyword">in</span> used:</span><br><span class="line">                            <span class="keyword">continue</span></span><br><span class="line">                        <span class="keyword">if</span> tmp == endWord:</span><br><span class="line">                            <span class="keyword">return</span> step + <span class="number">1</span></span><br><span class="line">                        <span class="keyword">if</span> tmp <span class="keyword">in</span> word_set:</span><br><span class="line">                            queue.append(tmp)</span><br><span class="line">                            used[tmp] = <span class="literal">True</span></span><br><span class="line">                    word[j] = original_c</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="130-被围绕的区域-n"><a href="#130-被围绕的区域-n" class="headerlink" title="130. 被围绕的区域 [n]"></a>130. 被围绕的区域 [n]</h2><p>给定一个二维的矩阵，包含 ‘X’ 和 ‘O’（字母 O）。</p>
+<p>找到所有被 ‘X’ 围绕的区域，并将这些区域里所有的 ‘O’ 用 ‘X’ 填充。</p>
+<p>示例:</p>
+<pre>
+X X X X
+X O O X
+X X O X
+X O X X
+运行你的函数后，矩阵变为：
+
+X X X X
+X X X X
+X X X X
+X O X X
+解释:
+
+被围绕的区间不会存在于边界上，换句话说，任何边界上的 'O' 都不会被填充为 'X'。 任何不在边界上，或不与边界上的 'O' 相连的 'O' 最终都会被填充为 'X'。如果两个元素在水平或垂直方向相邻，则称它们是“相连”的。
+</pre>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">solve</span>(<span class="params">self, board</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type board: List[List[str]]</span></span><br><span class="line"><span class="string">        :rtype: None Do not return anything, modify board in-place instead.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> board <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> <span class="built_in">len</span>(board) == <span class="number">0</span> <span class="keyword">or</span> <span class="built_in">len</span>(board[<span class="number">0</span>]) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        rows, cols = <span class="built_in">len</span>(board), <span class="built_in">len</span>(board[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(rows):</span><br><span class="line">            <span class="keyword">if</span> board[i][<span class="number">0</span>] == <span class="string">&#x27;O&#x27;</span>:</span><br><span class="line">                self.bfs(board, i, <span class="number">0</span>, rows, cols)</span><br><span class="line">            <span class="keyword">if</span> board[i][cols - <span class="number">1</span>] == <span class="string">&#x27;O&#x27;</span>:</span><br><span class="line">                self.bfs(board, i, cols - <span class="number">1</span>, rows, cols)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> xrange(cols):</span><br><span class="line">            <span class="keyword">if</span> board[<span class="number">0</span>][j] == <span class="string">&#x27;O&#x27;</span>:</span><br><span class="line">                self.bfs(board, <span class="number">0</span>, j, rows, cols)</span><br><span class="line">            <span class="keyword">if</span> board[rows - <span class="number">1</span>][j] == <span class="string">&#x27;O&#x27;</span>:</span><br><span class="line">                self.bfs(board, rows - <span class="number">1</span>, j, rows, cols)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(rows):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(cols):</span><br><span class="line">                <span class="keyword">if</span> board[i][j] == <span class="string">&#x27;G&#x27;</span>:</span><br><span class="line">                    board[i][j] = <span class="string">&#x27;O&#x27;</span></span><br><span class="line">                <span class="keyword">elif</span> board[i][j] == <span class="string">&#x27;O&#x27;</span>:</span><br><span class="line">                    board[i][j] = <span class="string">&#x27;X&#x27;</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bfs</span>(<span class="params">self, board, i, j, rows, cols</span>):</span></span><br><span class="line">        board[i][j] = <span class="string">&#x27;G&#x27;</span></span><br><span class="line">        queue = [(i, j)]</span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            x, y = queue.pop(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">if</span> x &gt;= <span class="number">1</span> <span class="keyword">and</span> board[x - <span class="number">1</span>][y] == <span class="string">&#x27;O&#x27;</span>:</span><br><span class="line">                board[x - <span class="number">1</span>][y] = <span class="string">&#x27;G&#x27;</span></span><br><span class="line">                queue.append((x - <span class="number">1</span>, y))</span><br><span class="line">            <span class="keyword">if</span> x &lt; rows - <span class="number">1</span> <span class="keyword">and</span> board[x + <span class="number">1</span>][y] == <span class="string">&#x27;O&#x27;</span>:</span><br><span class="line">                board[x + <span class="number">1</span>][y] = <span class="string">&#x27;G&#x27;</span></span><br><span class="line">                queue.append((x + <span class="number">1</span>, y))</span><br><span class="line">            <span class="keyword">if</span> y &gt;= <span class="number">1</span> <span class="keyword">and</span> board[x][y - <span class="number">1</span>] == <span class="string">&#x27;O&#x27;</span>:</span><br><span class="line">                board[x][y - <span class="number">1</span>] = <span class="string">&#x27;G&#x27;</span></span><br><span class="line">                queue.append((x, y - <span class="number">1</span>))</span><br><span class="line">            <span class="keyword">if</span> y &lt; cols - <span class="number">1</span> <span class="keyword">and</span> board[x][y + <span class="number">1</span>] == <span class="string">&#x27;O&#x27;</span>:</span><br><span class="line">                board[x][y + <span class="number">1</span>] = <span class="string">&#x27;G&#x27;</span></span><br><span class="line">                queue.append((x, y + <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="542-01-矩阵-n"><a href="#542-01-矩阵-n" class="headerlink" title="542. 01 矩阵 [n]"></a>542. 01 矩阵 [n]</h2><p>给定一个由 0 和 1 组成的矩阵，找出每个元素到最近的 0 的距离。</p>
+<p>两个相邻元素间的距离为 1 。</p>
+<p>示例 1: </p>
+<pre>
+输入:
+
+0 0 0
+0 1 0
+0 0 0
+输出:
+
+0 0 0
+0 1 0
+0 0 0
+</pre>
+<p>示例 2: </p>
+<pre>
+输入:
+
+0 0 0
+0 1 0
+1 1 1
+输出:
+
+0 0 0
+0 1 0
+1 2 1
+</pre>
+
+<p>注意:</p>
+<ul>
+<li>给定矩阵的元素个数不超过 10000。</li>
+<li>给定矩阵中至少有一个元素是 0。</li>
+<li>矩阵中的元素只在四个方向上相邻: 上、下、左、右。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">updateMatrix</span>(<span class="params">self, matrix</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type matrix: List[List[int]]</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        m, n = <span class="built_in">len</span>(matrix), <span class="built_in">len</span>(matrix[<span class="number">0</span>])</span><br><span class="line">        res = [[-<span class="number">1</span> <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(n)] <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(m)]</span><br><span class="line">        queue = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> xrange(m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> xrange(n):</span><br><span class="line">                <span class="keyword">if</span> matrix[i][j] == <span class="number">0</span>:</span><br><span class="line">                    res[i][j] = <span class="number">0</span></span><br><span class="line">                    queue.append((i, j))</span><br><span class="line">        dires = [(<span class="number">0</span>, <span class="number">1</span>), (<span class="number">0</span>, -<span class="number">1</span>), (<span class="number">1</span>, <span class="number">0</span>), (-<span class="number">1</span>, <span class="number">0</span>)]</span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            x, y = queue.pop(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">for</span> dire <span class="keyword">in</span> dires:</span><br><span class="line">                a = x + dire[<span class="number">0</span>]</span><br><span class="line">                b = y + dire[<span class="number">1</span>]</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span> &lt;= a &lt; m <span class="keyword">and</span> <span class="number">0</span> &lt;= b &lt; n <span class="keyword">and</span> res[a][b] == -<span class="number">1</span>:</span><br><span class="line">                    res[a][b] = res[x][y] + <span class="number">1</span></span><br><span class="line">                    queue.append((a, b))</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<h2 id="841-钥匙和房间-n"><a href="#841-钥匙和房间-n" class="headerlink" title="841. 钥匙和房间 [n]"></a>841. 钥匙和房间 [n]</h2><p>有 N 个房间，开始时你位于 0 号房间。每个房间有不同的号码：0，1，2，…，N-1，并且房间里可能有一些钥匙能使你进入下一个房间。</p>
+<p>在形式上，对于每个房间 i 都有一个钥匙列表 rooms[i]，每个钥匙 rooms[i][j] 由 [0,1，…，N-1] 中的一个整数表示，其中 N = rooms.length。 钥匙 rooms[i][j] = v 可以打开编号为 v 的房间。</p>
+<p>最初，除 0 号房间外的其余所有房间都被锁住。</p>
+<p>你可以自由地在房间之间来回走动。</p>
+<p>如果能进入每个房间返回 true，否则返回 false。</p>
+<p>示例 1：</p>
+<pre>
+输入: [[1],[2],[3],[]]
+输出: true
+解释:  
+我们从 0 号房间开始，拿到钥匙 1。
+之后我们去 1 号房间，拿到钥匙 2。
+然后我们去 2 号房间，拿到钥匙 3。
+最后我们去了 3 号房间。
+由于我们能够进入每个房间，我们返回 true。
+</pre>
+<p>示例 2：</p>
+<pre>
+输入：[[1,3],[3,0,1],[2],[0]]
+输出：false
+解释：我们不能进入 2 号房间。
+</pre>
+
+<p>提示：</p>
+<ul>
+<li>1 &lt;= rooms.length &lt;= 1000</li>
+<li>0 &lt;= rooms[i].length &lt;= 1000</li>
+<li>所有房间中的钥匙数量总计不超过 3000</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canVisitAllRooms</span>(<span class="params">self, rooms</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type rooms: List[List[int]]</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        visited = [<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(<span class="built_in">len</span>(rooms))]</span><br><span class="line">        queue = [<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            sz = <span class="built_in">len</span>(queue)</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> xrange(sz):</span><br><span class="line">                room_idx = queue.pop(<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">if</span> visited[room_idx] == <span class="number">1</span>:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                visited[room_idx] = <span class="number">1</span></span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> rooms[room_idx]:</span><br><span class="line">                    queue.append(j)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(visited) == <span class="built_in">len</span>(rooms)</span><br></pre></td></tr></table></figure>
+
+<h2 id="863-二叉树中所有距离为-K-的结点-n"><a href="#863-二叉树中所有距离为-K-的结点-n" class="headerlink" title="863. 二叉树中所有距离为 K 的结点 [n]"></a>863. 二叉树中所有距离为 K 的结点 [n]</h2><p>给定一个二叉树（具有根结点 root）， 一个目标结点 target ，和一个整数值 K 。</p>
+<p>返回到目标结点 target 距离为 K 的所有结点的值的列表。 答案可以以任何顺序返回。</p>
+<p>示例 1：</p>
+<pre>
+输入：root = [3,5,1,6,2,0,8,null,null,7,4], target = 5, K = 2
+
+输出：[7,4,1]
+
+解释：
+所求结点为与目标结点（值为 5）距离为 2 的结点，
+值分别为 7，4，以及 1
+</pre>
+
+<p>提示：</p>
+<ul>
+<li>给定的树是非空的，且最多有 K 个结点。</li>
+<li>树上的每个结点都具有唯一的值 0 &lt;= node.val &lt;= 500 。</li>
+<li>目标结点 target 是树上的结点。</li>
+<li>0 &lt;= K &lt;= 1000.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">distanceK</span>(<span class="params">self, root, target, K</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :type target: TreeNode</span></span><br><span class="line"><span class="string">        :type K: int</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        m = collections.defaultdict(<span class="built_in">list</span>)</span><br><span class="line">        self.helper(<span class="literal">None</span>, root, m)</span><br><span class="line"></span><br><span class="line">        queue = [target.val]</span><br><span class="line">        visited = <span class="built_in">set</span>([target.val])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(K):</span><br><span class="line">            sz = <span class="built_in">len</span>(queue)</span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(sz):</span><br><span class="line">                v = queue.pop(<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> m[v]:</span><br><span class="line">                    <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                        visited.add(i)</span><br><span class="line">                        queue.append(i)</span><br><span class="line">        <span class="keyword">return</span> queue</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">self, parent, child, m</span>):</span></span><br><span class="line">        <span class="keyword">if</span> parent <span class="keyword">and</span> child:</span><br><span class="line">            m[child.val].append(parent.val)</span><br><span class="line">            m[parent.val].append(child.val)</span><br><span class="line">        <span class="keyword">if</span> child.left:</span><br><span class="line">            self.helper(child, child.left, m)</span><br><span class="line">        <span class="keyword">if</span> child.right:</span><br><span class="line">            self.helper(child, child.right, m)</span><br></pre></td></tr></table></figure>
+
+<h2 id="993-二叉树的堂兄弟节点-n"><a href="#993-二叉树的堂兄弟节点-n" class="headerlink" title="993. 二叉树的堂兄弟节点 [n]"></a>993. 二叉树的堂兄弟节点 [n]</h2><p>在二叉树中，根节点位于深度 0 处，每个深度为 k 的节点的子节点位于深度 k+1 处。</p>
+<p>如果二叉树的两个节点深度相同，但父节点不同，则它们是一对堂兄弟节点。</p>
+<p>我们给出了具有唯一值的二叉树的根节点 root，以及树中两个不同节点的值 x 和 y。</p>
+<p>只有与值 x 和 y 对应的节点是堂兄弟节点时，才返回 true。否则，返回 false。</p>
+<p>示例 1：</p>
+<pre>
+输入：root = [1,2,3,4], x = 4, y = 3
+输出：false
+</pre>
+<p>示例 2：</p>
+<pre>
+输入：root = [1,2,3,null,4,null,5], x = 5, y = 4
+输出：true
+</pre>
+<p>示例 3：</p>
+<pre>
+输入：root = [1,2,3,null,4], x = 2, y = 3
+输出：false
+</pre>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isCousins</span>(<span class="params">self, root, x, y</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :type x: int</span></span><br><span class="line"><span class="string">        :type y: int</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        queue = [(root, <span class="literal">None</span>)]</span><br><span class="line">        m = &#123;&#125;</span><br><span class="line">        depth = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            sz = <span class="built_in">len</span>(queue)</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> xrange(sz):</span><br><span class="line">                node, parent = queue.pop(<span class="number">0</span>)</span><br><span class="line">                m[node.val] = (parent, depth)</span><br><span class="line">                <span class="keyword">if</span> node.left:</span><br><span class="line">                    queue.append((node.left, node))</span><br><span class="line">                <span class="keyword">if</span> node.right:</span><br><span class="line">                    queue.append((node.right, node))</span><br><span class="line">            depth += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        px, dx = m[x]</span><br><span class="line">        py, dy = m[y]</span><br><span class="line">        <span class="keyword">return</span> px != py <span class="keyword">and</span> dx == dy</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+  </entry>
+  <entry>
     <title>LeetCode之数组(困难)</title>
     <url>/posts/801922082.html</url>
     <content><![CDATA[<p>数组(困难)的题目汇总在此了，欢迎大家光顾。</p>
@@ -1099,6 +1320,7 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
 <p>本人刷题一开始是按照官方上Tag来刷了，因为自己的算法基础比较薄弱，就采取了相对比较容易的路子。同时按照Tag刷，暗示了题目可能会用到的算法和数据结构，本人又只选取了简单和中等的题目，所以刷起来相对轻松一点。为了方便，这里列出了一些本人认为非常重要的Tag(✅表示已完成)：</p>
 <table>
 <th>Tag类别</th><th>完成状态</th><th>防迷路链接</th>
+<tr><td>广度优先遍历</td><td>✅</td><td><a href="/posts/160200368.html" title="LeetCode之广度优先遍历">LeetCode之广度优先遍历</a></td></tr>
 <tr><td>动态规划(中等)</td><td>✅</td><td><a href="/posts/903350571.html" title="LeetCode之动态规划(中等)">LeetCode之动态规划(中等)</a></td></tr>
 <tr><td>数组(简单)</td><td>✅</td><td><a href="/posts/3027083408.html" title="LeetCode之数组(简单)">LeetCode之数组(简单)</a></td></tr>
 <tr><td>数组(中等)</td><td>✅</td><td><a href="/posts/3239008047.html" title="LeetCode之数组(中等)">LeetCode之数组(中等)</a></td></tr>
@@ -1117,7 +1339,6 @@ words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
 <li>图</li>
 <li>二分查找</li>
 <li>深度优先遍历</li>
-<li>广度优先遍历</li>
 <li>双指针</li>
 <li>回溯</li>
 </ul>
@@ -3333,7 +3554,7 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
 8
 </pre>
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minEditCost</span> <span class="params">(String str1, String str2, <span class="keyword">int</span> ic, <span class="keyword">int</span> dc, <span class="keyword">int</span> rc)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">int</span> m = str1.length();</span><br><span class="line">        <span class="keyword">int</span> n = str2.length();</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[m+<span class="number">1</span>][n+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            dp[i][<span class="number">0</span>] = i*dc;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">            dp[<span class="number">0</span>][j] = j*ic;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> c1 = str1.charAt(i-<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">                <span class="keyword">char</span> c2 = str2.charAt(j-<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span>(c1 == c2) &#123;</span><br><span class="line">                    dp[i][j] = dp[i-<span class="number">1</span>][j-<span class="number">1</span>];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">int</span> insert = dp[i][j-<span class="number">1</span>] + ic;</span><br><span class="line">                    <span class="keyword">int</span> delete = dp[i-<span class="number">1</span>][j] + dc;</span><br><span class="line">                    <span class="keyword">int</span> replace = dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + rc;</span><br><span class="line">                    dp[i][j] = Math.min(replace, Math.min(insert, delete));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[m][n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * min edit cost</span></span><br><span class="line"><span class="comment">     * @param str1 string字符串 the string</span></span><br><span class="line"><span class="comment">     * @param str2 string字符串 the string</span></span><br><span class="line"><span class="comment">     * @param ic int整型 insert cost</span></span><br><span class="line"><span class="comment">     * @param dc int整型 delete cost</span></span><br><span class="line"><span class="comment">     * @param rc int整型 replace cost</span></span><br><span class="line"><span class="comment">     * @return int整型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minEditCost</span><span class="params">(<span class="built_in">string</span> str1, <span class="built_in">string</span> str2, <span class="keyword">int</span> ic, <span class="keyword">int</span> dc, <span class="keyword">int</span> rc)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">		<span class="keyword">int</span> s1Len = str1.size();</span><br><span class="line">		<span class="keyword">int</span> s2Len = str2.size();</span><br><span class="line">		<span class="function"><span class="built_in">vector</span>&lt; <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; <span class="title">dp</span><span class="params">(s1Len + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(s2Len + <span class="number">1</span>, <span class="number">0</span>))</span></span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= s1Len; i++) &#123;</span><br><span class="line">			dp[i][<span class="number">0</span>] = i * dc;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= s2Len; i++) &#123;</span><br><span class="line">			dp[<span class="number">0</span>][i] = i * ic;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= s1Len; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= s2Len; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span>(str1[i - <span class="number">1</span>] == str2[j - <span class="number">1</span>]) &#123;</span><br><span class="line">					dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					<span class="keyword">int</span> ins = dp[i][j - <span class="number">1</span>] + ic;</span><br><span class="line">					<span class="keyword">int</span> del = dp[i - <span class="number">1</span>][j] + dc;</span><br><span class="line">					<span class="keyword">int</span> replace = dp[i - <span class="number">1</span>][j - <span class="number">1</span>] + rc;</span><br><span class="line">					dp[i][j] = min(ins, min(del, replace));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> dp[s1Len][s2Len];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <h2 id="NC44-通配符匹配-n"><a href="#NC44-通配符匹配-n" class="headerlink" title="NC44. 通配符匹配 [n]"></a>NC44. 通配符匹配 [n]</h2><p>请实现支持’?’and’*‘.的通配符模式匹配。<br>‘?’ 可以匹配任何单个字符。<br>‘*‘ 可以匹配任何字符序列（包括空序列）。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isMatch</span>(<span class="params">self , s , p </span>):</span></span><br><span class="line">        <span class="comment"># write code here</span></span><br><span class="line">        i, j = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        backi, backj = -<span class="number">1</span>, -<span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(s):</span><br><span class="line">            <span class="keyword">if</span> j &lt; <span class="built_in">len</span>(p) <span class="keyword">and</span> (s[i] == p[j] <span class="keyword">or</span> p[j] == <span class="string">&#x27;?&#x27;</span>):</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> j &lt; <span class="built_in">len</span>(p) <span class="keyword">and</span> p[j] == <span class="string">&#x27;*&#x27;</span>:</span><br><span class="line">                backi = i</span><br><span class="line">                backj = j</span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> backj != -<span class="number">1</span>:</span><br><span class="line">                i = backi + <span class="number">1</span></span><br><span class="line">                j = backj + <span class="number">1</span></span><br><span class="line">                backi = i</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">while</span> j &lt; <span class="built_in">len</span>(p) <span class="keyword">and</span> p[j] == <span class="string">&#x27;*&#x27;</span>:</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> j == <span class="built_in">len</span>(p)</span><br></pre></td></tr></table></figure>
@@ -3528,7 +3749,7 @@ true
 </pre>
 
 <p>Python会超时。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">LCS</span> <span class="params">(String str1, String str2)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">int</span> m = str1.length();</span><br><span class="line">        <span class="keyword">int</span> n = str2.length();</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        String tmp = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[m + <span class="number">1</span>][n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; m + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n + <span class="number">1</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(str1.charAt(i - <span class="number">1</span>) == str2.charAt(j - <span class="number">1</span>)) &#123;</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(dp[i][j] &gt; res) &#123;</span><br><span class="line">                    res = dp[i][j];</span><br><span class="line">                    tmp = str1.substring(i - dp[i][j], i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(tmp.length() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;-1&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> tmp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * longest common substring</span></span><br><span class="line"><span class="comment">     * @param str1 string字符串 the string</span></span><br><span class="line"><span class="comment">     * @param str2 string字符串 the string</span></span><br><span class="line"><span class="comment">     * @return string字符串</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">LCS</span><span class="params">(<span class="built_in">string</span> str1, <span class="built_in">string</span> str2)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// write code here</span></span><br><span class="line">        <span class="keyword">int</span> s1Len = str1.size();</span><br><span class="line">		<span class="keyword">int</span> s2Len = str2.size();</span><br><span class="line">		<span class="built_in">string</span> res = <span class="string">&quot;&quot;</span>;</span><br><span class="line">		<span class="keyword">int</span> maxLen = <span class="number">0</span>;</span><br><span class="line">		<span class="function"><span class="built_in">vector</span>&lt; <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; <span class="title">dp</span><span class="params">(s1Len + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(s2Len + <span class="number">1</span>, <span class="number">0</span>))</span></span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= s1Len; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= s2Len; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span>(str1[i - <span class="number">1</span>] == str2[j - <span class="number">1</span>]) &#123;</span><br><span class="line">					dp[i][j] = <span class="number">1</span> + dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>(maxLen &lt; dp[i][j]) &#123;</span><br><span class="line">					maxLen = dp[i][j];</span><br><span class="line">					res = str1.substr(i - dp[i][j], dp[i][j]);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(res.empty()) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="string">&quot;-1&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <h2 id="NC128-容器盛水问题-n"><a href="#NC128-容器盛水问题-n" class="headerlink" title="NC128. 容器盛水问题 [n]"></a>NC128. 容器盛水问题 [n]</h2><p>给定一个整形数组arr，已知其中所有的值都是非负的，将这个数组看作一个容器，请返回容器能装多少水。<br>具体请参考样例解释</p>
 <p>示例1</p>
